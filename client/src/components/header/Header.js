@@ -16,47 +16,6 @@ const Header = () => {
                 </div>
                 <DropdownMenu />
                 <UserMenu />
-                
-                {/* <span className="hamburger-menu">
-                    <i />
-                    <i />
-                    <i />
-                </span> */}
-                {/* <div className="mobile-menu">
-                    <div className="mobile-menu__item">
-                    <a className="mobile-menu__links" href="">
-                        <i className="mobile-menu__icon fa-solid fa-user" />
-                        Log in
-                    </a>
-                    </div>
-                    <div className="mobile-menu__item">
-                    <a className="mobile-menu__links" href="">
-                        <i className="mobile-menu__icon fa-solid fa-cart-shopping" />
-                        Cart
-                    </a>
-                    </div>
-                    <div className="mobile-menu__item">
-                    <a
-                        className="mobile-menu__links"
-                        href="http://localhost:3000/search.html"
-                    >
-                        Store
-                    </a>
-                    </div>
-                    <div className="mobile-menu__item">
-                    <a className="mobile-menu__links" href="">
-                        About
-                    </a>
-                    </div>
-                    <div className="mobile-menu__item">
-                    <a
-                        className="mobile-menu__links"
-                        href="http://localhost:3000/contact.html"
-                    >
-                        Contact us
-                    </a>
-                    </div>
-                </div> */}
             </div>
 
         </header>

@@ -1,0 +1,11 @@
+.footerSocialLink {
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.footerSocialIcon {
+    width: 36px;
+    height: 36px;
+    color: white;
+    transition: color .3s ease-in-out;
+}

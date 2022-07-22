@@ -1,0 +1,27 @@
+/* FOOTER */
+
+.footerWrapper {
+    max-width: 1130px;
+    padding: 20px 0px;
+    margin: auto;
+}
+
+.footerCopyright {
+    text-align: center;
+    padding: 15px 0px;
+}
+
+.footerLegal {
+    text-align: center;
+}
+
+.footerLegalLink {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    margin-right: 7px;
+    text-transform: uppercase;
+}
+
+.footerLegalLink:hover {
+    color: white;
+}
