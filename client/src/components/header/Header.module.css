@@ -1,0 +1,20 @@
+/* Header Styles */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    align-items: center;
+    margin: 0px 15px;
+}
+
+/* Header Logo */
+
+.headerLogo {
+    margin-top: 5px;
+}
+
+.headerLogoImg {
+    width: 140px;
+    height: 65px;
+}

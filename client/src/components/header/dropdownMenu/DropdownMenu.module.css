@@ -1,0 +1,7 @@
+/* Header Dropdown Menu */
+
+.headerMenu {
+    display: flex;
+    align-items: center;
+    background: transparent;
+}
