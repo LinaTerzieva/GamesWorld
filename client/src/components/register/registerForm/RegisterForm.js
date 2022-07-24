@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-import styles from './LoginForm.module.css';
+import styles from './RegisterForm.module.css';
 import companyLogo from './../../../images/companyLogo.png';
 
-const LoginForm = () => {
+const RegisterForm = () => {
+
+    let navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         username: "",
@@ -26,11 +29,11 @@ const LoginForm = () => {
         e.preventDefault();
         setValidationError("");
 
-        handleLogin();
+        handleRegister();
     }
 
-    const handleLogin = () => {
-        fetch('http://localhost:3030/users/login', {
+    const handleRegister = () => {
+        fetch('http://localhost:3030/users/register', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -40,16 +43,16 @@ const LoginForm = () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                if(data.code === 403){
+                if (data.code === 409) {
                     setValidationError(data.message);
+                } else {
+                    navigate("/", { replace: true });
                 }
-                console.log('Success:', data);
             })
             .catch((error) => {
                 setShowError(true);
             });
     }
-
 
     return (
         <div>
@@ -61,7 +64,7 @@ const LoginForm = () => {
                         <span className={styles.loginFormLogo}>
                             <img src={companyLogo} />
                         </span>
-                        <span className={styles.loginFormTitle}>Log in</span>
+                        <span className={styles.loginFormTitle}>Register</span>
                         {showError && <div className={styles.validationError}>An error has occured. Please try again later.</div>}
                         {validationError != '' && <div className={styles.validationError}>{validationError}</div>}
                         <div
@@ -93,11 +96,11 @@ const LoginForm = () => {
                             <span className={styles.focusInput} />
                         </div>
                         <div className={styles.containerFormBtn}>
-                            <button className={styles.formBtn}>Login</button>
+                            <button className={styles.formBtn}>Submit</button>
                         </div>
                         <div className={styles.containerFormBtn}>
-                            <span className={styles.registerText}>Don't have and account?</span>
-                            <Link className={styles.registerLink} to="/register">Register now</Link>
+                            <span className={styles.registerText}>Already have an account?</span>
+                            <Link className={styles.registerLink} to="/login">Log in</Link>
                         </div>
                     </form>
                 </div>
@@ -106,4 +109,4 @@ const LoginForm = () => {
     );
 }
 
-export default LoginForm;
+export default RegisterForm;
