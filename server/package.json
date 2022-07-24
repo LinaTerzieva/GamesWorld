@@ -4,7 +4,7 @@
     "description": "https://docs.google.com/drawings/d/1SOUTqYK47CVph_WfKmjJoZJbjH4sBu7Bm0L4PSy9wUQ/edit?usp=sharing",
     "main": "index.js",
     "scripts": {
-        "start": "node index.js",
+        "start": "node index.js -dev",
         "dev": "nodemon -e * index.js -dev",
         "test": "mocha tests",
         "client": "rollup --config client.config.js",

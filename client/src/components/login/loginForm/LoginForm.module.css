@@ -1,0 +1,364 @@
+/* LOGIN */
+
+
+/*---------------------------------------------*/
+input {
+    outline: none;
+    border: none;
+}
+
+textarea {
+    outline: none;
+    border: none;
+}
+
+textarea:focus,
+input:focus {
+    border-color: transparent !important;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+input:focus:-moz-placeholder {
+    color: transparent;
+}
+
+input:focus::-moz-placeholder {
+    color: transparent;
+}
+
+input:focus:-ms-input-placeholder {
+    color: transparent;
+}
+
+textarea:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+textarea:focus:-moz-placeholder {
+    color: transparent;
+}
+
+textarea:focus::-moz-placeholder {
+    color: transparent;
+}
+
+textarea:focus:-ms-input-placeholder {
+    color: transparent;
+}
+
+input::-webkit-input-placeholder {
+    color: #313339;
+}
+
+input:-moz-placeholder {
+    color: #313339;
+}
+
+input::-moz-placeholder {
+    color: #313339;
+}
+
+input:-ms-input-placeholder {
+    color: #313339;
+}
+
+textarea::-webkit-input-placeholder {
+    color: #313339;
+}
+
+textarea:-moz-placeholder {
+    color: #313339;
+}
+
+textarea::-moz-placeholder {
+    color: #313339;
+}
+
+textarea:-ms-input-placeholder {
+    color: #313339;
+}
+
+label {
+    margin: 0;
+    display: block;
+}
+
+/*---------------------------------------------*/
+button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+iframe {
+    border: none !important;
+}
+
+
+/*//////////////////////////////////////////////////////////////////
+  [ login ]*/
+
+.containerLogin{
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 1;
+    
+}
+
+.containerLogin::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.wrapLogin {
+    width: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 55px 55px 37px 55px;
+
+    background: white;
+}
+
+
+/*------------------------------------------------------------------
+  [ Form ]*/
+
+.loginForm {
+    width: 100%;
+}
+
+.loginFormLogo {
+    font-size: 60px;
+    color: #333333;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.loginFormTitle {
+    font-family: Poppins-Medium;
+    font-size: 30px;
+    color: #313339;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+
+    display: block;
+}
+
+
+/*------------------------------------------------------------------
+  [ Input ]*/
+
+.wrapInput {
+    width: 100%;
+    position: relative;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.24);
+    margin-bottom: 30px;
+}
+
+.input {
+    font-family: Poppins-Regular;
+    font-size: 16px;
+    color: #313339;
+    line-height: 1.2;
+    border: 1px solid #331366;
+    border-radius: 3px;
+
+    display: block;
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    padding: 0 5px 0 38px;
+}
+
+/*---------------------------------------------*/
+.focusInput {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.focusInput::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+
+    background: #9152f8;
+}
+
+.focusInput::after {
+    font-family: Material-Design-Iconic-Font;
+    font-size: 22px;
+    color: #9152f8;
+
+    content: attr(data-placeholder);
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 6px;
+    left: 0px;
+    padding-left: 5px;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.input:focus {
+    padding-left: 5px;
+}
+
+.input:focus+.focusInput::after {
+    top: -22px;
+    font-size: 18px;
+}
+
+.input:focus+.focusInput::before {
+    width: 100%;
+}
+
+.has-val.input100+.focus-input100::after {
+    top: -22px;
+    font-size: 18px;
+}
+
+.has-val.input100+.focus-input100::before {
+    width: 100%;
+}
+
+.has-val.input100 {
+    padding-left: 5px;
+}
+
+
+/*------------------------------------------------------------------
+  [ Button ]*/
+.containerLoginFormBtn {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.loginFormBtn {
+    font-family: Poppins-Medium;
+    font-size: 16px;
+    color: white;
+    line-height: 1.2;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    margin-top: 20px;
+    min-width: 120px;
+    height: 50px;
+    border-radius: 25px;
+
+    background: #b224ef;
+    position: relative;
+    z-index: 1;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.loginFormBtn::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: #9152f8;
+    top: 0;
+    left: 0;
+    opacity: 1;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.loginFormBtn:hover:before {
+    opacity: 0;
+}
+
+
+/*------------------------------------------------------------------
+  [ Alert validate ]*/
+
+
+.validationError {
+    color: red;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}

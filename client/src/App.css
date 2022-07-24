@@ -49,7 +49,7 @@ a:hover {
     --swiper-navigation-size: 25px;
 }
 
-body {
+.main {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -70,7 +70,7 @@ header {
 }
 
 .main-wrapper {
-    flex-grow: 1;
+    flex: 1;
 }
 
 .wrapper {
@@ -88,3 +88,7 @@ footer {
     background: #15171e;
     color: white;
 }
+
+
+
+
