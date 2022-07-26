@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faUser } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,10 +10,12 @@ const UserMenu = () => {
         <div className={styles.headerUserMenu}>
             <div className={`${styles.userMenuItem} ${styles.userMenuItemCart}`}>
                 <label className={styles.userMenuItemCartLabel}>
-                    <a className={`${styles.userMenuLink} link`}>Cart</a>
-                    <FontAwesomeIcon className={styles.userMenuIcon} icon={faCartShopping} />
+                    <a className={`${styles.userMenuLink} link`}>
+                        Cart
+                        <FontAwesomeIcon className={styles.userMenuIcon} icon={faCartShopping} />
+                    </a>
                 </label>
-                <span className={`${styles.userMenuItemCartCount} position-absolute top-0 start-100 translate-middle badge rounded-pill`}>
+                <span className={`${styles.userMenuItemCartCount} position-absolute top-0 translate-middle badge rounded-pill`}>
                     0
                 </span>
                 {/* <div className="cart-content">
@@ -44,10 +48,10 @@ const UserMenu = () => {
                         </div> */}
             </div>
             <div className={styles.userMenuItem}>
-                <a className={`${styles.userMenuLink} link`} href="">
+                <Link to='/login' className={`${styles.userMenuLink} link`} href="">
                     Log in
-                </a>
-                <FontAwesomeIcon className={styles.userMenuIcon} icon={faUser} />
+                    <FontAwesomeIcon className={styles.userMenuIcon} icon={faUser} />
+                </Link>
             </div>
         </div>
     );

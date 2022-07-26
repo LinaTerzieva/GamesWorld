@@ -1,0 +1,17 @@
+.userMenuItem {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-right: 15px;
+}
+
+.userMenuLink {
+    color: white;
+    margin-right: 10px;
+}
+
+.userMenuIcon {
+    font-size: 20px;
+    margin-left: 5px;
+    vertical-align: middle;
+}

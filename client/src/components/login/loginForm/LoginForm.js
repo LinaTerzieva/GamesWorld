@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 
 import styles from './LoginForm.module.css';
 import companyLogo from './../../../images/companyLogo.png';
+import useAuthenticationApi from '../../../lib/useAuthenticationApi';
 
 const LoginForm = () => {
 
+    const { login } = useAuthenticationApi();
     const [formData, setFormData] = useState({
         username: "",
         password: ""
@@ -30,20 +32,13 @@ const LoginForm = () => {
     }
 
     const handleLogin = () => {
-        fetch('http://localhost:3030/users/login', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-            .then((response) => response.json())
+
+        login(formData.username, formData.password)
             .then((data) => {
-                if(data.code === 403){
+                if (data.code === 403) {
                     setValidationError(data.message);
                 }
-                console.log('Success:', data);
+                console.log(data);
             })
             .catch((error) => {
                 setShowError(true);

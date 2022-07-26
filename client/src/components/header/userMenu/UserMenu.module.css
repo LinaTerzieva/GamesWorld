@@ -23,6 +23,7 @@
 
 .headerUserMenu .userMenuItemCartCount {
     background-color: #d53a9d;
+    left: 90%; 
 }
 
 .headerUserMenu .userMenuLink {
@@ -32,6 +33,7 @@
 
 .headerUserMenu .userMenuIcon {
     font-size: 20px;
+    margin-left: 5px;
 }
 
 @keyframes slideIn {

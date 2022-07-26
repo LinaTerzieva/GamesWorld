@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
+import useAuthenticationApi from '../../../lib/useAuthenticationApi';
+
 import styles from './RegisterForm.module.css';
 import companyLogo from './../../../images/companyLogo.png';
 
@@ -13,6 +15,8 @@ const RegisterForm = () => {
         username: "",
         password: ""
     });
+
+    const { register } = useAuthenticationApi();
 
     const [showError, setShowError] = useState(false);
     const [validationError, setValidationError] = useState("");
@@ -33,15 +37,8 @@ const RegisterForm = () => {
     }
 
     const handleRegister = () => {
-        fetch('http://localhost:3030/users/register', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-            .then((response) => response.json())
+
+        register(formData.username, formData.password)
             .then((data) => {
                 if (data.code === 409) {
                     setValidationError(data.message);
