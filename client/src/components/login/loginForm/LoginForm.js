@@ -1,20 +1,23 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './LoginForm.module.css';
 import companyLogo from './../../../images/companyLogo.png';
-import useAuthenticationApi from '../../../lib/useAuthenticationApi';
+
+import AuthenticationContext from '../../../lib/AuthenticationContext';
+
 
 const LoginForm = () => {
 
-    const { login } = useAuthenticationApi();
+    const {auth, loginUser} = useContext(AuthenticationContext);
+
     const [formData, setFormData] = useState({
         username: "",
         password: ""
     });
 
-    const [showError, setShowError] = useState(false);
-    const [validationError, setValidationError] = useState("");
+    // const [showError, setShowError] = useState(false);
+    // const [validationError, setValidationError] = useState("");
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -26,25 +29,12 @@ const LoginForm = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        setValidationError("");
+        // setValidationError("");
 
         handleLogin();
     }
 
-    const handleLogin = () => {
-
-        login(formData.username, formData.password)
-            .then((data) => {
-                if (data.code === 403) {
-                    setValidationError(data.message);
-                }
-                console.log(data);
-            })
-            .catch((error) => {
-                setShowError(true);
-            });
-    }
-
+    const handleLogin = () => loginUser(formData.username, formData.password);
 
     return (
         <div>
@@ -57,8 +47,8 @@ const LoginForm = () => {
                             <img src={companyLogo} />
                         </span>
                         <span className={styles.loginFormTitle}>Log in</span>
-                        {showError && <div className={styles.validationError}>An error has occured. Please try again later.</div>}
-                        {validationError != '' && <div className={styles.validationError}>{validationError}</div>}
+                        {auth.isError && auth.errorCode == '' && <div className={styles.validationError}>An error has occured. Please try again later.</div>}
+                        {auth.isError && auth.errorMessage != '' && <div className={styles.validationError}>{auth.errorMessage}</div>}
                         <div
                             className={`${styles.wrapInput} ${styles.validateInput}`}
                             data-validate="Enter username"
