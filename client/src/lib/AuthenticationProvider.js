@@ -13,22 +13,20 @@ export const AuthenticationProvider = ({ children }) => {
         isError: false
     });
 
-    const { login } = useAuthenticationApi();
-    
+    const { login, logout } = useAuthenticationApi();
+
     const loginUser = (username, password) => login(username, password)
-        .then((data) => 
-        {
-            console.log(data);
+        .then((data) => {
             if (data.code === 403) {
                 setAuth({
-                    errorCode: 403, 
+                    errorCode: 403,
                     errorMessage: data.message,
                     isError: true
                 });
             } else {
                 setAuth({
-                    id: data._id, 
-                    username: data.username, 
+                    id: data._id,
+                    username: data.username,
                     accessToken: data.accessToken
                 });
             }
@@ -37,10 +35,29 @@ export const AuthenticationProvider = ({ children }) => {
             setAuth({
                 isError: true
             })
-        });;
+        });
+
+    const logoutUser = () => logout(auth.accessToken)
+        .then((data) => {
+            if (data.status === 204) {
+                setAuth({
+                    id: '',
+                    username: '',
+                    accessToken: '',
+                    errorCode: '',
+                    errorMessage: '',
+                    isError: false
+                });
+            }
+        })
+        .catch((error) => {
+            setAuth({
+                isError: true
+            })
+        });
 
     return (
-        <AuthenticationContext.Provider value={{ auth, loginUser }}>
+        <AuthenticationContext.Provider value={{ auth, loginUser, logoutUser }}>
             {children}
         </AuthenticationContext.Provider>
     );

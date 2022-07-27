@@ -9,9 +9,9 @@ const useAuthenticationApi = () => {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({username: username, password: password}),
+            body: JSON.stringify({ username: username, password: password }),
         })
-        .then((response) => response.json())
+            .then((response) => response.json())
     }
 
     const register = (username, password) => {
@@ -21,12 +21,21 @@ const useAuthenticationApi = () => {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({username: username, password: password}),
+            body: JSON.stringify({ username: username, password: password }),
         })
-        .then((response) => response.json())
+            .then((response) => response.json())
     }
-            
-    return {login, register};
+
+    const logout = (token) => {
+        return fetch('http://localhost:3030/users/logout',{
+            method: 'GET',
+            headers: { 
+                'X-Authorization': token
+            }
+        })
+    }
+
+return { login, register, logout };
 }
 
 export default useAuthenticationApi;

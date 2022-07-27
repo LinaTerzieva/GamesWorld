@@ -1,11 +1,22 @@
+import AuthenticationContext from './../../../lib/AuthenticationContext'
+import { useContext } from 'react';
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faUser, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
-import styles from './UserMenu.module.css'
+import styles from './UserMenu.module.css';
+
 
 const UserMenu = () => {
+
+    const { auth, loginUser, logoutUser } = useContext(AuthenticationContext);
+
+    const logOutHandler = () => {
+        
+        logoutUser();
+    }
+
     return (
         <div className={styles.headerUserMenu}>
             <div className={`${styles.userMenuItem} ${styles.userMenuItemCart}`}>
@@ -20,10 +31,16 @@ const UserMenu = () => {
                 </span>
             </div>
             <div className={styles.userMenuItem}>
-                <Link to='/login' className={`${styles.userMenuLink} link`}>
-                    Log in
-                    <FontAwesomeIcon className={styles.userMenuIcon} icon={faUser} />
-                </Link>
+                {!auth.accessToken
+                    ? <Link to='/login' className={`${styles.userMenuLink} link`}>
+                        Log in
+                        <FontAwesomeIcon className={styles.userMenuIcon} icon={faUser} />
+                    </Link>
+                    : <Link to='/' className={`${styles.userMenuLink} link`} onClick={logOutHandler}>
+                        Log out
+                        <FontAwesomeIcon className={styles.userMenuIcon} icon={faArrowRightFromBracket} />
+                    </Link>
+                }
             </div>
         </div>
     );

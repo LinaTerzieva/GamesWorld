@@ -1,23 +1,19 @@
 import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import styles from './LoginForm.module.css';
 import companyLogo from './../../../images/companyLogo.png';
 
 import AuthenticationContext from '../../../lib/AuthenticationContext';
 
-
 const LoginForm = () => {
 
-    const {auth, loginUser} = useContext(AuthenticationContext);
-
+    const { auth, loginUser } = useContext(AuthenticationContext);
+    
     const [formData, setFormData] = useState({
         username: "",
         password: ""
     });
-
-    // const [showError, setShowError] = useState(false);
-    // const [validationError, setValidationError] = useState("");
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -29,14 +25,20 @@ const LoginForm = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        // setValidationError("");
 
         handleLogin();
+
     }
 
     const handleLogin = () => loginUser(formData.username, formData.password);
 
+
+    if (auth.accessToken) {
+        return <Navigate to="/" />;
+    }
+
     return (
+
         <div>
             <div
                 className={styles.containerLogin}
