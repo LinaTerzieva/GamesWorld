@@ -5,7 +5,7 @@ import styles from './Banner.module.css';
 
 const Banner = () => {
     return (
-        <div className={styles.banner}>
+        <div className={styles.banner} style={{backgroundImage: `url(${'/images/banner.jpg'})`}}>
             <div className={styles.bannerTitle}>
                 <span className={styles.bold}>Discover</span> your next favorite game
             </div>

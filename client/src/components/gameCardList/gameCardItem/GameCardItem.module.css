@@ -1,0 +1,47 @@
+.productsWidgetCard {
+    width: 302px;
+    height: 450px;
+    border: 1px solid #15171e;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    background: #15171e;
+    transition: transform 300ms ease;
+}
+
+.productsWidgetCard:hover {
+    transform: scale(1.05);
+}
+
+.productsWidgetCardImg {
+    width: 300px;
+    height: 350px;
+    border-bottom: 1px solid #313339;
+}
+
+.productsWidgetCardTitle {
+    font-variant: small-caps;
+    color: white;
+    margin-top: 15px;
+    font-size: 17px;
+}
+
+.productsWidgetCardButtonLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #15171e;
+    border: 1px solid #d53a9d;
+    width: 200px;
+    height: 40px;
+    margin: auto;
+    position: relative;
+    margin-top: 40px;
+    text-decoration: none;
+    color: white;
+    z-index: 2;
+}
+
+.productsWidgetCardButtonText {
+    font-variant-caps: all-small-caps;
+    font-size: 20px;
+}

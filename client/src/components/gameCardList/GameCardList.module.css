@@ -1,0 +1,19 @@
+.widgetContainer {
+    margin: 64px auto;
+}
+
+.productsWidget {
+    text-align: center;
+}
+
+.productsWidgetTitle {
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    color: #ddd;
+    font-size: 22px;
+}
+
+.productsWidgetCards {
+    display: flex;
+    justify-content: space-between;
+}

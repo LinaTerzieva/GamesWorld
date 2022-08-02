@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import useAuthenticationApi from '../../../lib/useAuthenticationApi';
 
 import styles from './RegisterForm.module.css';
-import companyLogo from './../../../images/companyLogo.png';
 
 const RegisterForm = () => {
 
@@ -59,7 +58,7 @@ const RegisterForm = () => {
                 <div className={styles.wrapLogin}>
                     <form onSubmit={submitHandler} className={styles.loginForm}>
                         <span className={styles.loginFormLogo}>
-                            <img src={companyLogo} />
+                            <img src={"images/companyLogo.png"} />
                         </span>
                         <span className={styles.loginFormTitle}>Register</span>
                         {showError && <div className={styles.validationError}>An error has occured. Please try again later.</div>}

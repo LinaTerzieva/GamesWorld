@@ -14,36 +14,160 @@
         "sessions": {}
     },
     "seedData": {
-        "cars": {
-            "3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
-                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-                "brand": "Audi",
-                "model": "A3",
-                "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
-                "year": 2018,
-                "imageUrl": "/images/audia3.jpg",
-                "price": 25000,
-                "_createdOn": 1616162253496
+        "games": {
+            "3a432947-3e43-42a8-bcbc-100d2b199890": {
+                "title": "Diablo 2",
+                "description": "Diablo II is an action role-playing hack-and-slash computer video game developed by Blizzard North and published by Blizzard.",
+                "cover": "https://gplaytv.bg/wp-content/uploads/2021/09/diablo-II-resurrected-pc-specs.jpg",
+                "trailer": "https://www.youtube.com/watch?v=W41NvIgeKX0",
+                "discount": 0,
+                "price": 45.99,
+                "status": [],
+                "genres": [
+                    "Action",
+                    "Shooting",
+                    "Sports"
+                ],
+                "features": [
+                    "Single-player",
+                    "Multi-player"
+                ]
             },
-            "8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
-                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-                "brand": "Mercedes",
-                "model": "A-class",
-                "description": "Voluptate expedita odio tempore aliquam rem neque sunt dignissimos ratione nulla quod dolore dolor animi cupiditate, labore ad maiores?",
-                "year": 2016,
-                "imageUrl": "/images/benz.jpg",
-                "price": 27000,
-                "_createdOn": 1616162253496
+            "3a432947-3e43-42a8-bcbc-100d2b199891": {
+                "title": "World of Warcraft",
+                "description": "Join the greatest online community in Azeroth with World of Warcraft. Explore a unique Fantasy World with Endless Possibilities!",
+                "cover": "game-card-wow.jpg",
+                "trailer": "https://www.youtube.com/watch?v=s4gBChg6AII",
+                "discount": 0,
+                "price": 20,
+                "status": "Upcoming",
+                "genres": [
+                    "Action",
+                    "Role - Playing",
+                    "Shooting",
+                    "Adventure"
+                ]
             },
             "3a432947-3e43-42a8-bcbc-100d2b199892": {
-                "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-                "brand": "BMW",
-                "model": "3 Series",
-                "description": "Quisquam modi vitae explicabo fugit delectus voluptate fuga nisi quo impedit temporibus est magni optio, at, natus odit maxime vero corporis unde sequi? Minima atque, laborum impedit deserunt sequi assumenda laudantium vitae corporis?",
-                "year": 2016,
-                "imageUrl": "/images/bmw.jpg",
-                "price": 22000,
-                "_createdOn": 1616162253496
+                "title": "Call of duty: Warzone",
+                "description": "What happens after you drop? This chapter reveals all the important intel you need to know during the heat of battle, from parachuting, inventory items, pinging, Loadout Drops, redeployment, and everything else pertinent to your continued Call of Duty®: Warzone™ survival.",
+                "cover": "https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/blog/hero/mw-wz/WZP-S1-ANNOUNCEMENT-TOUT.jpg",
+                "trailer": "https://www.youtube.com/watch?v=7xDwb8kNH6k&t=4s",
+                "discount": 0,
+                "price": 35.99,
+                "status": [],
+                "genres": [
+                    "Action",
+                    "Role - Playing",
+                    "Shooting",
+                    "Adventure"
+                ]
+            },
+            "3a432947-3e43-42a8-bcbc-100d2b199893": {
+                "title": "Counter-Strike: Global Offensive",
+                "description": "Counter-Strike: Global Offensive is a multiplayer first-person shooter developed by Valve and Hidden Path Entertainment.",
+                "cover": "https://www.thexboxhub.com/wp-content/uploads/2022/05/csgo-logo.jpg",
+                "trailer": "https://www.youtube.com/watch?v=edYCtaNueQY",
+                "discount": 0,
+                "price": 29.99,
+                "status": [],
+                "genres": [
+                    "Action",
+                    "Shooting",
+                    "Role - Playing"
+                ]
+            },
+            "3a432947-3e43-42a8-bcbc-100d2b199894": {
+                "title": "Heroes of the storm",
+                "description": "Legendary heroes and villains from Warcraft, StarCraft and Diablo are summoned to the Nexus. Choose your hero and prepare to fight in Heroes of the Storm!",
+                "cover": "game-card-heroes.jpeg",
+                "trailer": "https://www.youtube.com/watch?v=9y8ernq88-s",
+                "discount": 0,
+                "price": 35.99,
+                "status": "Upcoming",
+                "genres": [
+                    "Action",
+                    "Role - Playing",
+                    "Adventure"
+                ]
+            },
+            "3a432947-3e43-42a8-bcbc-100d2b199895": {
+                "title": "Hearthstone",
+                "description": "Deceptively simple and insanely fun, Hearthstone is a fast-paced strategy card game from Blizzard Entertainment.",
+                "cover": "https://i0.wp.com/skdesu.com/wp-content/uploads/2022/01/hearhstone.jpg?resize=1100%2C578&ssl=1",
+                "trailer": "https://www.youtube.com/watch?v=vPguoeYTvMI",
+                "discount": 0,
+                "price": 21.99,
+                "status": [],
+                "genres": [
+                    "Role - Playing",
+                    "Adventure"
+                ]
+            },
+            "3a432947-3e43-42a8-bcbc-100d2b199896": {
+                "title": "Dead cells",
+                "description": "Dead Cells is a rogue-lite, metroidvania inspired, action-platformer. You'll explore a sprawling, ever-changing castle... assuming you’re able to fight your way past its keepers in 2D souls-lite combat. No checkpoints. Kill, die, learn, repeat.",
+                "cover": "https://cdn2.unrealengine.com/egs-deadcells-motiontwin-s1-2560x1440-312502186.jpg",
+                "trailer": "https://www.youtube.com/watch?v=m1VMrLOntcc",
+                "discount": 0,
+                "price": 15,
+                "status": [],
+                "genres": [
+                    "Action",
+                    "Role - Playing",
+                    "Shooting"
+                ]
+            },
+            "3a432947-3e43-42a8-bcbc-100d2b199897": {
+                "title": "Such art",
+                "description": "A unique artist sim game with realistic paint mixing, physics and numerous painting tools. Upgrade and customize your studio, complete tasks, sell and expose art, buy instruments and get famous!",
+                "cover": "game-card-suchart.jpg",
+                "trailer": "https://www.youtube.com/watch?v=G05BljzlivY",
+                "discount": 0,
+                "price": 10,
+                "status": "Upcoming",
+                "genres": [
+                    "Role - Playing"
+                ]
+            },
+            "3a432947-3e43-42a8-bcbc-100d2b199898": {
+                "title": "Grand Theft Auto V",
+                "description": "When a young street hustler, a retired bank robber, and a terrifying psychopath find themselves entangled with some of the most frightening and deranged elements of the criminal underworld, the U.S. government, and the entertainment industry, they must pull off a series of dangerous heists to survive in a ruthless city in which they can trust nobody — least of all each other.",
+                "cover": "https://modyolo.com/wp-content/uploads/2021/10/gta-5-e1638110075606.jpeg",
+                "trailer": "https://www.youtube.com/watch?v=QkkoHAzjnUs",
+                "discount": 0,
+                "price": 59.99,
+                "status": [],
+                "genres": [
+                    "Action",
+                    "Shooting"
+                ]
+            },
+            "3a432947-3e43-42a8-bcbc-100d2b199899": {
+                "title": "Valorant",
+                "description": "Riot Games presents VALORANT: a 5v5 character-based tactical FPS where precise gunplay meets unique agent abilities.",
+                "cover": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blta7a40fb9d8bc8653/61d4af200d81d913d2ac70e3/VALORANT_Ep4_A1_Social_Updates_NeonContent_Stack_Thumbnail.png",
+                "trailer": "https://www.youtube.com/watch?v=lWr6dhTcu-E",
+                "discount": 13.99,
+                "price": 19.99,
+                "status": [],
+                "genres": [
+                    "Shooting"
+                ]
+            },
+            "3a432947-3e43-42a8-bcbc-100d2b199810": {
+                "title": "Tomb Raider",
+                "description": "Armed only with raw instincts and the ability to push beyond the limits of human endurance, Lara must fight to unravel the dark history of a forgotten island to escape its relentless hold.",
+                "cover": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_RiseoftheTombRaider20YearCelebration_CrystalDynamics_S1_2560x1440-3bd5b3c4c11d46cc2dcb06bdf2f77627",
+                "trailer": "https://www.youtube.com/watch?v=P2-tDp93JyQ",
+                "discount": 0,
+                "price": 25,
+                "status": [],
+                "genres": [
+                    "Action",
+                    "Role - Playing",
+                    "Shooting"
+                ]
             }
         }
     },

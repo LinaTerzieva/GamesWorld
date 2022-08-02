@@ -2,7 +2,6 @@ import { useState, useContext } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 
 import styles from './LoginForm.module.css';
-import companyLogo from './../../../images/companyLogo.png';
 
 import AuthenticationContext from '../../../lib/AuthenticationContext';
 
@@ -46,7 +45,7 @@ const LoginForm = () => {
                 <div className={styles.wrapLogin}>
                     <form onSubmit={submitHandler} className={styles.loginForm}>
                         <span className={styles.loginFormLogo}>
-                            <img src={companyLogo} />
+                            <img src={"/images/companyLogo.png"} />
                         </span>
                         <span className={styles.loginFormTitle}>Log in</span>
                         {auth.isError && auth.errorCode == '' && <div className={styles.validationError}>An error has occured. Please try again later.</div>}
