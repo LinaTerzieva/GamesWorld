@@ -18,7 +18,7 @@
             "3a432947-3e43-42a8-bcbc-100d2b199890": {
                 "title": "Diablo 2",
                 "description": "Diablo II is an action role-playing hack-and-slash computer video game developed by Blizzard North and published by Blizzard.",
-                "cover": "https://gplaytv.bg/wp-content/uploads/2021/09/diablo-II-resurrected-pc-specs.jpg",
+                "cover": "game-card-diablo2.jpg",
                 "trailer": "https://www.youtube.com/watch?v=W41NvIgeKX0",
                 "discount": 0,
                 "price": 45.99,
@@ -51,7 +51,7 @@
             "3a432947-3e43-42a8-bcbc-100d2b199892": {
                 "title": "Call of duty: Warzone",
                 "description": "What happens after you drop? This chapter reveals all the important intel you need to know during the heat of battle, from parachuting, inventory items, pinging, Loadout Drops, redeployment, and everything else pertinent to your continued Call of Duty®: Warzone™ survival.",
-                "cover": "https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/blog/hero/mw-wz/WZP-S1-ANNOUNCEMENT-TOUT.jpg",
+                "cover": "game-card-callofduty.jpg",
                 "trailer": "https://www.youtube.com/watch?v=7xDwb8kNH6k&t=4s",
                 "discount": 0,
                 "price": 35.99,
@@ -66,7 +66,7 @@
             "3a432947-3e43-42a8-bcbc-100d2b199893": {
                 "title": "Counter-Strike: Global Offensive",
                 "description": "Counter-Strike: Global Offensive is a multiplayer first-person shooter developed by Valve and Hidden Path Entertainment.",
-                "cover": "https://www.thexboxhub.com/wp-content/uploads/2022/05/csgo-logo.jpg",
+                "cover": "game-card-cs.jpg",
                 "trailer": "https://www.youtube.com/watch?v=edYCtaNueQY",
                 "discount": 0,
                 "price": 29.99,
@@ -94,7 +94,7 @@
             "3a432947-3e43-42a8-bcbc-100d2b199895": {
                 "title": "Hearthstone",
                 "description": "Deceptively simple and insanely fun, Hearthstone is a fast-paced strategy card game from Blizzard Entertainment.",
-                "cover": "https://i0.wp.com/skdesu.com/wp-content/uploads/2022/01/hearhstone.jpg?resize=1100%2C578&ssl=1",
+                "cover": "game-card-hearthstone.jpeg",
                 "trailer": "https://www.youtube.com/watch?v=vPguoeYTvMI",
                 "discount": 0,
                 "price": 21.99,
@@ -107,7 +107,7 @@
             "3a432947-3e43-42a8-bcbc-100d2b199896": {
                 "title": "Dead cells",
                 "description": "Dead Cells is a rogue-lite, metroidvania inspired, action-platformer. You'll explore a sprawling, ever-changing castle... assuming you’re able to fight your way past its keepers in 2D souls-lite combat. No checkpoints. Kill, die, learn, repeat.",
-                "cover": "https://cdn2.unrealengine.com/egs-deadcells-motiontwin-s1-2560x1440-312502186.jpg",
+                "cover": "game-card-deadcells.jpg",
                 "trailer": "https://www.youtube.com/watch?v=m1VMrLOntcc",
                 "discount": 0,
                 "price": 15,
@@ -133,7 +133,7 @@
             "3a432947-3e43-42a8-bcbc-100d2b199898": {
                 "title": "Grand Theft Auto V",
                 "description": "When a young street hustler, a retired bank robber, and a terrifying psychopath find themselves entangled with some of the most frightening and deranged elements of the criminal underworld, the U.S. government, and the entertainment industry, they must pull off a series of dangerous heists to survive in a ruthless city in which they can trust nobody — least of all each other.",
-                "cover": "https://modyolo.com/wp-content/uploads/2021/10/gta-5-e1638110075606.jpeg",
+                "cover": "game-card-gta.jpg",
                 "trailer": "https://www.youtube.com/watch?v=QkkoHAzjnUs",
                 "discount": 0,
                 "price": 59.99,
@@ -146,7 +146,7 @@
             "3a432947-3e43-42a8-bcbc-100d2b199899": {
                 "title": "Valorant",
                 "description": "Riot Games presents VALORANT: a 5v5 character-based tactical FPS where precise gunplay meets unique agent abilities.",
-                "cover": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blta7a40fb9d8bc8653/61d4af200d81d913d2ac70e3/VALORANT_Ep4_A1_Social_Updates_NeonContent_Stack_Thumbnail.png",
+                "cover": "game-card-valorant.jpg",
                 "trailer": "https://www.youtube.com/watch?v=lWr6dhTcu-E",
                 "discount": 13.99,
                 "price": 19.99,
@@ -158,7 +158,7 @@
             "3a432947-3e43-42a8-bcbc-100d2b199810": {
                 "title": "Tomb Raider",
                 "description": "Armed only with raw instincts and the ability to push beyond the limits of human endurance, Lara must fight to unravel the dark history of a forgotten island to escape its relentless hold.",
-                "cover": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_RiseoftheTombRaider20YearCelebration_CrystalDynamics_S1_2560x1440-3bd5b3c4c11d46cc2dcb06bdf2f77627",
+                "cover": "game-card-tombraider.jpg",
                 "trailer": "https://www.youtube.com/watch?v=P2-tDp93JyQ",
                 "discount": 0,
                 "price": 25,
