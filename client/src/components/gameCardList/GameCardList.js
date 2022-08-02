@@ -16,8 +16,6 @@ const GameCardList = () => {
 
     }, []);
 
-    console.log(upcomingGames);
-
     return (
         <div className={styles.widgetContainer}>
             <div className={styles.productsWidget}>

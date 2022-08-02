@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import styles from './DropdownMenuItem.module.css';
 
@@ -18,7 +19,7 @@ function DropdownMenuItem({ item }) {
 
             <Dropdown.Menu show={open} className={styles.headerDropdownContent}>
                 {item.submenu.map((subMenuItem,index) => (
-                        <Dropdown.Item key={index} href="#/action-1">{subMenuItem.title}</Dropdown.Item>
+                        <Dropdown.Item key={index} as={Link} to={subMenuItem.nav}>{subMenuItem.title}</Dropdown.Item>
                 ))}
             </Dropdown.Menu>
 

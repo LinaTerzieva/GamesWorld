@@ -13,9 +13,11 @@ function DropdownMenu() {
             submenu: [
                 {
                     title: "Home",
+                    nav: "/",
                 },
                 {
                     title: "All Games",
+                    nav: "/catalog",
                 }
             ]
         },
@@ -24,6 +26,7 @@ function DropdownMenu() {
             submenu: [
                 {
                     title: "Company",
+                    nav: "/",
                 }
             ]
         }, {
@@ -31,9 +34,11 @@ function DropdownMenu() {
             submenu: [
                 {
                     title: "Contacts us",
+                    nav: "/",
                 },
                 {
                     title: "Help",
+                    nav: "/",
                 }
             ]
         }

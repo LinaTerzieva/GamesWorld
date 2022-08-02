@@ -12,6 +12,7 @@
 
 .headerLogo {
     margin-top: 5px;
+    cursor: pointer;
 }
 
 .headerLogoImg {
