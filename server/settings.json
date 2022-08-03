@@ -168,6 +168,32 @@
                     "Role - Playing",
                     "Shooting"
                 ]
+            },
+            "3a432947-3e43-42a8-bcbc-100d2b199820": {
+                "title": "Among us",
+                "description": "Life as a Crewmate: Complete all your tasks on the ship to win, but watch out for Impostors! Report dead bodies and call emergency meetings to vote the Impostors out. Hope you chose correctly!Play as an Impostor: Cause chaos, sneak around, and frame innocent bystanders! Winning involves killing off every Crewmate - think you’re a master of sabotage?",
+                "cover": "game-card-amongus.jpg",
+                "trailer": "https://www.youtube.com/watch?v=9pyYq9lpjls",
+                "discount": 0,
+                "price": 35.45,
+                "status": [],
+                "genres": [
+                    "Competitive",
+                    "Role - Playing"
+                ]
+            },
+            "3a432947-3e43-42a8-bcbc-100d2b199821": {
+                "title": "Battlefield V Definitive Edition",
+                "description": "This is the ultimate Battlefield V experience. Enter mankind’s greatest conflict with the complete arsenal of weapons, vehicles, and gadgets plus the best customization content of Year 1 and 2..",
+                "cover": "game-card-battlefield.jpg",
+                "trailer": "https://www.youtube.com/watch?v=rL8w95QklW4",
+                "discount": 0,
+                "price": 19.99,
+                "status": [],
+                "genres": [
+                    "Action",
+                    "Shooting"
+                ]
             }
         }
     },

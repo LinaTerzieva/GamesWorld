@@ -27,7 +27,6 @@ const Catalog = () => {
             .then(result => setNumberOfResults(result));
     }, [offset]);
 
-    console.log(offset);
 
     return (
         <>

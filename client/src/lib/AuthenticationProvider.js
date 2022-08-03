@@ -2,9 +2,10 @@ import { useState } from 'react';
 
 import useAuthenticationApi from './useAuthenticationApi';
 import AuthenticationContext from './AuthenticationContext'
+import useLocalStorage from './useLocalStorage';
 
 export const AuthenticationProvider = ({ children }) => {
-    const [auth, setAuth] = useState({
+    const [auth, setAuth] = useLocalStorage("auth", {
         id: '',
         username: '',
         accessToken: '',
