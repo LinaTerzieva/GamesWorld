@@ -1,0 +1,9 @@
+.catalogContent {
+    color: #ddd;
+    display: flex;
+    justify-content: space-between;
+}
+
+.catalogContentResults {
+    width: 830px;
+}

@@ -148,7 +148,7 @@
                 "description": "Riot Games presents VALORANT: a 5v5 character-based tactical FPS where precise gunplay meets unique agent abilities.",
                 "cover": "game-card-valorant.jpg",
                 "trailer": "https://www.youtube.com/watch?v=lWr6dhTcu-E",
-                "discount": 13.99,
+                "discount": 14.00,
                 "price": 19.99,
                 "status": [],
                 "genres": [
@@ -193,6 +193,31 @@
                 "genres": [
                     "Action",
                     "Shooting"
+                ]
+            },
+            "3a432947-3e43-42a8-bcbc-100d2b199822": {
+                "title": "Bright Paw: Definitive Edition",
+                "description": "Play as the brave young Theo, guided by his Narrator as he chases after the murderer of his owners Nathaniel and Lauren. Explore the mysterious Bright Paw Industries, delving deep to reveal the secrets of its villainous dealings and the motivations behind the killer’s action.",
+                "cover": "game-card-brightpaw.jpg",
+                "trailer": "https://www.youtube.com/watch?v=xjL6POVxbeI",
+                "discount": 0,
+                "price": 14.99,
+                "status": [],
+                "genres": [
+                    "Adventure",
+                    "Puzzle"
+                ]
+            },
+            "3a432947-3e43-42a8-bcbc-100d2b199823": {
+                "title": "Endling - Extinction is Forever",
+                "description": "Will a vixen, the last of its kind, be able to save its three little cubs? As the last mother fox, keep your cubs alive and reach the only place on Earth where humans cannot harm them.",
+                "cover": "game-card-endling.jpg",
+                "trailer": "https://www.youtube.com/watch?v=kiM2_XB_HZE",
+                "discount": 15.99,
+                "price": 59.99,
+                "status": [],
+                "genres": [
+                    "Adventure"
                 ]
             }
         }

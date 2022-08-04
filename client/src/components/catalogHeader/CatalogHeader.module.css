@@ -1,0 +1,52 @@
+.catalogHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    padding-top: 30px;
+}
+
+.catalogTitle {
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.catalogSearch {
+    max-width: 500px;
+    width: 100%;
+}
+
+.search {
+    position: relative;
+}
+
+.catalogSearchInput {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 20px;
+    padding-left: 35px;
+}
+
+.catalogSearchInput:hover {
+    border: 1px solid #313339;
+}
+
+.catalogSearchImage {
+    position: absolute;
+    fill: #313339;
+    top: 50%;
+    left: 12px;
+    width: 16px;
+    height: 16px;
+    transform: translateY(-7px);
+}
+
+.search:hover .catalogSearchImage {
+    fill: #c026d3;
+}

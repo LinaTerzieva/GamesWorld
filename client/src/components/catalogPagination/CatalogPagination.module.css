@@ -1,0 +1,17 @@
+.pagination {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.paginationButton {
+    background-color: #313339;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.bold {
+    font-weight: bold;
+    font-size: 16px;
+    color: blueviolet;
+}

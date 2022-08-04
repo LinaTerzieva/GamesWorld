@@ -1,43 +1,51 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
-const CatalogGameItem = ({game}) => {
+import styles from './CatalogGameItem.module.css';
+
+const CatalogGameItem = ({ game }) => {
+
+    var price = parseFloat(game.price).toFixed(2);
+
     return (
-        <div className="results__card">
-            <a className="results__card-link link" href="">
-                <div className="results__card-img-wrapper">
+        <div className={styles.resultsCard}>
+            <a className={`${styles.resultsCardLink} link`} href="">
+                <div className={styles.resultsCardImgWrapper}>
                     <img
-                        className="results__card-img"
+                        className={styles.resultsCardImg}
                         src={`/images/games/${game.cover}`}
                         alt={game.title}
                     />
                 </div>
-                <div className="results__card-title">
+                <div className={styles.resultsCardTitle}>
                     {game.title}
                 </div>
-                <div className="results__card-content">
-                    <div className="results__card-price">
-                        {game.price}
-                        <div className="results__card-price--base">
+                <div className={styles.resultsCardContent}>
 
+                    {game.discount == 0
+                        ? <div className={styles.resultsCardPrice}>
+                            <div className={styles.resultsCardPriceFinal}>
+                                {price}€
+                            </div>
                         </div>
-                        <div className="results__card-price--final">
-
+                        : <div className={styles.resultsCardPrice}>
+                            <div className={styles.resultsCardPriceBase}>
+                                {price}
+                            </div>
+                            <div className={styles.resultsCardPriceFinal}>
+                                {parseFloat(price - game.discount).toFixed(2)}€
+                            </div>
                         </div>
+                    }
 
-                        <div className="results__card-price--final">
-
-                        </div>
-
-                    </div>
-                    <div className="results__card-add-to-cart">
-                        <button className="add-to-cart__button">
-                            <FontAwesomeIcon className="add-to-cart__img" icon={faCartShopping} />
+                    <div className={styles.resultsCardAddToCart}>
+                        <button className={styles.addToCartButton} style={{ background: "linear-gradient(#c026d37a, #7c3aed91)" }}>
+                            <FontAwesomeIcon className={styles.addToCartImg} icon={faCartShopping} />
                         </button>
                     </div>
                 </div>
-            </a>
-        </div>
+            </a >
+        </div >
     );
 }
 

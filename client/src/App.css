@@ -89,11 +89,11 @@ footer {
     color: white;
 }
 
-.app__container {
+/* .app__container {
     padding-top: 30px;
-}
+} */
 
-.catalog-header {
+/* .catalogHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -101,20 +101,20 @@ footer {
     margin-bottom: 16px;
     padding-bottom: 8px;
     padding-top: 30px;
-}
+} */
 
-.catalog-search {
+/* .catalog-search {
     max-width: 500px;
     width: 100%;
-}
+} */
 
-.catalog-title {
+/* .catalog-title {
     font-size: 20px;
     color: white;
     text-transform: uppercase;
-}
+} */
 
-.catalog-search__input {
+/* .catalog-search__input {
     width: 100%;
     height: 40px;
     border: 1px solid #ddd;
@@ -126,9 +126,9 @@ footer {
 
 .catalog-search__input:hover {
     border: 1px solid #313339;
-}
+} */
 
-.catalog-search__image {
+/* .catalog-search__image {
     position: absolute;
     fill: #313339;
     top: 50%;
@@ -136,30 +136,30 @@ footer {
     width: 16px;
     height: 16px;
     transform: translateY(-7px);
-}
+} */
 
-.search {
+/* .search {
     position: relative;
-}
+} */
 
-.search:hover .catalog-search__image {
+/* .search:hover .catalog-search__image {
     fill: #c026d3;
-}
-
+} */
+/* 
 .catalog-content {
     color: #ddd;
     display: flex;
     justify-content: space-between;
-}
+} */
 
 .catalog-content__filters {
     margin-right: 15px;
     width: 270px;
 }
 
-.catalog-content__results {
+/* .catalog-content__results {
     width: 830px;
-}
+} */
 
 .checkbox-label {
     display: flex;
@@ -304,27 +304,27 @@ footer {
     color: #ddd;
 }
 
-.results__navigation {
+/* .results__navigation {
     margin: 0 0 24px;
     min-height: 32px;
-}
+} */
 
-.small-pagination__button {
+/* .small-pagination__button {
     background-color: #313339;
     color: white;
     border: none;
     cursor: pointer;
-}
+} */
 
-.small-pagination__arrow {
+/* .small-pagination__arrow {
     align-self: center;
     width: 14px;
     height: 14px;
     margin-right: 7px;
     color: #eee;
-}
+} */
 
-.sort-box {
+/* .sort-box {
     display: flex;
     align-items: center;
     float: right;
@@ -340,20 +340,20 @@ footer {
     background: transparent;
     border: 1px solid #eee;
     color: white;
-}
+} */
 
-.sort-box__option {
+/* .sort-box__option {
     background: #313339;
-}
+} */
 
-.results__wrapper {
+/* .results__wrapper {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-gap: 15px;
     margin-bottom: 40px;
-}
+} */
 
-.results__card {
+/* .results__card {
     background: #ffffff0f;
     border-radius: 3px;
     border: 1px solid #282b34;
@@ -364,24 +364,28 @@ footer {
     box-shadow: #313339;
     background: #ffffff1f;
     transform: scale(1.05);
-}
+} */
 
-.results__card:hover .add-to-cart__button {
+/* .results__card:hover .add-to-cart__button {
     visibility: visible;
     border: none;
     border-radius: 2px;
     cursor: pointer;
-    background-color: #c026d3;
-}
+    transition: transform 300ms ease;
+} */
 
-.results__card-link {
+/* .add-to-cart__button:hover {
+    transform: scale(1.2);
+} */
+
+/* .results__card-link {
     color: white;
     display: flex;
     flex-direction: column;
     height: 100%;
-}
+} */
 
-.results__card-img-wrapper {
+/* .results__card-img-wrapper {
     align-self: center;
     margin-top: 8px;
 }
@@ -389,9 +393,9 @@ footer {
 .results__card-img {
     width: 250px;
     height: 300px;
-}
+} */
 
-.results__card-title {
+/* .results__card-title {
     text-align: center;
 }
 
@@ -402,9 +406,9 @@ footer {
     align-items: flex-end;
     margin-top: auto;
     width: 100%;
-}
+} */
 
-.results__card-price {
+/* .results__card-price {
     display: flex;
     flex-direction: column;
 }
@@ -412,9 +416,9 @@ footer {
 .results__card-price--base {
     text-decoration: line-through;
     font-size: 14px;
-}
+} */
 
-.add-to-cart__button {
+/* .add-to-cart__button {
     visibility: hidden;
     width: 35px;
     height: 35px;
@@ -422,18 +426,13 @@ footer {
 
 .add-to-cart__img {
     color: white;
-}
+} */
 
-@media screen and (max-width: 1200px) {
+/* @media screen and (max-width: 1200px) {
     .results__wrapper {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
-    .app__container {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-}
+} */
 
 @media screen and (max-width: 992px) {
     .app__container {
@@ -456,7 +455,7 @@ footer {
     font-size: 18px;
 }
 
-.results__pagination {
+/* .results__pagination {
     text-align: center;
     margin-bottom: 45px;
-}
+} */

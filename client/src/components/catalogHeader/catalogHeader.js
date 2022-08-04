@@ -1,24 +1,47 @@
+import { useState, useEffect } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const catalogHeader = () => {
+import styles from './CatalogHeader.module.css';
+
+const CatalogHeader = ({ query, handleQuery }) => {
+
+    const [searchInputValue, setSearchInputvalue] = useState(`${query}`);
+
+    const handleChange = (e) => setSearchInputvalue(e.target.value);
+
+    useEffect(() => {
+        handleQuery((state) => {
+            return {
+                ...state,
+                query: searchInputValue,
+                offset: 0
+            }
+        })
+    }, [searchInputValue]);
+
     return (
-        <div className="catalog-header">
-            <div className="catalog-title">
+        <div className={styles.catalogHeader}>
+            <div className={styles.catalogTitle}>
                 All Games
             </div>
-            <div className="catalog-search">
-                <form className="search">
+            <div className={styles.catalogSearch}>
+                <form className={styles.search}>
+                    <FontAwesomeIcon className={styles.catalogSearchImage} icon={faMagnifyingGlass} />
                     <input
-                        className="catalog-search__input"
+                        className={styles.catalogSearchInput}
                         type="search"
+                        name="search"
                         placeholder="Search shop"
+                        value={searchInputValue}
+                        onChange={handleChange}
                     />
-                    <FontAwesomeIcon className="catalog-search__image" icon={faMagnifyingGlass} />
+
                 </form>
             </div>
         </div>
     );
 }
 
-export default catalogHeader;
+export default CatalogHeader;

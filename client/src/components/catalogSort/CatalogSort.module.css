@@ -1,0 +1,26 @@
+.resultsNavigation {
+    margin: 0 0 24px;
+    min-height: 32px;
+}
+
+.sortBox {
+    display: flex;
+    align-items: center;
+    float: right;
+}
+
+.sortBoxLabel {
+    margin-right: 9px;
+}
+
+.sortBoxDropdownContent {
+    padding: 5px 12px 5px 12px;
+    border-radius: 3px;
+    background: transparent;
+    border: 1px solid #eee;
+    color: white;
+}
+
+.sortBoxOption {
+    background: #313339;
+}
