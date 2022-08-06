@@ -1,0 +1,67 @@
+.catalogContentFilters {
+    margin-right: 15px;
+    width: 270px;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: 15px;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkboxLabel:hover input~.checkmark {
+    border: 1px solid #313339;
+}
+
+.checkboxLabel .checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 6px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.checkboxInput {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+.checkboxInput:checked~.checkmark {
+    background: #d53a9d;
+}
+
+.checkboxInput:checked~.checkmark:after {
+    display: block;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    min-width: 17px;
+    max-width: 17px;
+    min-height: 17px;
+    max-height: 17px;
+    background-color: #eee;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}

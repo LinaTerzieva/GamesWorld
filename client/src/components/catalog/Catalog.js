@@ -13,6 +13,7 @@ import CatalogPagination from "../catalogPagination/CatalogPagination";
 
 const Catalog = () => {
     const pageSize = 6;
+    const baseUrl = 'http://localhost:3030/data/games';
 
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
@@ -20,29 +21,38 @@ const Catalog = () => {
     const [games, setGames] = useState([]);
     const [query, setQuery] = useState({
         query: searchParams.get('query') ? searchParams.get('query') : "",
-        sortBy: searchParams.get('query') ? searchParams.get('query') : "price",
+        sortBy: searchParams.get('sortBy') ? searchParams.get('sortBy') : "price",
         offset: searchParams.get('offset') ? searchParams.get('offset') : 0,
+        discount: searchParams.get('discount') === 'true',
         pageSize: pageSize,
     });
 
     const [numberOfResults, setNumberOfResults] = useState(0);
 
-    const baseUrl = 'http://localhost:3030/data/games';
-
     useEffect(() => {
-    
+
         navigate({
             pathname: "/catalog",
             search: `?${createSearchParams(query)}`
         });
 
-        fetch(`${baseUrl}?where=title%20LIKE%20${JSON.stringify(query.query)}&sortBy=${query.sortBy}&offset=${query.offset}&pageSize=${query.pageSize}`)
-            .then(response => response.json())
-            .then(data => setGames(data));
+        if (query.discount) {
+            fetch(`${baseUrl}?where=title%20LIKE%20${JSON.stringify(query.query)}%20AND%20discount>0&sortBy=${query.sortBy}&offset=${query.offset}&pageSize=${query.pageSize}`)
+                .then(response => response.json())
+                .then(data => setGames(data));
 
-        fetch(`${baseUrl}?where=title%20LIKE%20${JSON.stringify(query.query)}&count`)
-            .then(response => response.json())
-            .then(result => setNumberOfResults(result));
+            fetch(`${baseUrl}?where=title%20LIKE%20${JSON.stringify(query.query)}%20AND%20discount>0&count`)
+                .then(response => response.json())
+                .then(result => setNumberOfResults(result));
+        } else {
+            fetch(`${baseUrl}?where=title%20LIKE%20${JSON.stringify(query.query)}&sortBy=${query.sortBy}&offset=${query.offset}&pageSize=${query.pageSize}`)
+                .then(response => response.json())
+                .then(data => setGames(data));
+
+            fetch(`${baseUrl}?where=title%20LIKE%20${JSON.stringify(query.query)}&count`)
+                .then(response => response.json())
+                .then(result => setNumberOfResults(result));
+        }
 
     }, [query]);
 
@@ -54,9 +64,9 @@ const Catalog = () => {
                 <div className="wrapper">
                     <CatalogHeader query={query.query} handleQuery={setQuery} />
                     <div className={styles.catalogContent}>
-                        <CatalogFilters />
+                        <CatalogFilters handleDiscount={setQuery} />
                         <div className={styles.catalogContentResults}>
-                            <CatalogSort handleQuery={setQuery} />
+                            <CatalogSort handleQuery={setQuery} sortBy={query.sortBy} />
                             <CatalogGameList games={games} />
                             <CatalogPagination numberOfResults={numberOfResults} pageSize={pageSize} handleQuery={setQuery} offset={query.offset} />
                         </div>

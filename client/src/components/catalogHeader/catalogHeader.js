@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -7,19 +6,15 @@ import styles from './CatalogHeader.module.css';
 
 const CatalogHeader = ({ query, handleQuery }) => {
 
-    const [searchInputValue, setSearchInputvalue] = useState(`${query}`);
-
-    const handleChange = (e) => setSearchInputvalue(e.target.value);
-
-    useEffect(() => {
+    const handleChange = (e) => {
         handleQuery((state) => {
             return {
                 ...state,
-                query: searchInputValue,
+                query: e.target.value,
                 offset: 0
             }
         })
-    }, [searchInputValue]);
+    }
 
     return (
         <div className={styles.catalogHeader}>
@@ -34,7 +29,7 @@ const CatalogHeader = ({ query, handleQuery }) => {
                         type="search"
                         name="search"
                         placeholder="Search shop"
-                        value={searchInputValue}
+                        value={query}
                         onChange={handleChange}
                     />
 

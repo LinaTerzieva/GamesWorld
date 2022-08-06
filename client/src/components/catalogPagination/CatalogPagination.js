@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -37,11 +36,11 @@ const CatalogPagination = ({
             {offset > 0 &&
                 <button className={styles.paginationButton}>
                     <FontAwesomeIcon icon={faChevronLeft} onClick={() => {
-                        const value = offset - pageSize;
+                        const offsetPrev = offset - pageSize;
                         handleQuery((state) => {
                             return {
                                 ...state,
-                                offset: value
+                                offset: offsetPrev
                             }
                         })
                     }} />
@@ -51,11 +50,11 @@ const CatalogPagination = ({
             {currentPage < numberOfPages &&
                 <button className={styles.paginationButton}>
                     <FontAwesomeIcon icon={faChevronRight} onClick={() => {
-                        const value = offset + pageSize;
+                        const offsetNext = offset + pageSize;
                         handleQuery((state) => {
                             return {
                                 ...state,
-                                offset: value
+                                offset: offsetNext
                             }
                         })
                     }} />

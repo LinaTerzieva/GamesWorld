@@ -1,16 +1,23 @@
+import styles from './CatalogFilters.module.css';
 
+const CatalogFilters = ({handleDiscount}) => {
 
-const CatalogFilters = () => {
     return (
-        <div className="catalog-content__filters">
-            <div className="filter-box">
-                <div className="filter-box__content">
-                    <label className="checkbox-label">
+        <div className={styles.catalogContentFilters}>
+            <div className={styles.filterBox}>
+                <div className={styles.filterBoxContent}>
+                    <label className={styles.checkboxLabel}>
                         <input
                             type="checkbox"
-                            className="checkbox-input"
+                            className={styles.checkboxInput}
+                            onChange={(e) => handleDiscount(state => {
+                                return {
+                                    ...state,
+                                    discount: e.target.checked
+                                }
+                            })}
                         />
-                        <span className="checkmark" />
+                        <span className={styles.checkmark} />
                         Show only discounted
                     </label>
                 </div>

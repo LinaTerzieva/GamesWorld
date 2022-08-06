@@ -1,31 +1,26 @@
-import { useState, useEffect } from "react";
 
 import styles from './CatalogSort.module.css';
 
-const CatalogSort = ({handleQuery}) => {
-
-    const [selectedSortOption,setselectedSortOption] = useState("price");
+const CatalogSort = ({handleQuery, sortBy}) => {
 
     const handleSelectChange = (e) =>  {
-        setselectedSortOption(e.target.value);
-    }
-
-    useEffect(() => {
+        
         handleQuery((state) => {
             return {
                 ...state,
-                sortBy: selectedSortOption,
+                sortBy: e.target.value,
                 offset: 0
             }
         })
-    }, [selectedSortOption]);
+    }
+
 
     return (
         <div className={styles.resultsNavigation}>
             <div className={styles.sortBox}>
                 <div className={styles.sortBoxLabel}>Sort by:</div>
                 <div className={styles.sortBoxDropdown}>
-                    <select className={styles.sortBoxDropdownContent} name="sort" value={selectedSortOption} onChange={handleSelectChange}>
+                    <select className={styles.sortBoxDropdownContent} name="sort" value={sortBy} onChange={handleSelectChange}>
                         <option className={styles.sortBoxOption} value="price">
                             Price: Low to High
                         </option>
