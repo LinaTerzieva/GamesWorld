@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styles from './GameCardItem.module.css';
 
 const GameCardItem = ({game}) => {
@@ -14,9 +16,9 @@ const GameCardItem = ({game}) => {
             <div className={styles.productsWidgetCardTitle}>
                 {game.title}
             </div>
-            <a className={styles.productsWidgetCardButtonLink} href="">
+            <Link to={`/detail/${game._id}`} className={styles.productsWidgetCardButtonLink}>
                 <div className={styles.productsWidgetCardButtonText}> View </div>
-            </a>
+            </Link>
         </div>
     );
 }

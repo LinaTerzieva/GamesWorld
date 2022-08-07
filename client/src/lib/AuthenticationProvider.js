@@ -40,16 +40,14 @@ export const AuthenticationProvider = ({ children }) => {
 
     const logoutUser = () => logout(auth.accessToken)
         .then((data) => {
-            if (data.status === 204) {
-                setAuth({
-                    id: '',
-                    username: '',
-                    accessToken: '',
-                    errorCode: '',
-                    errorMessage: '',
-                    isError: false
-                });
-            }
+            setAuth({
+                id: '',
+                username: '',
+                accessToken: '',
+                errorCode: '',
+                errorMessage: '',
+                isError: false
+            });
         })
         .catch((error) => {
             setAuth({

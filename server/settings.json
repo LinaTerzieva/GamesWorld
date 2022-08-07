@@ -14,6 +14,20 @@
         "sessions": {}
     },
     "seedData": {
+        "comments": {
+            "3a432947-3e43-42a8-bcbc-123d2b199890": {
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "_gameId": "3a432947-3e43-42a8-bcbc-100d2b199897",
+                "description": "Mega qka igra",
+                "rating": 4
+            },
+            "3a454947-3e43-42a8-bcbc-123d2b199890": {
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "_gameId": "3a432947-3e43-42a8-bcbc-100d2b199897",
+                "description": "Ne mnogo qka igra",
+                "rating": 1
+            }
+        },
         "games": {
             "3a432947-3e43-42a8-bcbc-100d2b199890": {
                 "title": "Diablo 2",
