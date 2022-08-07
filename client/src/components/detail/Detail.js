@@ -5,6 +5,8 @@ import ReactPlayer from "react-player/youtube";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
+import styles from './Detail.module.css';
+
 import AuthenticationContext from '../../lib/AuthenticationContext';
 
 import Header from '../header/Header';
@@ -41,7 +43,7 @@ const Detail = () => {
     const generateStars = (rating) => {
         var stars = [];
         for (var i = 1; i <= 5; i++) {
-            stars.push(<FontAwesomeIcon key={i} icon={faStar} className={i <= rating ? "star" : "off"} />);
+            stars.push(<FontAwesomeIcon key={i} icon={faStar} className={i <= rating ? `${styles.star}` : `${styles.off}`} />);
         }
         return stars;
     }
@@ -96,34 +98,26 @@ const Detail = () => {
             <Header />
             <div className="main-wrapper">
                 <div className="large-wrapper app__container">
-                    <div className="app-header">
-                        <div className="detail-title">Overview</div>
+                    <div className={styles.detailHeader}>
+                        <div className={styles.detailTitle}>Overview</div>
                     </div>
-                    <div className="game__title heading-medium">{game.title}</div>
-                    <div className="game__box">
-                        <div className="swiper-container">
-                            <div className="swiper mySwiper">
-                                <div>
-                                    <ReactPlayer
-                                        url={game.trailer}
-                                    />
-                                </div>
-
-
+                    <div className={styles.gameTitle}>{game.title}</div>
+                    <div className={styles.gameContainer}>
+                        <div className={styles.gameBoxLeft}>
+                            <div className={styles.gameTrailerBox}>
+                                <ReactPlayer
+                                    url={game.trailer}
+                                />
                             </div>
 
-                            <div className="game__description">
-                                {/* <div className="game__description-title">
-                                    WELCOME TO THE PACIFIC — EVERYTHING YOU NEED TO KNOW ABOUT CALL OF
-                                    DUTY®: VANGUARD SEASON ONE
-                                </div> */}
-                                <div className="game__details">
-                                    <div className="game__details-item">
-                                        <div className="details__category">Genres</div>
-                                        <div className="details__content">
+                            <div className={styles.gameDescriptionBox}>
+                                <div className={styles.gameDetails}>
+                                    <div className={styles.gameDetailsItem}>
+                                        <div className={styles.detailsCategory}>Genres</div>
+                                        <div className={styles.detailsContent}>
                                             {game && game.genres && game.genres.map((genre, i) => {
                                                 return (
-                                                    <span key={i} className="details__content-link">
+                                                    <span key={i} className={styles.detailsContentItem}>
                                                         {genre}
                                                     </span>
                                                 )
@@ -135,23 +129,24 @@ const Detail = () => {
                                 {game.description}
                             </div>
                         </div>
-                        <aside className="game-buy-box">
-                            <img className="game__image" src={`/images/games/${game.cover}`} />
-                            <div className="game__price">{price}€</div>
+                        <aside className={styles.gameBoxRight}>
+                            <img className={styles.gameImage} src={`/images/games/${game.cover}`} />
+                            <div className={styles.gamePrice}>{price}€</div>
                         </aside>
                     </div>
 
-                    <div className="ratingWrapper">
-                        <form onSubmit={submitHandler}>
-                            <label htmlFor="comment">Add a comment</label>
-                            <div className="ratingStars">
+                    {auth.accessToken &&
+                        <form onSubmit={submitHandler} className={styles.commentSectionWrapper}>
+                            <label htmlFor="comment" className={styles.commentSectionTitle}>Add a comment</label>
+                            <div className={styles.ratingStars}>
                                 {[...Array(5)].map((star, index) => {
                                     index += 1;
+
                                     return (
                                         <button
                                             type="button"
                                             key={index}
-                                            className={index <= (hover || newComment.rating) ? "star" : "off"}
+                                            className={index <= (hover || newComment.rating) ? `${styles.star}` : `${styles.off}`}
                                             onClick={() => setNewComment((state) => {
                                                 return ({
                                                     ...state,
@@ -161,34 +156,36 @@ const Detail = () => {
                                             onMouseEnter={() => setHover(index)}
                                             onMouseLeave={() => setHover(newComment.rating)}
                                         >
-                                            <FontAwesomeIcon icon={faStar} className="ratingStar" />
+                                            <FontAwesomeIcon icon={faStar} className={styles.ratingStar} />
                                         </button>
                                     );
                                 })}
                             </div>
 
                             <div>
-                                <textarea type="text" id="comment" className="input-rating" value={newComment.description}
-                                    onChange={handleChange} />
+                                <textarea type="text" id="comment" className={styles.inputComment} value={newComment.description}
+                                    onChange={handleChange} rows="5" cols="50" />
                             </div>
                             {validationMessage != "" &&
                                 <div>{validationMessage}</div>
                             }
-
-                            <button type="submit" className="submit-rating">
+                            <button type="submit" className={styles.submitComment}>
                                 Submit
                             </button>
                         </form>
-                        <div>
-                            <div>
+                    }
+                    <div className={styles.commentSectionWrapper}>
+
+                        <div className={styles.allCommentsSection}>
+                            <div className={styles.allCommentsTitle}>
                                 All Comments
                             </div>
                             {allComments && allComments.map((comment) => {
-                                return (<div className="card" key={comment._id}>
+                                return (<div className={styles.commentCard} key={comment._id}>
                                     <div className="row d-flex">
 
                                         <div className="d-flex flex-column">
-                                            <h3 className="mt-2 mb-0">{comment.author.username}</h3>
+                                            <h3 className={`${styles.commentCardAuthor} mt-2 mb-0`}>{comment.author.username}</h3>
 
                                         </div>
                                         <div className="ml-auto">
@@ -198,7 +195,7 @@ const Detail = () => {
                                         </div>
                                     </div>
                                     <div className="row text-left">
-                                        <h4 className="blue-text mt-3">{comment.description}</h4>
+                                        <h4 className="text-primary mt-3">{comment.description}</h4>
                                     </div>
 
                                 </div>)

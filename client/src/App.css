@@ -98,7 +98,7 @@ footer {
 
 
 
-.app-header {
+/* .app-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -378,11 +378,11 @@ footer {
 
 .requirements__label {
     margin-right: 7px;
-}
+} */
 
 /* RATING STARS */
 
-.card {
+/* .card {
     border-radius: 5px;
     background-color: #fff;
     padding-left: 60px;
@@ -415,17 +415,17 @@ footer {
 
 .rating-label {
     font-weight: bold;
-}
+} */
 
 /* Rating bar width */
-.rating-bar {
+/* .rating-bar {
     width: 300px;
     padding: 8px;
     border-radius: 5px;
-}
+} */
 
 /* The bar container */
-.bar-container {
+/* .bar-container {
     width: 100%;
     background-color: #f1f1f1;
     text-align: center;
@@ -433,10 +433,10 @@ footer {
     border-radius: 20px;
     cursor: pointer;
     margin-bottom: 5px;
-}
+} */
 
 /* Individual bars */
-.bar-5 {
+/* .bar-5 {
     width: 70%;
     height: 13px;
     background-color: #FBC02D;
@@ -520,4 +520,4 @@ td {
 
 .vote {
     cursor: pointer;
-}
+} */
