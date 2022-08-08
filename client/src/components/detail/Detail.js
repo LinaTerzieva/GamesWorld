@@ -346,20 +346,9 @@ const Detail = () => {
                                         >
                                             <Form.Control as="textarea" rows={3} value={editModal.comment.description} onChange={handleEditChange} name="description" />
                                         </Form.Group>
-                                        {/* <Button variant="primary" type="submit" value="Save Changes">
-                                            Save Changes
-                                        </Button> */}
                                         <input type="submit" value="Submit" />
                                     </Form>
                                 </Modal.Body>
-                                {/* <Modal.Footer>
-                                    <Button variant="secondary" onClick={handleClose}>
-                                        Discard Changes
-                                    </Button>
-                                    <Button variant="primary" onClick={handleClose} type="submit">
-                                        Save Changes
-                                    </Button>
-                                </Modal.Footer> */}
                             </Modal>
 
                         </div>
