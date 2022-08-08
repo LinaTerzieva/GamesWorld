@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,8 +10,8 @@ const CatalogGameItem = ({ game }) => {
     var price = parseFloat(game.price).toFixed(2);
 
     return (
-        <div className={styles.resultsCard}>
-            <a className={`${styles.resultsCardLink} link`} href="">
+        <div className={styles.resultsCardWrapper}>
+            <div className={styles.resultsCard}>
                 <div className={styles.resultsCardImgWrapper}>
                     <img
                         className={styles.resultsCardImg}
@@ -39,12 +41,14 @@ const CatalogGameItem = ({ game }) => {
                     }
 
                     <div className={styles.resultsCardAddToCart}>
-                        <button className={styles.addToCartButton} style={{ background: "linear-gradient(#c026d37a, #7c3aed91)" }}>
-                            <FontAwesomeIcon className={styles.addToCartImg} icon={faCartShopping} />
+                        <button className={styles.detailButton} style={{ background: "linear-gradient(#c026d37a, #7c3aed91)" }}>
+                            <Link to={`/detail/${game._id}`} className={styles.detailButtonLink}>
+                                View
+                            </Link>
                         </button>
                     </div>
                 </div>
-            </a >
+            </div >
         </div >
     );
 }

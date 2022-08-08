@@ -14,14 +14,14 @@ const useAuthenticationApi = () => {
             .then((response) => response.json())
     }
 
-    const register = (username, password) => {
+    const register = (username, password, firstName, lastName) => {
         return fetch('http://localhost:3030/users/register', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username: username, password: password }),
+            body: JSON.stringify({ username: username, password: password, firstName: firstName, lastName: lastName }),
         })
             .then((response) => response.json())
     }

@@ -1,17 +1,17 @@
-.resultsCard {
+.resultsCardWrapper {
     background: #ffffff0f;
     border-radius: 3px;
     border: 1px solid #282b34;
     transition: transform 300ms ease;
 }
 
-.resultsCard:hover {
+.resultsCardWrapper:hover {
     box-shadow: #313339;
     background: #ffffff1f;
     transform: scale(1.05);
 }
 
-.resultsCard:hover .addToCartButton {
+.resultsCardWrapper:hover .detailButton {
     visibility: visible;
     border: none;
     border-radius: 2px;
@@ -19,7 +19,7 @@
     transition: transform 300ms ease;
 }
 
-.resultsCardLink {
+.resultsCard {
     color: white;
     display: flex;
     flex-direction: column;
@@ -59,14 +59,20 @@
     font-size: 14px;
 }
 
-.addToCartButton {
+.detailButton {
     visibility: hidden;
-    width: 35px;
+    width: 40px;
     height: 35px;
 }
 
-.addToCartButton:hover {
+.detailButton:hover {
     transform: scale(1.2);
+}
+
+.detailButtonLink {
+    text-decoration: none;
+    color: #ddd;
+
 }
 
 .addToCartImg {

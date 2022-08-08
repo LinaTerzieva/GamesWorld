@@ -12,7 +12,9 @@ const RegisterForm = () => {
 
     const [formData, setFormData] = useState({
         username: "",
-        password: ""
+        password: "",
+        firstName: "",
+        lastName: ""
     });
 
     const { register } = useAuthenticationApi();
@@ -37,7 +39,7 @@ const RegisterForm = () => {
 
     const handleRegister = () => {
 
-        register(formData.username, formData.password)
+        register(formData.username, formData.password, formData.firstName, formData.lastName)
             .then((data) => {
                 if (data.code === 409) {
                     setValidationError(data.message);
@@ -87,6 +89,34 @@ const RegisterForm = () => {
                                 name="password"
                                 placeholder="Password"
                                 value={formData.password}
+                                onChange={handleChange}
+                            />
+                            <span className={styles.focusInput} />
+                        </div>
+                        <div
+                            className={`${styles.wrapInput} ${styles.validateInput}`}
+                            data-validate="Enter first name"
+                        >
+                            <input
+                                className={styles.input}
+                                type="text"
+                                name="firstName"
+                                placeholder="First Name"
+                                value={formData.firstName}
+                                onChange={handleChange}
+                            />
+                            <span className={styles.focusInput} />
+                        </div>
+                        <div
+                            className={`${styles.wrapInput} ${styles.validateInput}`}
+                            data-validate="Enter last name"
+                        >
+                            <input
+                                className={styles.input}
+                                type="text"
+                                name="lastName"
+                                placeholder="Last Name"
+                                value={formData.lastName}
                                 onChange={handleChange}
                             />
                             <span className={styles.focusInput} />
