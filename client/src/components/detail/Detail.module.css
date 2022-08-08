@@ -93,59 +93,6 @@
     margin: 10px 0px;
 }
 
-/* .game__requirements {
-    width: 860px;
-    margin-bottom: 40px;
-}
-
-.game__requirements-title {
-    padding: 16px 0;
-    border-bottom: 1px solid #ffffff1f;
-}
-
-.requirements__header {
-    display: flex;
-    justify-content: flex-start;
-    color: white;
-    font-size: 15px;
-    border-bottom: 1px solid #ffffff1f;
-}
-
-.requirements__title {
-    margin-right: 15px;
-    padding: 12px 0px;
-}
-
-.requirements__title:hover {
-    border-bottom: 1px solid #d53a9d;
-    padding-bottom: 11px;
-    cursor: pointer;
-}
-
-.active-title {
-    font-weight: bold;
-    border-bottom: 1px solid #d53a9d;
-    padding-bottom: 11px;
-}
-
-.requirements__box {
-    display: none;
-}
-
-.active-box {
-    display: block;
-}
-
-.requirements__row {
-    display: flex;
-    color: white;
-    padding-top: 12px;
-}
-
-.requirements__label {
-    margin-right: 7px;
-} */
-
 
 /* RATING STARS */
 
@@ -180,6 +127,8 @@
     font-size: 20px;
     font-weight: bold;
 }
+
+/* END OF RATING STARS */
 
 .submitComment {
     margin-top: 20px;
@@ -218,11 +167,21 @@
     padding-bottom: 30px;
 }
 
+.commentCardActions {
+    float: right;
+}
+
+.cardActionIcon {
+    font-size: 18px;
+}
+
 .commentCardAuthor {
     font-weight: bold;
 }
 
-.rating-box {
+
+
+/* .rating-box {
     width: 130px;
     height: 130px;
     margin-right: auto;
@@ -235,14 +194,14 @@
     font-weight: bold;
 }
 
-/* Rating bar width */
+
 .rating-bar {
     width: 300px;
     padding: 8px;
     border-radius: 5px;
 }
 
-/* The bar container */
+
 .bar-container {
     width: 100%;
     background-color: #f1f1f1;
@@ -253,7 +212,7 @@
     margin-bottom: 5px;
 }
 
-/* Individual bars */
+
 .bar-5 {
     width: 70%;
     height: 13px;
@@ -292,13 +251,13 @@
     background-color: #FBC02D;
     border-radius: 20px;
 
-}
+} */
 
-td {
+/* td {
     padding-bottom: 10px;
-}
+} */
 
-.star-active {
+/* .star-active {
     color: #FBC02D;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -338,4 +297,4 @@ td {
 
 .vote {
     cursor: pointer;
-}
+} */
