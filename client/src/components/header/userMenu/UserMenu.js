@@ -10,9 +10,7 @@ import styles from './UserMenu.module.css';
 
 const UserMenu = () => {
 
-    const { auth, loginUser, logoutUser } = useContext(AuthenticationContext);
-
-    console.log(auth);
+    const { auth, logoutUser } = useContext(AuthenticationContext);
 
     const handleProfile = () => {
         fetch('http://localhost:3030/users/me', {
@@ -27,24 +25,11 @@ const UserMenu = () => {
     }
 
     const logOutHandler = () => {
-
         logoutUser();
     }
 
     return (
         <div className={styles.headerUserMenu}>
-            {/* <div className={`${styles.userMenuItem} ${styles.userMenuItemCart}`}>
-                <label className={styles.userMenuItemCartLabel}>
-                    <a className={`${styles.userMenuLink} link`}>
-                        Cart
-                        <FontAwesomeIcon className={styles.userMenuIcon} icon={faCartShopping} />
-                    </a>
-                </label>
-                <span className={`${styles.userMenuItemCartCount} position-absolute top-0 tra
-                nslate-middle badge rounded-pill`}>
-                    0
-                </span>
-            </div> */}
             <div className={styles.userMenuItem}>
                 {!auth.accessToken
                     ? <Link to='/login' className={`${styles.userMenuLink} link`}>

@@ -19,6 +19,8 @@ const Profile = () => {
     const [user, setUser] = useState({});
     const [recentComments, setRecentComments] = useState([]);
 
+    const numberOfCommentsToShow = 3;
+
     useEffect(() => {
         fetch('http://localhost:3030/users/me', {
             method: 'GET',
@@ -31,7 +33,7 @@ const Profile = () => {
             .then(response => response.json())
             .then(data => setUser(data));
 
-        fetch(`http://localhost:3030/data/comments?where=_ownerId%3D%22${auth.id}%22&pageSize=3`)
+        fetch(`http://localhost:3030/data/comments?where=_ownerId%3D%22${auth.id}%22&pageSize=${numberOfCommentsToShow}`)
             .then(response => response.json())
             .then(data => setRecentComments(data));
 

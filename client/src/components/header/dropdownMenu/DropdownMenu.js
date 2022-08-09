@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './DropdownMenu.module.css';
 
-import DropdownMenuItem from '../dropdownMenuItem/DropdownMenuItem';
+import DropdownMenuItem from './dropdownMenuItem/DropdownMenuItem';
 
 
 function DropdownMenu() {
@@ -33,7 +33,7 @@ function DropdownMenu() {
             title: "Contact us",
             submenu: [
                 {
-                    title: "Contacts us",
+                    title: "Contact us",
                     nav: "/",
                 },
                 {

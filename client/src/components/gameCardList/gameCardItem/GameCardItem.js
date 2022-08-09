@@ -6,13 +6,13 @@ const GameCardItem = ({game}) => {
 
     return (
         <div className={styles.productsWidgetCard}>
-            <a className={styles.productsWidgetCardLink} href="">
+            <Link to={`/detail/${game._id}`} className={styles.productsWidgetCardLink}>
                 <img
                     className={styles.productsWidgetCardImg}
                     src={`/images/games/${game.cover}`}
                     alt={game.title}
                 />
-            </a>
+            </Link>
             <div className={styles.productsWidgetCardTitle}>
                 {game.title}
             </div>
