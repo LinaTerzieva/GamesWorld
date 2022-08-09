@@ -73,6 +73,10 @@
     margin-right: 10px;
 }
 
+.commentViewBtn:hover {
+    font-weight: bold;
+}
+
 /* rating star */
 
 .off {

@@ -52,7 +52,7 @@ const UserMenu = () => {
                         <FontAwesomeIcon className={styles.userMenuIcon} icon={faUser} />
                     </Link>
                     : <>
-                        <Link to='/' className={`${styles.userMenuLink} link`} onClick={handleProfile}>
+                        <Link to='/profile' className={`${styles.userMenuLink} link`} onClick={handleProfile}>
                             My profile
                             <FontAwesomeIcon className={styles.userMenuIcon} icon={faUser} />
                         </Link>

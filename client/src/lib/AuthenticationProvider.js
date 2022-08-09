@@ -1,4 +1,3 @@
-import { useState } from 'react';
 
 import useAuthenticationApi from './useAuthenticationApi';
 import AuthenticationContext from './AuthenticationContext'
