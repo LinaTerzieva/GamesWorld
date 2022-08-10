@@ -1,6 +1,6 @@
 import styles from './CatalogFilters.module.css';
 
-const CatalogFilters = ({handleDiscount}) => {
+const CatalogFilters = ({discount, pageSize , handleDiscount}) => {
 
     return (
         <div className={styles.catalogContentFilters}>
@@ -8,11 +8,14 @@ const CatalogFilters = ({handleDiscount}) => {
                 <div className={styles.filterBoxContent}>
                     <label className={styles.checkboxLabel}>
                         <input
+                            checked={discount}
                             type="checkbox"
                             className={styles.checkboxInput}
                             onChange={(e) => handleDiscount(state => {
                                 return {
                                     ...state,
+                                    offset: 0,
+                                    pageSize: {pageSize},
                                     discount: e.target.checked
                                 }
                             })}

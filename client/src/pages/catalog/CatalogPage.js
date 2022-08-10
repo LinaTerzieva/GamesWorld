@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, createSearchParams, useSearchParams } from 'react-router-dom';
+import useGameApi from '../../lib/useGameApi';
 
 import styles from './Catalog.module.css';
 
@@ -12,8 +13,8 @@ import CatalogPagination from "../../components/catalogPagination/CatalogPaginat
 
 const CatalogPage = () => {
     const pageSize = 6;
-    const baseUrl = 'http://localhost:3030/data/games';
 
+    const { searchGames, countGames } = useGameApi();
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
 
@@ -21,8 +22,8 @@ const CatalogPage = () => {
     const [query, setQuery] = useState({
         query: searchParams.get('query') ? searchParams.get('query') : "",
         sortBy: searchParams.get('sortBy') ? searchParams.get('sortBy') : "price",
-        offset: searchParams.get('offset') ? searchParams.get('offset') : 0,
         discount: searchParams.get('discount') === 'true',
+        offset: searchParams.get('offset') ? searchParams.get('offset') : 0,
         pageSize: pageSize,
     });
 
@@ -35,23 +36,13 @@ const CatalogPage = () => {
             search: `?${createSearchParams(query)}`
         });
 
-        if (query.discount) {
-            fetch(`${baseUrl}?where=title%20LIKE%20${JSON.stringify(query.query)}%20AND%20discount>0&sortBy=${query.sortBy}&offset=${query.offset}&pageSize=${query.pageSize}`)
-                .then(response => response.json())
-                .then(data => setGames(data));
+        searchGames(query.query, query.discount, query.sortBy, query.offset, query.pageSize)
+            .then(data => setGames(data));
 
-            fetch(`${baseUrl}?where=title%20LIKE%20${JSON.stringify(query.query)}%20AND%20discount>0&count`)
-                .then(response => response.json())
-                .then(result => setNumberOfResults(result));
-        } else {
-            fetch(`${baseUrl}?where=title%20LIKE%20${JSON.stringify(query.query)}&sortBy=${query.sortBy}&offset=${query.offset}&pageSize=${query.pageSize}`)
-                .then(response => response.json())
-                .then(data => setGames(data));
 
-            fetch(`${baseUrl}?where=title%20LIKE%20${JSON.stringify(query.query)}&count`)
-                .then(response => response.json())
-                .then(result => setNumberOfResults(result));
-        }
+        countGames(query.query, query.discount)
+            .then(result => setNumberOfResults(result));
+        
 
     }, [query]);
 
@@ -62,7 +53,7 @@ const CatalogPage = () => {
                 <div className="wrapper">
                     <CatalogHeader query={query.query} handleQuery={setQuery} />
                     <div className={styles.catalogContent}>
-                        <CatalogFilters handleDiscount={setQuery} />
+                        <CatalogFilters discount={query.discount} pageSize={pageSize} handleDiscount={setQuery} />
                         <div className={styles.catalogContentResults}>
                             <CatalogSort handleQuery={setQuery} sortBy={query.sortBy} />
                             <CatalogGameList games={games} />
