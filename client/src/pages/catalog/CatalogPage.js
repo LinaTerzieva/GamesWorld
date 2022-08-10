@@ -3,15 +3,14 @@ import { useNavigate, createSearchParams, useSearchParams } from 'react-router-d
 
 import styles from './Catalog.module.css';
 
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
-import CatalogHeader from "../catalogHeader/CatalogHeader";
-import CatalogFilters from "../catalogFilters/CatalogFilters";
-import CatalogSort from "../catalogSort/CatalogSort";
-import CatalogGameList from "../catalogGameList/CatalogGameList";
-import CatalogPagination from "../catalogPagination/CatalogPagination";
+import CatalogHeader from "../../components/catalogHeader/CatalogHeader";
+import CatalogFilters from "../../components/catalogFilters/CatalogFilters";
+import CatalogSort from "../../components/catalogSort/CatalogSort";
+import CatalogGameList from "../../components/catalogGameList/CatalogGameList";
+import CatalogPagination from "../../components/catalogPagination/CatalogPagination";
 
-const Catalog = () => {
+
+const CatalogPage = () => {
     const pageSize = 6;
     const baseUrl = 'http://localhost:3030/data/games';
 
@@ -59,7 +58,6 @@ const Catalog = () => {
 
     return (
         <>
-            <Header />
             <div className="main-wrapper">
                 <div className="wrapper">
                     <CatalogHeader query={query.query} handleQuery={setQuery} />
@@ -73,9 +71,8 @@ const Catalog = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
         </>
     );
 }
 
-export default Catalog;
+export default CatalogPage;

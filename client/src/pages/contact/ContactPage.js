@@ -1,18 +1,14 @@
-import Map from "../maps/Map";
+import Map from "../../components/maps/Map";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPhone, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
 
-
-const Contact = () => {
+const ContactPage = () => {
 
 
     return (
         <>
-            <Header />
             <div className="main-wrapper">
                 <div className="wrapper contact-wrapper__container">
                     <div className="contact__header">
@@ -65,10 +61,9 @@ const Contact = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
         </>
 
     );
 }
 
-export default Contact;
+export default ContactPage;

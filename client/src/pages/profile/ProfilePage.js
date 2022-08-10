@@ -5,11 +5,9 @@ import AuthenticationContext from "../../lib/AuthenticationContext";
 
 import styles from './Profile.module.css';
 
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
-import StaticRatingStars from '../staticRatingStars/StaticRatingStars';
+import StaticRatingStars from '../../components/staticRatingStars/StaticRatingStars';
 
-const Profile = () => {
+const ProfilePage = () => {
 
     let navigate = useNavigate();
 
@@ -43,7 +41,6 @@ const Profile = () => {
 
     return (
         <>
-            <Header />
             <div className="main-wrapper">
                 <div className={styles.bannerWrapper} style={{ backgroundImage: `url(${'/images/profileBanner.jpg'})` }}>
 
@@ -105,11 +102,9 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
-
         </>
 
     );
 }
 
-export default Profile;
+export default ProfilePage;

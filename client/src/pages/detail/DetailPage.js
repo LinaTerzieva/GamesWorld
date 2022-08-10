@@ -12,11 +12,9 @@ import styles from './Detail.module.css';
 
 import AuthenticationContext from '../../lib/AuthenticationContext';
 
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
-import StaticRatingStars from '../staticRatingStars/StaticRatingStars';
+import StaticRatingStars from '../../components/staticRatingStars/StaticRatingStars';
 
-const Detail = () => {
+const DetailPage = () => {
 
     const { auth } = useContext(AuthenticationContext);
 
@@ -183,7 +181,6 @@ const Detail = () => {
 
     return (
         <>
-            <Header />
             <div className="main-wrapper">
                 <div className="large-wrapper app__container">
                     <div className={styles.detailHeader}>
@@ -349,10 +346,9 @@ const Detail = () => {
 
                 </div>
             </div>
-            <Footer />
         </>
 
     );
 }
 
-export default Detail;
+export default DetailPage;

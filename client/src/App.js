@@ -4,13 +4,14 @@ import { AuthenticationProvider } from "./lib/AuthenticationProvider";
 
 import './App.css';
 
-import Home from "./components/home/Home";
-import Login from "./components/login/Login";
-import Register from "./components/register/Register";
-import Profile from "./components/profile/Profile";
-import Catalog from "./components/catalog/Catalog";
-import Detail from "./components/detail/Detail";
-import Contact from "./components/contact/Contact";
+import Layout from "./components/layout/Layout";
+import HomePage from "./pages/home/HomePage";
+import LoginPage from "./pages/login/LoginPage";
+import RegisterPage from "./pages/register/RegisterPage";
+import ProfilePage from "./pages/profile/ProfilePage";
+import CatalogPage from "./pages/catalog/CatalogPage";
+import DetailPage from "./pages/detail/DetailPage";
+import ContactPage from "./pages/contact/ContactPage";
 
 function App() {
 
@@ -19,15 +20,15 @@ function App() {
         <div className="main">
             <AuthenticationProvider>
                 <Routes>
-
-                    <Route path="/" element={<Home />} />
-                    <Route path="login" element={<Login />} />
-                    <Route path="register" element={<Register />} />
-                    <Route path="profile" element={<Profile />} />
-                    <Route path="catalog" element={<Catalog />} />
-                    <Route path="detail/:gameId" element={<Detail />} />
-                    <Route path="contact" element={<Contact />} />
-                        
+                    <Route element={<Layout />}>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="login" element={<LoginPage />} />
+                        <Route path="register" element={<RegisterPage />} />
+                        <Route path="profile" element={<ProfilePage />} />
+                        <Route path="catalog" element={<CatalogPage />} />
+                        <Route path="detail/:gameId" element={<DetailPage />} />
+                        <Route path="contact" element={<ContactPage />} />
+                    </Route>         
                 </Routes>
             </AuthenticationProvider>
         </div>
