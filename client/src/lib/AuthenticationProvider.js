@@ -1,5 +1,5 @@
 
-import useAuthenticationApi from './useAuthenticationApi';
+import useUserApi from './useUserApi';
 import AuthenticationContext from './AuthenticationContext'
 import useLocalStorage from './useLocalStorage';
 
@@ -13,7 +13,7 @@ export const AuthenticationProvider = ({ children }) => {
         isError: false
     });
 
-    const { login, logout } = useAuthenticationApi();
+    const { login, logout } = useUserApi();
 
     const loginUser = (username, password) => login(username, password)
         .then((data) => {

@@ -11,12 +11,16 @@ import { faStar, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-i
 import styles from './Detail.module.css';
 
 import AuthenticationContext from '../../lib/AuthenticationContext';
+import useCommentApi from '../../lib/useCommentApi';
+import useGameApi from '../../lib/useGameApi';
 
 import StaticRatingStars from '../../components/staticRatingStars/StaticRatingStars';
 
 const DetailPage = () => {
 
     const { auth } = useContext(AuthenticationContext);
+    const { getComments, createComment, editComment, deleteComment } = useCommentApi();
+    const { getGame } = useGameApi();
 
     let { gameId } = useParams();
     const [game, setGame] = useState({});
@@ -31,7 +35,8 @@ const DetailPage = () => {
     const [editHover, setEditHover] = useState(0);
 
     const price = parseFloat(game.price).toFixed(2);
-    const [validationMessage, setValidationMessage] = useState("");
+    const [createValidation, setCreateValidation] = useState({});
+    const [editValidation, setEditValidation] = useState({});
 
     const [editModal, setEditModal] = useState({
         isOpen: false,
@@ -59,19 +64,19 @@ const DetailPage = () => {
             ...editModal,
             comment: {
                 ...editModal.comment,
+
                 [e.target.name]: value
             }
         });
     }
 
+
     useEffect(() => {
-        fetch(`http://localhost:3030/data/games/${gameId}`)
-            .then(response => response.json())
+        getGame(gameId)
             .then(data => setGame(data));
 
 
-        fetch(`http://localhost:3030/data/comments?where=_gameId%3D%22${gameId}%22&load=author%3D_ownerId%3Ausers`)
-            .then(response => response.json())
+        getComments(gameId)
             .then(data => setAllComments(data));
     }, []);
 
@@ -85,24 +90,16 @@ const DetailPage = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        setCreateValidation({});
 
         if (newComment.description == "") {
-            return setValidationMessage("Please enter a comment");
+            return setCreateValidation({ description: "Please enter a comment" });
         }
 
-        fetch('http://localhost:3030/data/comments', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'X-Authorization': `${auth.accessToken}`
-            },
-            body: JSON.stringify(newComment),
-        })
+        createComment(newComment)
             .then((response) => {
                 if (response.status == 200) {
-                    fetch(`http://localhost:3030/data/comments?where=_gameId%3D%22${gameId}%22&load=author%3D_ownerId%3Ausers`)
-                        .then(response => response.json())
+                    getComments(gameId)
                         .then(data => {
                             setAllComments(data);
                         });
@@ -123,34 +120,22 @@ const DetailPage = () => {
 
     const submitEditHandler = (e) => {
         e.preventDefault();
+        setEditValidation({});
 
-        // if (editModal.comment == "") {
-        //     return setValidationMessage("Please enter a comment");
-        // }
+        if (editModal.comment.description == "") {
+            return setEditValidation({ description: "Please enter a comment" });
+        }
 
-        fetch(`http://localhost:3030/data/comments/${editModal.comment._id}`, {
-            method: 'PUT',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'X-Authorization': `${auth.accessToken}`
-            },
-            body: JSON.stringify({
-                _gameId: editModal.comment._gameId,
-                description: editModal.comment.description,
-                rating: editModal.comment.rating
-            }),
-        })
-        .then((response) => {
-            if (response.status == 200) {
-                fetch(`http://localhost:3030/data/comments?where=_gameId%3D%22${gameId}%22&load=author%3D_ownerId%3Ausers`)
-                    .then(response => response.json())
-                    .then(data => {
-                        setAllComments(data);
-                    });
-            }
-            //403 forbidden error
-        })
+        editComment(editModal.comment)
+            .then((response) => {
+                if (response.status == 200) {
+                    getComments(gameId)
+                        .then(data => {
+                            setAllComments(data);
+                        });
+                }
+                //403 forbidden error
+            })
 
         setEditModal({
             isOpen: false,
@@ -159,18 +144,10 @@ const DetailPage = () => {
     }
 
     const handleDelete = (commentId) => {
-        fetch(`http://localhost:3030/data/comments/${commentId}`, {
-            method: 'DELETE',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'X-Authorization': `${auth.accessToken}`
-            },
-        })
+        deleteComment(commentId)
             .then((response) => {
                 if (response.status == 200) {
-                    fetch(`http://localhost:3030/data/comments?where=_gameId%3D%22${gameId}%22&load=author%3D_ownerId%3Ausers`)
-                        .then(response => response.json())
+                    getComments(gameId)
                         .then(data => {
                             setAllComments(data);
                         });
@@ -251,8 +228,8 @@ const DetailPage = () => {
                                 <textarea type="text" id="comment" className={styles.inputComment} value={newComment.description}
                                     onChange={handleChange} rows="5" cols="50" />
                             </div>
-                            {validationMessage != "" &&
-                                <div>{validationMessage}</div>
+                            {createValidation.description &&
+                                <div className={styles.inputCommentValMsg}>{createValidation.description}</div>
                             }
                             <button type="submit" className={styles.submitComment}>
                                 Submit
@@ -335,6 +312,9 @@ const DetailPage = () => {
                                         >
                                             <Form.Control as="textarea" rows={3} value={editModal.comment.description} onChange={handleEditChange} name="description" />
                                         </Form.Group>
+                                        {editValidation.description &&
+                                            <div className={styles.inputCommentValMsg}>{editValidation.description}</div>
+                                        }
                                         <input type="submit" value="Submit" />
                                     </Form>
                                 </Modal.Body>

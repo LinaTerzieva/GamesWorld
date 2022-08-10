@@ -119,6 +119,11 @@
     font-weight: bold;
 }
 
+.inputCommentValMsg {
+    color: red;
+    font-size: 17px;
+}
+
 /* END OF RATING STARS */
 
 .submitComment {

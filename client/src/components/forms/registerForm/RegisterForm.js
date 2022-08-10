@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
-import useAuthenticationApi from '../../../lib/useAuthenticationApi';
+import useUserApi from '../../../lib/useUserApi';
 
 import styles from './RegisterForm.module.css';
 
@@ -17,7 +17,7 @@ const RegisterForm = () => {
         lastName: ""
     });
 
-    const { register } = useAuthenticationApi();
+    const { register } = useUserApi();
 
     const [showError, setShowError] = useState(false);
     const [validationError, setValidationError] = useState("");

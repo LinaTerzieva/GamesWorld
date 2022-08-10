@@ -1,6 +1,8 @@
+import useHeaders from "./useHeaders";
 
+const useUserApi = () => {
 
-const useAuthenticationApi = () => {
+    const { getHeaders } = useHeaders();
 
     const login = (username, password) => {
         return fetch('http://localhost:3030/users/login', {
@@ -27,15 +29,26 @@ const useAuthenticationApi = () => {
     }
 
     const logout = (token) => {
-        return fetch('http://localhost:3030/users/logout',{
+        return fetch('http://localhost:3030/users/logout', {
             method: 'GET',
-            headers: { 
-                'X-Authorization': token
-            }
+            headers: getHeaders({})
         })
     }
 
-return { login, register, logout };
+    const getUserInfo = (token) => {
+        return fetch('http://localhost:3030/users/me', {
+            method: 'GET',
+            headers: getHeaders(
+                {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            )
+        })
+            .then(response => response.json())
+    }
+
+    return { login, register, logout, getUserInfo };
 }
 
-export default useAuthenticationApi;
+export default useUserApi;

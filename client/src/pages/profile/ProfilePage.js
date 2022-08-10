@@ -2,6 +2,8 @@ import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import AuthenticationContext from "../../lib/AuthenticationContext";
+import useUserApi from "../../lib/useUserApi";
+import useCommentApi from "../../lib/useCommentApi";
 
 import styles from './Profile.module.css';
 
@@ -12,25 +14,18 @@ const ProfilePage = () => {
     let navigate = useNavigate();
 
     const { auth } = useContext(AuthenticationContext);
+    const { getUserInfo } = useUserApi();
+    const { getUserComments } = useCommentApi();
     const [user, setUser] = useState({});
     const [recentComments, setRecentComments] = useState([]);
 
     const numberOfCommentsToShow = 3;
 
     useEffect(() => {
-        fetch('http://localhost:3030/users/me', {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'X-Authorization': `${auth.accessToken}`
-            },
-        })
-            .then(response => response.json())
+        getUserInfo(auth.accessToken)
             .then(data => setUser(data));
 
-        fetch(`http://localhost:3030/data/comments?where=_ownerId%3D%22${auth.id}%22&pageSize=${numberOfCommentsToShow}`)
-            .then(response => response.json())
+        getUserComments(auth.id, numberOfCommentsToShow)
             .then(data => setRecentComments(data));
 
     }, [auth.accessToken, auth.id]);
