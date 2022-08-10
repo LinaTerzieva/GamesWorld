@@ -37,7 +37,7 @@ const Profile = () => {
             .then(response => response.json())
             .then(data => setRecentComments(data));
 
-    }, []);
+    }, [auth.accessToken, auth.id]);
 
     const handleClick = (gameId) => {
         navigate(`/detail/${gameId}`, { replace: false });
