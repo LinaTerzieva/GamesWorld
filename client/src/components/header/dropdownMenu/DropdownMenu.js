@@ -34,7 +34,7 @@ function DropdownMenu() {
             submenu: [
                 {
                     title: "Contact us",
-                    nav: "/",
+                    nav: "/contact",
                 },
                 {
                     title: "Help",

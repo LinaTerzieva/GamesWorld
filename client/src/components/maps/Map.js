@@ -16,7 +16,7 @@ const zoom = 15;
 function Map() {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyBX6cSSZcrRyY17uSsnveH1HQ_e0t7y_-0"
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY
     })
 
     const [map, setMap] = React.useState(null)
@@ -34,6 +34,7 @@ function Map() {
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
+
             center={center}
             zoom={zoom}
             onLoad={onLoad}
