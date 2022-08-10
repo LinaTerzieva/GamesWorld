@@ -2,7 +2,6 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactPlayer from "react-player/youtube";
 
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
@@ -15,6 +14,7 @@ import AuthenticationContext from '../../lib/AuthenticationContext';
 
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
+import StaticRatingStars from '../staticRatingStars/StaticRatingStars';
 
 const Detail = () => {
 
@@ -76,14 +76,6 @@ const Detail = () => {
             .then(response => response.json())
             .then(data => setAllComments(data));
     }, []);
-
-    const generateStars = (rating) => {
-        var stars = [];
-        for (var i = 1; i <= 5; i++) {
-            stars.push(<FontAwesomeIcon key={i} icon={faStar} className={i <= rating ? `${styles.star}` : `${styles.off}`} />);
-        }
-        return stars;
-    }
 
     const handleChange = (e) => {
         const newCommentText = e.target.value;
@@ -295,11 +287,11 @@ const Detail = () => {
                                             </div>
                                             <div className="ml-auto">
                                                 <p className="text-muted pt-5 pt-sm-3">
-                                                    {generateStars(comment.rating)}
+                                                    <StaticRatingStars rating={comment.rating} />
                                                 </p>
                                             </div>
                                         </div>
-                                        <div className="row text-left">
+                                        <div className={`${styles.commentCardDescription} row text-left`}>
                                             <h4 className="text-primary mt-3">{comment.description}</h4>
                                         </div>
                                     </div>

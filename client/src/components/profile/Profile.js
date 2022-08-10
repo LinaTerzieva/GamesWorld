@@ -3,13 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 import AuthenticationContext from "../../lib/AuthenticationContext";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-
 import styles from './Profile.module.css';
 
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+import StaticRatingStars from '../staticRatingStars/StaticRatingStars';
 
 const Profile = () => {
 
@@ -41,14 +39,6 @@ const Profile = () => {
 
     const handleClick = (gameId) => {
         navigate(`/detail/${gameId}`, { replace: false });
-    }
-
-    const generateStars = (rating) => {
-        var stars = [];
-        for (var i = 1; i <= 5; i++) {
-            stars.push(<FontAwesomeIcon key={i} icon={faStar} className={i <= rating ? `${styles.star}` : `${styles.off}`} />);
-        }
-        return stars;
     }
 
     return (
@@ -100,7 +90,7 @@ const Profile = () => {
                                         <div className={styles.comment}>
                                             <div className={styles.commentHeader}>
                                                 <p className="text-muted pt-5 pt-sm-3">
-                                                    {generateStars(comment.rating)}
+                                                    <StaticRatingStars rating={comment.rating} />
                                                 </p>
                                                 <button className={styles.commentViewBtn} onClick={() => handleClick(comment._gameId)}>
                                                     View
