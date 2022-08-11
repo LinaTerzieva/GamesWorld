@@ -16,6 +16,8 @@ const LoginForm = () => {
         password: ""
     });
 
+    const [serverError, setServerError] = useState({});
+
     const handleChange = (e) => {
         const value = e.target.value;
         setFormData({
@@ -26,12 +28,17 @@ const LoginForm = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-
         handleLogin();
-
     }
 
-    const handleLogin = () => loginUser(formData.username, formData.password);
+    const handleLogin = () =>  {
+        loginUser(formData.username, formData.password)
+            .then((result) => {
+                if(result.isError) {
+                    setServerError(result);
+                }
+            });
+    }
 
 
     if (auth.accessToken) {
@@ -50,11 +57,10 @@ const LoginForm = () => {
                             <img src={"/images/companyLogo.png"} />
                         </span>
                         <span className={styles.loginFormTitle}>Log in</span>
-                        {auth.isError && auth.errorCode == '' && <div className={styles.validationError}>An error has occured. Please try again later.</div>}
-                        {auth.isError && auth.errorMessage != '' && <div className={styles.validationError}>{auth.errorMessage}</div>}
+                        {serverError.isError && serverError.errorCode == '' && <div className={styles.validationError}>An error has occured. Please try again later.</div>}
+                        {serverError.isError && serverError.errorMessage != '' && <div className={styles.validationError}>{serverError.errorMessage}</div>}
                         <div
-                            className={`${styles.wrapInput} ${styles.validateInput}`}
-                            data-validate="Enter username"
+                            className={`${styles.wrapInput}`}
                         >
                             <input
                                 className={styles.input}
@@ -67,8 +73,7 @@ const LoginForm = () => {
                             <span className={styles.focusInput} />
                         </div>
                         <div
-                            className={`${styles.wrapInput} ${styles.validateInput}`}
-                            data-validate="Enter password"
+                            className={`${styles.wrapInput}`}
                         >
                             <input
                                 className={styles.input}
