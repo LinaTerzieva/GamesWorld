@@ -21,7 +21,13 @@ const RegisterForm = () => {
 
     const [showError, setShowError] = useState(false);
     const [serverValidation, setServerValidation] = useState("");
-    const [validations, setValidations] = useState({});
+    const [validations, setValidations] = useState({
+        username: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        hasError: true
+    });
 
     const handleChange = (e) => {
         const value = e.target.value;
