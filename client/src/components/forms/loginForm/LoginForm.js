@@ -8,9 +8,9 @@ import styles from './LoginForm.module.css';
 
 const LoginForm = () => {
 
-    
+
     const { auth, loginUser } = useContext(AuthenticationContext);
-    
+
     const [formData, setFormData] = useState({
         username: "",
         password: ""
@@ -31,10 +31,10 @@ const LoginForm = () => {
         handleLogin();
     }
 
-    const handleLogin = () =>  {
+    const handleLogin = () => {
         loginUser(formData.username, formData.password)
             .then((result) => {
-                if(result.isError) {
+                if (result.isError) {
                     setServerError(result);
                 }
             });

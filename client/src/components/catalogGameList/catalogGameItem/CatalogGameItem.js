@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-
 import styles from './CatalogGameItem.module.css';
 
 const CatalogGameItem = ({ game }) => {

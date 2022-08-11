@@ -15,7 +15,7 @@ const CatalogFilters = ({discount, pageSize , handleDiscount}) => {
                                 return {
                                     ...state,
                                     offset: 0,
-                                    pageSize: {pageSize},
+                                    pageSize: pageSize,
                                     discount: e.target.checked
                                 }
                             })}
