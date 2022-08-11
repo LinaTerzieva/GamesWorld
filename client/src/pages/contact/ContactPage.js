@@ -3,6 +3,8 @@ import Map from "../../components/maps/Map";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPhone, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
+import styles from './ContactPage.module.css';
+
 
 const ContactPage = () => {
 
@@ -10,10 +12,10 @@ const ContactPage = () => {
     return (
         <>
             <div className="main-wrapper">
-                <div className="wrapper contact-wrapper__container">
-                    <div className="contact__header">
-                        <div className="contact__title">Contact Us</div>
-                        <div className="contact__description">
+                <div className="wrapper">
+                    <div className={styles.contactHeader}>
+                        <div className={styles.contactTitle}>Contact Us</div>
+                        <div className={styles.contactDescription}>
                             Any questions or remarks? Just write us a message or e-mail us at{" "}
                             <a
                                 href="mailto:gamesworld@gmail.com"
@@ -25,35 +27,38 @@ const ContactPage = () => {
                             and we will get back to you promptly regarding your request.
                         </div>
                     </div>
-                    <div className="contact__wrapper">
+                    <div className={styles.contactWrapper}>
                         <div>
                             <Map />
                         </div>
-                        <div className="contact__info">
-                            <div className="contact__info-item">
+                        <div className={styles.contactInfo}>
+                            <div className={styles.contactInfoItem}>
                                 <a
-                                    className="contact__info-link link"
+                                    className={`${styles.contactInfoLink} link`}
                                     href="mailto:gamesworld@gmail.com"
                                 >
-                                    <div className="contact__info-circle">
-                                        <FontAwesomeIcon icon={faEnvelope} className="contact__img contact__img-nav" />
+                                    <div className={styles.contactInfoCircle}>
+                                        <FontAwesomeIcon icon={faEnvelope} className={styles.contactImg} />
                                     </div>
-                                    <div className="contact__info-text">gamesworld@gmail.com</div>
+                                    <div className={styles.contactInfoText}>gamesworld@gmail.com</div>
                                 </a>
                             </div>
-                            <div className="contact__info-item">
-                                <a className="contact__info-link link" href="tel:359-555-754-777">
-                                    <div className="contact__info-circle">
-                                        <FontAwesomeIcon icon={faPhone} className="contact__img contact__img-nav" />
+                            <div className={styles.contactInfoItem}>
+                                <a
+                                    className={`${styles.contactInfoLink} link`}
+                                    href="tel:359-555-754-777"
+                                >
+                                    <div className={styles.contactInfoCircle}>
+                                        <FontAwesomeIcon icon={faPhone} className={styles.contactImg} />
                                     </div>
-                                    <div className="contact__info-text">+359 555 754 777</div>
+                                    <div className={styles.contactInfoText}>+359 555 754 777</div>
                                 </a>
                             </div>
-                            <div className="contact__info-item">
-                                <div className="contact__info-circle">
-                                    <FontAwesomeIcon icon={faLocationDot} className="contact__img contact__img-nav" />
+                            <div className={styles.contactInfoItem}>
+                                <div className={styles.contactInfoCircle}>
+                                    <FontAwesomeIcon icon={faLocationDot} className={styles.contactImg} />
                                 </div>
-                                <div className="contact__info-text">
+                                <div className={styles.contactInfoText}>
                                     bul.Bulgaria 100, 1330 Sofia, Bulgaria
                                 </div>
                             </div>

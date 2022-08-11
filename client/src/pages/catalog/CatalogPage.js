@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, createSearchParams, useSearchParams } from 'react-router-dom';
 import useGameApi from '../../lib/useGameApi';
 
-import styles from './Catalog.module.css';
+import styles from './CatalogPage.module.css';
 
 import CatalogHeader from "../../components/catalogHeader/CatalogHeader";
 import CatalogFilters from "../../components/catalogFilters/CatalogFilters";

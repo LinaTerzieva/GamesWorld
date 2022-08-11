@@ -8,7 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-import styles from './Detail.module.css';
+import styles from './DetailPage.module.css';
 
 import AuthenticationContext from '../../lib/AuthenticationContext';
 import useCommentApi from '../../lib/useCommentApi';
@@ -242,35 +242,40 @@ const DetailPage = () => {
                             <div className={styles.allCommentsTitle}>
                                 All Comments
                             </div>
-                            {allComments && allComments.map((comment) => {
-                                return (
-                                    <div className={styles.commentCard} key={comment._id}>
-                                        {comment._ownerId == auth.id &&
-                                            <div className={styles.commentCardActions}>
-                                                <button onClick={() => openFromParent(comment)}>
-                                                    <FontAwesomeIcon icon={faPenToSquare} className={styles.cardActionIcon} />
-                                                </button>
-                                                <button onClick={() => handleDelete(comment._id)}>
-                                                    <FontAwesomeIcon icon={faTrashCan} className={styles.cardActionIcon} />
-                                                </button>
+                            {allComments.length
+                                ? allComments.map((comment) => {
+                                    return (
+                                        <div className={styles.commentCard} key={comment._id}>
+                                            {comment._ownerId == auth.id &&
+                                                <div className={styles.commentCardActions}>
+                                                    <button onClick={() => openFromParent(comment)}>
+                                                        <FontAwesomeIcon icon={faPenToSquare} className={styles.cardActionIcon} />
+                                                    </button>
+                                                    <button onClick={() => handleDelete(comment._id)}>
+                                                        <FontAwesomeIcon icon={faTrashCan} className={styles.cardActionIcon} />
+                                                    </button>
+                                                </div>
+                                            }
+                                            <div className="row d-flex">
+                                                <div className="d-flex flex-column">
+                                                    <h3 className={`${styles.commentCardAuthor} mt-2 mb-0`}>{comment.author.username}</h3>
+                                                </div>
+                                                <div className="ml-auto">
+                                                    <p className="text-muted pt-5 pt-sm-3">
+                                                        <StaticRatingStars rating={comment.rating} />
+                                                    </p>
+                                                </div>
                                             </div>
-                                        }
-                                        <div className="row d-flex">
-                                            <div className="d-flex flex-column">
-                                                <h3 className={`${styles.commentCardAuthor} mt-2 mb-0`}>{comment.author.username}</h3>
-                                            </div>
-                                            <div className="ml-auto">
-                                                <p className="text-muted pt-5 pt-sm-3">
-                                                    <StaticRatingStars rating={comment.rating} />
-                                                </p>
+                                            <div className={`${styles.commentCardDescription} row text-left`}>
+                                                <h4 className="text-primary mt-3">{comment.description}</h4>
                                             </div>
                                         </div>
-                                        <div className={`${styles.commentCardDescription} row text-left`}>
-                                            <h4 className="text-primary mt-3">{comment.description}</h4>
-                                        </div>
-                                    </div>
-                                )
-                            })}
+                                    )
+                                })
+                                : <div className={styles.noCommentsMessage}>
+                                    No comments
+                                </div>
+                            }
 
                             <Modal show={editModal.isOpen} onHide={handleClose}>
                                 <Modal.Header closeButton>

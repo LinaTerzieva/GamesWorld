@@ -20,7 +20,8 @@ const RegisterForm = () => {
     const { register } = useUserApi();
 
     const [showError, setShowError] = useState(false);
-    const [validationError, setValidationError] = useState("");
+    const [serverValidation, setServerValidation] = useState("");
+    const [validations, setValidations] = useState({});
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -32,7 +33,7 @@ const RegisterForm = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        setValidationError("");
+        setServerValidation("");
 
         handleRegister();
     }
@@ -42,7 +43,7 @@ const RegisterForm = () => {
         register(formData.username, formData.password, formData.firstName, formData.lastName)
             .then((data) => {
                 if (data.code === 409) {
-                    setValidationError(data.message);
+                    setServerValidation(data.message);
                 } else {
                     navigate("/", { replace: true });
                 }
@@ -64,7 +65,7 @@ const RegisterForm = () => {
                         </span>
                         <span className={styles.loginFormTitle}>Register</span>
                         {showError && <div className={styles.validationError}>An error has occured. Please try again later.</div>}
-                        {validationError != '' && <div className={styles.validationError}>{validationError}</div>}
+                        {serverValidation != '' && <div className={styles.validationError}>{serverValidation}</div>}
                         <div
                             className={`${styles.wrapInput} ${styles.validateInput}`}
                             data-validate="Enter username"

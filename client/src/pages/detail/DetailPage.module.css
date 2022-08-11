@@ -179,4 +179,10 @@
     margin-right: 50px;
 }
 
+.noCommentsMessage {
+    font-size: 27px;
+    color: #ddd;
+    font-weight: bold;
+}
+
 

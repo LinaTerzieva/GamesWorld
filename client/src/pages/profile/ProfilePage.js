@@ -5,7 +5,7 @@ import AuthenticationContext from "../../lib/AuthenticationContext";
 import useUserApi from "../../lib/useUserApi";
 import useCommentApi from "../../lib/useCommentApi";
 
-import styles from './Profile.module.css';
+import styles from './ProfilePage.module.css';
 
 import StaticRatingStars from '../../components/staticRatingStars/StaticRatingStars';
 
@@ -33,6 +33,7 @@ const ProfilePage = () => {
     const handleClick = (gameId) => {
         navigate(`/detail/${gameId}`, { replace: false });
     }
+
 
     return (
         <>
@@ -75,24 +76,28 @@ const ProfilePage = () => {
                             <div className={styles.infoBoxHeader}>
                                 Recent activities
                             </div>
-                            {recentComments && recentComments.map((comment) => {
-                                console.log(comment);
-                                return (
-                                    <div key={comment._id} className={styles.infoCommentCard}>
-                                        <div className={styles.comment}>
-                                            <div className={styles.commentHeader}>
-                                                <p className="text-muted pt-5 pt-sm-3">
-                                                    <StaticRatingStars rating={comment.rating} />
-                                                </p>
-                                                <button className={styles.commentViewBtn} onClick={() => handleClick(comment._gameId)}>
-                                                    View
-                                                </button>
+                            {recentComments.length
+                                ? recentComments.map((comment) => {
+                                    return (
+                                        <div key={comment._id} className={styles.infoCommentCard}>
+                                            <div className={styles.comment}>
+                                                <div className={styles.commentHeader}>
+                                                    <p className="text-muted pt-5 pt-sm-3">
+                                                        <StaticRatingStars rating={comment.rating} />
+                                                    </p>
+                                                    <button className={styles.commentViewBtn} onClick={() => handleClick(comment._gameId)}>
+                                                        View
+                                                    </button>
+                                                </div>
+                                                <h5 className="text-primary mt-3">{comment.description}</h5>
                                             </div>
-                                            <h5 className="text-primary mt-3">{comment.description}</h5>
                                         </div>
-                                    </div>
-                                )
-                            })}
+                                    )
+                                })
+                                : <div className={styles.noActivityMessage}>
+                                    No recent activities.
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
