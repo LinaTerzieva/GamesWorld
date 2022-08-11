@@ -5,7 +5,7 @@ const useHeaders = () => {
     const [user] = useLocalStorage("auth");    
 
     const getHeaders = (headers) => {
-
+        
         if(user.accessToken) {
             return {
                 ...headers,

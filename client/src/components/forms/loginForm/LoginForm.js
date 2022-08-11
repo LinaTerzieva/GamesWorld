@@ -34,7 +34,7 @@ const LoginForm = () => {
     const handleLogin = () => {
         loginUser(formData.username, formData.password)
             .then((result) => {
-                if (result.isError) {
+                if (result && result.isError) {
                     setServerError(result);
                 }
             });

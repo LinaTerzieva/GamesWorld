@@ -22,7 +22,7 @@ const ProfilePage = () => {
     const numberOfCommentsToShow = 3;
 
     useEffect(() => {
-        getUserInfo(auth.accessToken)
+        getUserInfo()
             .then(data => setUser(data));
 
         getUserComments(auth.id, numberOfCommentsToShow)

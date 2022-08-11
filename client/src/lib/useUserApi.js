@@ -31,11 +31,13 @@ const useUserApi = () => {
     const logout = (token) => {
         return fetch('http://localhost:3030/users/logout', {
             method: 'GET',
-            headers: getHeaders({})
+            headers: {
+                'X-Authorization': `${token}`
+            }
         })
     }
 
-    const getUserInfo = (token) => {
+    const getUserInfo = () => {
         return fetch('http://localhost:3030/users/me', {
             method: 'GET',
             headers: getHeaders(

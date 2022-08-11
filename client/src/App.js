@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import { AuthenticationProvider } from "./lib/AuthenticationProvider";
+import ProtectedRoute from "./lib/ProtectedRoute";
 
 import './App.css';
 
@@ -24,11 +25,15 @@ function App() {
                         <Route path="/" element={<HomePage />} />
                         <Route path="login" element={<LoginPage />} />
                         <Route path="register" element={<RegisterPage />} />
-                        <Route path="profile" element={<ProfilePage />} />
+                        <Route path="profile" element={<ProtectedRoute>
+                            <ProfilePage />
+                        </ProtectedRoute>} />
                         <Route path="catalog" element={<CatalogPage />} />
                         <Route path="detail/:gameId" element={<DetailPage />} />
                         <Route path="contact" element={<ContactPage />} />
-                    </Route>         
+                    </Route>
+
+
                 </Routes>
             </AuthenticationProvider>
         </div>
