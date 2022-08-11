@@ -4,7 +4,7 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 
 
-const Contact = () => {
+const Layout = () => {
 
 
     return (
@@ -17,4 +17,4 @@ const Contact = () => {
     );
 }
 
-export default Contact;
+export default Layout;
