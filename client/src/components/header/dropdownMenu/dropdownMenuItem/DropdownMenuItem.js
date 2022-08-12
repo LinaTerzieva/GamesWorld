@@ -13,9 +13,9 @@ function DropdownMenuItem({ item }) {
             onMouseEnter={() => setOpen(true)}
             onMouseLeave={() => setOpen(false)}
         >
-            <a className={`${styles.headerMenuLink} link`}>
+            <span className={`${styles.headerMenuLink} link`}>
                 {item.title}
-            </a>
+            </span>
 
             <Dropdown.Menu show={open} className={styles.headerDropdownContent}>
                 {item.submenu.map((subMenuItem,index) => (

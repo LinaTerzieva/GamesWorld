@@ -153,7 +153,9 @@
     margin-bottom: 20px;
 }
 
-.commentCard{
+.commentCard {
+    display: flex;
+    justify-content: center;
     border-radius: 5px;
     background-color: #fff;
     padding-left: 60px;
@@ -163,8 +165,8 @@
     padding-bottom: 30px;
 }
 
-.commentCardActions {
-    float: right;
+.commentCardContent {
+    width: 1000px;
 }
 
 .cardActionIcon {
@@ -173,10 +175,6 @@
 
 .commentCardAuthor {
     font-weight: bold;
-}
-
-.commentCardDescription {
-    margin-right: 50px;
 }
 
 .noCommentsMessage {

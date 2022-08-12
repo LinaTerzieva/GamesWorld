@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import AuthenticationContext from "./AuthenticationContext";
 
+// Protected route: authenticated user required
 
 const ProtectedRoute = ({ children }) => {
 

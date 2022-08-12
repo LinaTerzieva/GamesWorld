@@ -12,6 +12,7 @@ import styles from './DetailPage.module.css';
 
 import AuthenticationContext from '../../lib/AuthenticationContext';
 import useCommentApi from '../../lib/useCommentApi';
+
 import useGameApi from '../../lib/useGameApi';
 
 import StaticRatingStars from '../../components/staticRatingStars/StaticRatingStars';
@@ -22,7 +23,7 @@ const DetailPage = () => {
     const { getComments, createComment, editComment, deleteComment } = useCommentApi();
     const { getGame } = useGameApi();
 
-    let { gameId } = useParams();
+    const { gameId } = useParams();
     const [game, setGame] = useState({});
     const [allComments, setAllComments] = useState([]);
     const [newComment, setNewComment] = useState({
@@ -246,6 +247,22 @@ const DetailPage = () => {
                                 ? allComments.map((comment) => {
                                     return (
                                         <div className={styles.commentCard} key={comment._id}>
+                                            <div className={styles.commentCardContent}>
+                                                <div className="row d-flex">
+                                                    <div className="d-flex flex-column">
+                                                        <h3 className={`${styles.commentCardAuthor} mt-2 mb-0`}>{comment.author.username}</h3>
+                                                    </div>
+                                                    <div className="ml-auto">
+                                                        <p className="text-muted pt-5 pt-sm-3">
+                                                            <StaticRatingStars rating={comment.rating} />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div className={`${styles.commentCardDescription} row text-left`}>
+                                                    <h4 className="text-primary mt-3">{comment.description}</h4>
+                                                </div>
+                                            </div>
+
                                             {comment._ownerId == auth.id &&
                                                 <div className={styles.commentCardActions}>
                                                     <button onClick={() => openFromParent(comment)}>
@@ -256,19 +273,6 @@ const DetailPage = () => {
                                                     </button>
                                                 </div>
                                             }
-                                            <div className="row d-flex">
-                                                <div className="d-flex flex-column">
-                                                    <h3 className={`${styles.commentCardAuthor} mt-2 mb-0`}>{comment.author.username}</h3>
-                                                </div>
-                                                <div className="ml-auto">
-                                                    <p className="text-muted pt-5 pt-sm-3">
-                                                        <StaticRatingStars rating={comment.rating} />
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div className={`${styles.commentCardDescription} row text-left`}>
-                                                <h4 className="text-primary mt-3">{comment.description}</h4>
-                                            </div>
                                         </div>
                                     )
                                 })
