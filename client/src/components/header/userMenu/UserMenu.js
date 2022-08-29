@@ -1,9 +1,11 @@
 import AuthenticationContext from './../../../lib/AuthenticationContext'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faArrowRightFromBracket, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+
+import Cart from '../../cart/Cart';
 
 import styles from './UserMenu.module.css';
 
@@ -11,6 +13,7 @@ import styles from './UserMenu.module.css';
 const UserMenu = () => {
 
     const { auth, logoutUser } = useContext(AuthenticationContext);
+    const [showCart, setShowCart] = useState(false);
 
     const handleProfile = () => {
         fetch('http://localhost:3030/users/me', {
@@ -21,12 +24,21 @@ const UserMenu = () => {
                 'X-Authorization': `${auth.accessToken}`
             },
         })
-            .then((response) => {console.log(response)});
+            .then((response) => { console.log(response) });
     }
 
     const logOutHandler = () => {
         logoutUser();
     }
+
+    const showShoppingCart = () => {
+        setShowCart(current => !current);
+    }
+
+    const hideShoppingCart = () => {
+        setShowCart(false);
+    }
+
 
     return (
         <div className={styles.headerUserMenu}>
@@ -41,6 +53,13 @@ const UserMenu = () => {
                             My profile
                             <FontAwesomeIcon className={styles.userMenuIcon} icon={faUser} />
                         </Link>
+                        <div className={`${styles.userMenuLink} link`} onClick={showShoppingCart} onMouseLeave={hideShoppingCart}>
+                            Cart
+                            <FontAwesomeIcon className={styles.userMenuIcon} icon={faCartShopping} />
+                            <div className={styles.cartWrapper}>
+                                {showCart && <Cart />}
+                            </div>
+                        </div>
                         <Link to='/' className={`${styles.userMenuLink} link`} onClick={logOutHandler}>
                             Log out
                             <FontAwesomeIcon className={styles.userMenuIcon} icon={faArrowRightFromBracket} />

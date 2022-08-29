@@ -29,6 +29,7 @@
 .headerUserMenu .userMenuLink {
     color: white;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .headerUserMenu .userMenuIcon {
@@ -37,7 +38,15 @@
     
 }
 
-@keyframes slideIn {
+.cartWrapper {
+    position: absolute;
+    right: -4px;
+    top: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+/* @keyframes slideIn {
     from {
         transform: translateY(5%);
     }
@@ -45,9 +54,9 @@
     to {
         transform: translateY(0%);
     }
-}
+} */
 
-.overlay {
+/* .overlay {
     opacity: 0.6;
 }
 
@@ -170,4 +179,4 @@
     font-variant-caps: all-small-caps;
     font-size: 20px;
     padding: 5px 45px;
-}
+} */

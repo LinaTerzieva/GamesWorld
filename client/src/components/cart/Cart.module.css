@@ -1,0 +1,41 @@
+@keyframes slideIn {
+    from {
+        transform: translateY(5%);
+    }
+
+    to {
+        transform: translateY(0%);
+    }
+}
+
+.cart {
+    color: black;
+    animation: slideIn .5s ease;
+    display: block;
+    position: absolute;
+    top: 25px;
+    right: -4px;
+    background-color: #d53a9d;
+    border-radius: 3px;
+    width: 400px;
+    z-index: 100;
+}
+
+.cart::after {
+    bottom: 100%;
+    left: 71%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-bottom-color: #d53a9d;
+    border-width: 8px;
+    margin-left: -1px;
+}
+
+.cartHeader{
+    border-bottom: 1px solid #313339;
+    text-align: center;
+}
