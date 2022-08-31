@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import { AuthenticationProvider } from "./lib/AuthenticationProvider";
+import { CartProvider } from "./lib/CartProvider";
 import ProtectedRoute from "./lib/ProtectedRoute";
 
 import './App.css';
@@ -14,27 +15,28 @@ import CatalogPage from "./pages/catalog/CatalogPage";
 import DetailPage from "./pages/detail/DetailPage";
 import ContactPage from "./pages/contact/ContactPage";
 
+
 function App() {
 
 
     return (
         <div className="main">
             <AuthenticationProvider>
-                <Routes>
-                    <Route element={<Layout />}>
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="login" element={<LoginPage />} />
-                        <Route path="register" element={<RegisterPage />} />
-                        <Route path="profile" element={<ProtectedRoute>
-                            <ProfilePage />
-                        </ProtectedRoute>} />
-                        <Route path="catalog" element={<CatalogPage />} />
-                        <Route path="detail/:gameId" element={<DetailPage />} />
-                        <Route path="contact" element={<ContactPage />} />
-                    </Route>
-
-
-                </Routes>
+                <CartProvider>
+                    <Routes>
+                        <Route element={<Layout />}>
+                            <Route path="/" element={<HomePage />} />
+                            <Route path="login" element={<LoginPage />} />
+                            <Route path="register" element={<RegisterPage />} />
+                            <Route path="profile" element={<ProtectedRoute>
+                                <ProfilePage />
+                            </ProtectedRoute>} />
+                            <Route path="catalog" element={<CatalogPage />} />
+                            <Route path="detail/:gameId" element={<DetailPage />} />
+                            <Route path="contact" element={<ContactPage />} />
+                        </Route>
+                    </Routes>
+                </CartProvider>
             </AuthenticationProvider>
         </div>
     );

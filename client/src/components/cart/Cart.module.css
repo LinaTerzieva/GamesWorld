@@ -50,33 +50,6 @@
     background: #15171e;
 }
 
-.cartItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.cartItemCover {
-    margin-right: 5px;
-}
-
-.cartItemName {
-    max-width: 130px;
-    margin-left: 5px;
-    
-}
-
-.cartItemPrice {
-    max-width: 50px;
-    margin-left: 5px;
-}
-
-.cartItemRemoveButton {
-    background: none;
-    border: none;
-    color: #fff;
-}
-
 .cartTotal {
     display: flex;
     justify-content: space-between;

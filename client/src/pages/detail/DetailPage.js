@@ -11,6 +11,7 @@ import { faStar, faPenToSquare, faTrashCan, faCartShopping } from "@fortawesome/
 import styles from './DetailPage.module.css';
 
 import AuthenticationContext from '../../lib/AuthenticationContext';
+import CartContext from '../../lib/CartContext';
 import useCommentApi from '../../lib/useCommentApi';
 
 import useGameApi from '../../lib/useGameApi';
@@ -20,6 +21,7 @@ import StaticRatingStars from '../../components/staticRatingStars/StaticRatingSt
 const DetailPage = () => {
 
     const { auth } = useContext(AuthenticationContext);
+    const { addToCart } = useContext(CartContext);
     const { getComments, createComment, editComment, deleteComment } = useCommentApi();
     const { getGame } = useGameApi();
 
@@ -157,6 +159,10 @@ const DetailPage = () => {
             })
     }
 
+    const addGameToCart = () => {
+        addToCart(gameId);
+    }
+
     return (
         <>
             <div className="main-wrapper">
@@ -195,7 +201,7 @@ const DetailPage = () => {
                         <aside className={styles.gameBoxRight}>
                             <img className={styles.gameImage} src={`/images/games/${game.cover}`} />
                             <div className={styles.gamePrice}>{price}€</div>
-                            <button className={styles.gameAddToCartBtn}>
+                            <button className={styles.gameAddToCartBtn} onClick={addGameToCart}>
                                 Add to cart
                                 <FontAwesomeIcon icon={faCartShopping} className={styles.gameAddToCartIcon} />
                             </button>

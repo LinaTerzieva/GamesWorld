@@ -1,48 +1,30 @@
+import { useContext } from 'react';
+import CartContext from '../../lib/CartContext';
+
 import Card from 'react-bootstrap/Card';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import CartItem from './cartItem/CartItem';
 
 import styles from './Cart.module.css';
 
 const Cart = () => {
+
+    const { cart } = useContext(CartContext);
+
+    const totalPrice = cart.reduce((a, game) => a += game.price*game.quantity, 0);
+
     return (
         <Card className={styles.cart}>
             <Card.Header className={`${styles.cartHeader} px-4 py-3`} as="h5">Your shopping cart</Card.Header>
             <Card.Body className={styles.cardBody}>
                 <div className={styles.cartItems}>
-                    <div className={`${styles.cartItem} py-3 px-2`}>
-                        <div className={styles.cartItemCover}>
-                            <img width="100px" height="60px" />
-                        </div>
-                        <div className={styles.cartItemName}>
-                            HELLO 
-                        </div>
-                        <div className={styles.cartItemPrice}>
-                            50.00
-                        </div>
-                        <button>
-                            <FontAwesomeIcon className={styles.cartItemRemoveButton} icon={faXmark} />
-                        </button>
-                    </div>
-                    <div className={`${styles.cartItem} py-3 px-2`}>
-                        <div className={styles.cartItemCover}>
-                            <img width="100px" height="60px" />
-                        </div>
-                        <div className={styles.cartItemName}>
-                            HELLO 
-                        </div>
-                        <div className={styles.cartItemPrice}>
-                            50.00
-                        </div>
-                        <button>
-                            <FontAwesomeIcon className={styles.cartItemRemoveButton} icon={faXmark} />
-                        </button>
-                    </div>
+                    {cart.map((game) => {
+                        return <CartItem key={game.gameId} game={game} />
+                    })}
                 </div>
                 <div className={`${styles.cartTotal} pt-3 pb-2 px-4`}>
                     <div className={styles.cartTotalPrice}>
-                        100.00
+                        {totalPrice.toFixed(2)}€
                     </div>
                     <div className={styles.cartTotalTitle}>
                         Total
