@@ -42,7 +42,7 @@ const UserMenu = () => {
 
     return (
         <div className={styles.headerUserMenu}>
-            <div className={styles.userMenuItem}>
+            <div className={styles.userMenuBox}>
                 {!auth.accessToken
                     ? <Link to='/login' className={`${styles.userMenuLink} link`}>
                         Log in
@@ -53,12 +53,10 @@ const UserMenu = () => {
                             My profile
                             <FontAwesomeIcon className={styles.userMenuIcon} icon={faUser} />
                         </Link>
-                        <div className={`${styles.userMenuLink} link`} onClick={showShoppingCart} onMouseLeave={hideShoppingCart}>
-                            Cart
+                        <div className={styles.userMenuLink} onClick={showShoppingCart}>
+                            <span className={styles.userMenuText}>Cart</span>
                             <FontAwesomeIcon className={styles.userMenuIcon} icon={faCartShopping} />
-                            <div className={styles.cartWrapper}>
-                                {showCart && <Cart />}
-                            </div>
+                            {showCart && <Cart />}
                         </div>
                         <Link to='/' className={`${styles.userMenuLink} link`} onClick={logOutHandler}>
                             Log out

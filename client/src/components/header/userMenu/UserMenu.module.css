@@ -5,7 +5,7 @@
     position: relative;
 }
 
-.headerUserMenu .userMenuItem {
+.headerUserMenu .userMenuBox {
     display: flex;
     align-items: center;
     position: relative;
@@ -29,154 +29,23 @@
 .headerUserMenu .userMenuLink {
     color: white;
     margin-right: 10px;
+    padding-bottom: 15px;
+    margin-top: 15px;
+}
+
+.userMenuItem {
+    color: white;
+    margin-right: 10px;
+    padding-bottom: 15px;
+    margin-top: 15px;
+}
+
+.headerUserMenu .userMenuText {
     cursor: pointer;
 }
 
 .headerUserMenu .userMenuIcon {
     font-size: 20px;
     margin-left: 5px;
-    
+    cursor: pointer;
 }
-
-.cartWrapper {
-    position: absolute;
-    right: -4px;
-    top: 15px;
-    width: 100%;
-    height: 100%;
-}
-
-/* @keyframes slideIn {
-    from {
-        transform: translateY(5%);
-    }
-
-    to {
-        transform: translateY(0%);
-    }
-} */
-
-/* .overlay {
-    opacity: 0.6;
-}
-
-.cart-content {
-    display: none;
-}
-
-.cart-content-show {
-    animation: slideIn .5s ease;
-    display: block;
-    position: absolute;
-    top: 38px;
-    right: -13px;
-    background-color: #d53a9d;
-    border-radius: 3px;
-    width: 400px;
-    z-index: 100;
-}
-
-.cart-content-show ::after {
-    bottom: 100%;
-    left: 89%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-bottom-color: #d53a9d;
-    border-width: 8px;
-    margin-left: -1px;
-}
-
-.cart-header {
-    border-bottom: 1px solid #313339;
-    text-align: center;
-}
-
-.cart-items {
-    padding: 20px;
-    background: #15171e;
-}
-
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.cart-item__cover {
-    margin-right: 5px;
-}
-
-.cart-item__name {
-    width: 55%;
-}
-
-.cart-item__price {
-    width: 20%;
-}
-
-.cart-item__remove-button {
-    background: none;
-    border: none;
-}
-
-.cart-total {
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid #313339;
-    background: #15171e;
-}
-
-.cart-checkout {
-    background: #15171e;
-    text-align: center;
-}
-
-.cart-checkout__btn {
-    background: #15171e;
-    border: 1px solid #d53a9d;
-    margin: auto;
-    color: white;
-    font-variant-caps: all-small-caps;
-    font-size: 20px;
-    padding: 5px 45px;
-}
-
-.cart-message--hide {
-    display: none;
-}
-
-.cart-message {
-    width: 400px;
-    z-index: 99999;
-    background: #15171e;
-    padding: 30px;
-    text-align: center;
-    border: 1px solid #d53a9d;
-}
-
-.cart-message-icon {
-    font-size: 20px;
-}
-
-.cart-message-heading {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-    padding-bottom: 5px;
-}
-
-.cart-message-description {
-    font-size: 16px;
-}
-
-.cart-shop-games__btn {
-    background: #15171e;
-    border: 1px solid #d53a9d;
-    margin: auto;
-    color: white;
-    font-variant-caps: all-small-caps;
-    font-size: 20px;
-    padding: 5px 45px;
-} */

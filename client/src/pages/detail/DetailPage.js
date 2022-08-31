@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faPenToSquare, faTrashCan, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 import styles from './DetailPage.module.css';
 
@@ -195,6 +195,10 @@ const DetailPage = () => {
                         <aside className={styles.gameBoxRight}>
                             <img className={styles.gameImage} src={`/images/games/${game.cover}`} />
                             <div className={styles.gamePrice}>{price}€</div>
+                            <button className={styles.gameAddToCartBtn}>
+                                Add to cart
+                                <FontAwesomeIcon icon={faCartShopping} className={styles.gameAddToCartIcon} />
+                            </button>
                         </aside>
                     </div>
 
