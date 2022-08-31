@@ -41,8 +41,12 @@ export const CartProvider = ({ children }) => {
 
         });
 
+    const removeFromCart = (gameId) => {
+        setCart(prevState => prevState.filter(obj => obj.gameId !== gameId))
+    }
+
     return (
-        <CartContext.Provider value={{ cart, addToCart }}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
             {children}
         </CartContext.Provider>
     );
