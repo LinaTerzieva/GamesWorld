@@ -27,7 +27,7 @@ const CartItem = ({game}) => {
                 {game.title}
             </div>
             <div className={styles.cartItemQuantity}>
-                {game.quantity}
+                x {game.quantity}
             </div>
             <div className={styles.cartItemPrice}>
                 {totalPrice}€
