@@ -53,7 +53,7 @@ const UserMenu = () => {
                             My profile
                             <FontAwesomeIcon className={styles.userMenuIcon} icon={faUser} />
                         </Link>
-                        <div className={styles.userMenuLink} onClick={showShoppingCart} onMouseLeave={hideShoppingCart}>
+                        <div className={styles.userMenuLink} onClick={showShoppingCart} >
                             <span className={styles.userMenuText}>Cart</span>
                             <FontAwesomeIcon className={styles.userMenuIcon} icon={faCartShopping} />
                             {showCart && <Cart />}

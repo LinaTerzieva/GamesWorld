@@ -1,23 +1,32 @@
+import { ADD_TO_CART_INCREASE, ADD_TO_CART_DECREASE } from "./../../../lib/Constants";
 import { useContext } from "react";
 import CartContext from "../../../lib/CartContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import styles from './CartItem.module.css';
 
-const CartItem = ({game}) => {
+const CartItem = ({ game }) => {
 
-    const { removeFromCart } = useContext(CartContext);
+    const { updateCart, removeFromCart } = useContext(CartContext);
 
     const quantity = game.quantity;
     const price = parseFloat(game.price).toFixed(2);
-    const totalPrice = (price*quantity).toFixed(2);
+    const totalPrice = (price * quantity).toFixed(2);
+
+    const incrGameQuantity = () => {
+        updateCart(game.gameId, ADD_TO_CART_INCREASE);
+    }
+
+    const decrGameQuantity = () => {
+        updateCart(game.gameId, ADD_TO_CART_DECREASE);
+    }
 
     const deleteGameFromCart = () => {
         removeFromCart(game.gameId);
     }
-    
+
     return (
         <div className={`${styles.cartItem} py-3 px-2`}>
             <div className={styles.cartItemCover}>
@@ -26,9 +35,11 @@ const CartItem = ({game}) => {
             <div className={styles.cartItemName}>
                 {game.title}
             </div>
+            <button className={styles.decrBtn} onClick={decrGameQuantity}><FontAwesomeIcon icon={faMinus} /></button>
             <div className={styles.cartItemQuantity}>
-                x {game.quantity}
+                {game.quantity}
             </div>
+            <button className={styles.incrBtn} onClick={incrGameQuantity}><FontAwesomeIcon icon={faPlus} /></button>
             <div className={styles.cartItemPrice}>
                 {totalPrice}€
             </div>

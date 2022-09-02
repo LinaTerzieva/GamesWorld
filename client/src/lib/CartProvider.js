@@ -1,5 +1,8 @@
+import { ADD_TO_CART_INCREASE, ADD_TO_CART_DECREASE } from "./Constants";
+
 import CartContext from "./CartContext";
 import useGameApi from "./useGameApi";
+
 
 import useSessionStorage from "./useSessionStorage";
 
@@ -9,7 +12,7 @@ export const CartProvider = ({ children }) => {
 
     const { getGame } = useGameApi();
 
-    const addToCart = (gameId) => getGame(gameId)
+    const updateCart = (gameId, action) => getGame(gameId)
         .then(data => {
 
             // passing function to setCart method
@@ -17,8 +20,10 @@ export const CartProvider = ({ children }) => {
             if (cart.find(obj => obj.gameId == gameId)) {
                 const tempCart = cart.map(obj => {
                     // if id equals 2, update country property
-                    if (obj.gameId === gameId) {
+                    if (obj.gameId === gameId && action == ADD_TO_CART_INCREASE) {
                         return { ...obj, quantity: obj.quantity + 1 };
+                    } else if (obj.gameId === gameId && action == ADD_TO_CART_DECREASE && obj.quantity > 1){
+                        return { ...obj, quantity: obj.quantity - 1 };
                     }
 
                     // otherwise return object as is
@@ -26,8 +31,7 @@ export const CartProvider = ({ children }) => {
                 });
 
                 setCart(tempCart);
-            }
-            else {
+            } else {
 
                 //if the game does not exist
                 const tempCart = [...cart, {
@@ -49,7 +53,7 @@ export const CartProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+        <CartContext.Provider value={{ cart, updateCart, removeFromCart }}>
             {children}
         </CartContext.Provider>
     );

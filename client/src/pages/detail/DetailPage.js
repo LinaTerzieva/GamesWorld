@@ -1,3 +1,4 @@
+import { ADD_TO_CART_INCREASE } from "./../../lib/Constants";
 import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactPlayer from "react-player/youtube";
@@ -21,7 +22,7 @@ import StaticRatingStars from '../../components/staticRatingStars/StaticRatingSt
 const DetailPage = () => {
 
     const { auth } = useContext(AuthenticationContext);
-    const { addToCart } = useContext(CartContext);
+    const { updateCart } = useContext(CartContext);
     const { getComments, createComment, editComment, deleteComment } = useCommentApi();
     const { getGame } = useGameApi();
 
@@ -160,7 +161,7 @@ const DetailPage = () => {
     }
 
     const addGameToCart = () => {
-        addToCart(gameId);
+        updateCart(gameId, ADD_TO_CART_INCREASE);
     }
 
     return (

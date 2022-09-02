@@ -20,6 +20,11 @@
     cursor: default;
 }
 
+.decrBtn, .incrBtn {
+    color: white;
+    font-size: 12px;
+}
+
 .cartItemPrice {
     max-width: 50px;
     margin-left: 5px;

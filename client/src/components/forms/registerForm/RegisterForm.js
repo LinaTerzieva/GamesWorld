@@ -16,7 +16,7 @@ const RegisterForm = () => {
     const [serverError, setServerError] = useState({});
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-
+    
     const submitHandler = (formData) => {
         handleRegister(formData);
     }
@@ -45,7 +45,7 @@ const RegisterForm = () => {
                             <img src={"images/companyLogo.png"} />
                         </span>
                         <span className={styles.loginFormTitle}>Register</span>
-                        {serverError.isError && <div className={styles.validationError}>An error has occured. Please try again later.</div>}
+                        {serverError.isError && <div className={styles.validationError}>{serverError.errorMessage}.</div>}
                         <div
                             className={`${styles.wrapInput}`}
                         >
