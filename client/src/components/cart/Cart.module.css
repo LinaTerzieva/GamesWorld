@@ -45,6 +45,46 @@
     padding: 0px
 }
 
+.cartEmptyMsg {
+    color: white;
+    background: #15171e;
+    padding: 50px;
+    text-align: center;
+}
+
+.cartEmptyMsgTitle {
+    font-size: 22px;
+}
+
+.cartEmptyMsgDscr {
+    font-size: 15px;
+    color: #ffffff86;
+    margin-top: 10px;
+}
+
+.cartShopBox {
+    transition: transform 300ms ease;
+    margin-top: 20px;
+}
+
+.cartShopLink {
+    color: white;
+    text-decoration: none;
+    width: 200px;
+    background: #15171e;
+    border: 1px solid #d53a9d;
+    margin: auto;
+    color: white;
+    font-variant-caps: all-small-caps;
+    font-size: 20px;
+    padding: 10px 60px;
+    margin-top: 20px;
+}
+
+.cartShopBox:hover {
+    transform: scale(1.05);
+}
+
 .cartItems {
     padding: 20px;
     background: #15171e;
