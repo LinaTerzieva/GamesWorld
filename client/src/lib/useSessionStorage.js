@@ -6,6 +6,18 @@ const useSessionStorage = (key, defaultValue) => {
 
         const storedData = sessionStorage.getItem(key);
 
+        if (storedData != null) {
+
+            const now = new Date();
+            let expiration = JSON.parse(storedData).expiration;
+
+            if (now.getTime() > expiration) {
+                sessionStorage.removeItem(key);
+                return defaultValue;
+            }
+
+        }
+
         return storedData ? JSON.parse(storedData) : defaultValue;
     });
 

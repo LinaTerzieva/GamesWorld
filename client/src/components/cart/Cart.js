@@ -12,18 +12,16 @@ const Cart = () => {
 
     const { cart } = useContext(CartContext);
 
-    console.log(cart);
-
-    const totalPrice = cart.reduce((a, game) => a += game.price * game.quantity, 0);
+    const totalPrice = cart.products.reduce((a, game) => a += game.price * game.quantity, 0);
 
     return (
         <Card className={styles.cart}>
             <Card.Header className={`${styles.cartHeader} px-4 py-3`} as="h5">Your shopping cart</Card.Header>
             <Card.Body className={styles.cardBody}>
-                {cart.length
+                {cart.products.length
                     ? <>
                         <div className={styles.cartItems}>
-                            {cart.map((game) => {
+                            {cart.products.map((game) => {
                                 return <CartItem key={game.gameId} game={game} />
                             })}
                         </div>
