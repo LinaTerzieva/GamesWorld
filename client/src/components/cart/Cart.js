@@ -34,9 +34,12 @@ const Cart = () => {
                             </div>
                         </div>
                         <div className={`${styles.cartCheckout} py-3 px-2`}>
-                            <button className={styles.cartCheckoutBtn}>
-                                Go To Checkout
-                            </button>
+                            <div className={styles.cartCheckoutLinkWrap}>
+                                <Link to='/checkout' className={styles.cartCheckoutLink}>
+                                    Go To Checkout
+                                </Link>
+                            </div>
+
                         </div>
                     </>
                     : <div className={styles.cartEmptyMsg}>

@@ -14,7 +14,7 @@ import ProfilePage from "./pages/profile/ProfilePage";
 import CatalogPage from "./pages/catalog/CatalogPage";
 import DetailPage from "./pages/detail/DetailPage";
 import ContactPage from "./pages/contact/ContactPage";
-
+import CheckoutPage from "./pages/checkout/CheckoutPage";
 
 function App() {
 
@@ -34,6 +34,7 @@ function App() {
                             <Route path="catalog" element={<CatalogPage />} />
                             <Route path="detail/:gameId" element={<DetailPage />} />
                             <Route path="contact" element={<ContactPage />} />
+                            <Route path="checkout" element={<CheckoutPage />} />
                         </Route>
                     </Routes>
                 </CartProvider>

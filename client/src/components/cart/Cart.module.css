@@ -102,7 +102,8 @@
     text-align: center;
 }
 
-.cartCheckoutBtn {
+.cartCheckoutLink {
+    text-decoration: none;
     background: #15171e;
     border: 1px solid #d53a9d;
     margin: auto;
@@ -110,9 +111,12 @@
     font-variant-caps: all-small-caps;
     font-size: 20px;
     padding: 5px 45px;
+}
+
+.cartCheckoutLinkWrap {
     transition: transform 300ms ease;
 }
 
-.cartCheckoutBtn:hover {
+.cartCheckoutLinkWrap:hover {
     transform: scale(1.05);
 }

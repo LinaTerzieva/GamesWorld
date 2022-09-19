@@ -35,7 +35,7 @@ export const AuthenticationProvider = ({ children }) => {
             }
         });
 
-    const logoutUser = () => logout(auth.accessToken)
+    const logoutUser = () => logout()
         .then(() => {
             setAuth({
                 id: '',

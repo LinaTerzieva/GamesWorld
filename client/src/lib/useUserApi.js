@@ -28,12 +28,10 @@ const useUserApi = () => {
             .then((response) => response.json())
     }
 
-    const logout = (token) => {
+    const logout = () => {
         return fetch('http://localhost:3030/users/logout', {
             method: 'GET',
-            headers: {
-                'X-Authorization': `${token}`
-            }
+            headers: getHeaders({})
         })
     }
 
