@@ -19,6 +19,7 @@ const CheckoutPage = () => {
     const { auth } = useContext(AuthenticationContext);
     const { register, formState: { errors }, handleSubmit, reset, control } = useForm();
     const { cart } = useContext(CartContext);
+    const totalPrice = cart.products.reduce((a, game) => a += game.price * game.quantity, 0);
 
     useEffect(() => {
         getUserInfo()
@@ -200,13 +201,18 @@ const CheckoutPage = () => {
                                     {cart.products.map((game) => {
                                         return <CartItem key={game.gameId} game={game} isStatic={true} />
                                     })}
+                                    <div className={styles.orderTotal}>
+                                        Total: {totalPrice.toFixed(2)}€
+                                    </div>
                                 </div>
                             </div>
-                            <input
-                                type="submit"
-                                value="Place order"
-                                className={styles.btn}
-                            />
+                            <div className={styles.btnBox}>
+                                <input
+                                    type="submit"
+                                    value="Place order"
+                                    className={styles.btn}
+                                />
+                            </div>
                         </form>
                     </div>
                 </div>
