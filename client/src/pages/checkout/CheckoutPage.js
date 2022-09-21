@@ -1,6 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
+import { useForm, Controller } from "react-hook-form";
+import NumberFormat from "react-number-format";
 import useUserApi from './../../lib/useUserApi';
 import AuthenticationContext from "../../lib/AuthenticationContext";
+
+import CartContext from '../../lib/CartContext';
+import CartItem from '../../components/cart/cartItem/CartItem';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCcMastercard, faCcVisa } from "@fortawesome/free-brands-svg-icons";
@@ -12,32 +17,21 @@ const CheckoutPage = () => {
 
     const { getUserInfo } = useUserApi();
     const { auth } = useContext(AuthenticationContext);
-    const [checkoutData, setCheckoutData] = useState({
-        fullName: "",
-        email: "",
-        address: "",
-        city: "",
-        cardName: "",
-        cardNumber: "",
-        expYear: "",
-        cvv: "",
-    });
+    const { register, formState: { errors }, handleSubmit, reset, control } = useForm();
+    const { cart } = useContext(CartContext);
 
     useEffect(() => {
         getUserInfo()
-            .then(data => setCheckoutData({
-                ...checkoutData,
-                fullName: data.firstName + " " + data.lastName
-            }));
+            .then((data) => {
+                let defaultValues = {};
+                defaultValues.fullName = data.firstName + " " + data.lastName;
+                reset({ ...defaultValues });
+            });
+    }, [auth.accessToken, auth.id]);
 
-    }, [auth.accessToken, auth.id])
 
-    const handleChange = (e) => {
-        const value = e.target.value;
-        setCheckoutData({
-            ...checkoutData,
-            [e.target.name]:value
-        })
+    const submitHandler = (data) => {
+        console.log(data);
     }
 
     return (
@@ -45,90 +39,172 @@ const CheckoutPage = () => {
             <div className="main-wrapper">
                 <div className="large-wrapper">
                     <div className={styles.containerCheckout}>
-                        <form>
+                        <form onSubmit={handleSubmit(submitHandler)}>
                             <div className={styles.row}>
                                 <div className={styles.col50}>
                                     <h3>Billing Details</h3>
-                                    <label htmlFor="fname">
-                                        Full Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="fname"
-                                        name="fullName"
-                                        placeholder="John M. Doe"
-                                        value={checkoutData.fullName}
-                                    />
-                                    <label htmlFor="email">
-                                        Email
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="email"
-                                        name="email"
-                                        placeholder="john@example.com"
-                                    />
-                                    <label htmlFor="adr">
-                                        Address
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="adr"
-                                        name="address"
-                                        placeholder="542 W. 15th Street"
-                                    />
-                                    <label htmlFor="city">
-                                        City
-                                    </label>
-                                    <input type="text" id="city" name="city" placeholder="Sofia" />
-
+                                    <div className={styles.formField}>
+                                        <label htmlFor="fname">
+                                            Full Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="fname"
+                                            placeholder="First and last name"
+                                            {...register("fullName")}
+                                            readOnly
+                                        />
+                                    </div>
+                                    <div className={styles.formField}>
+                                        <label htmlFor="email">
+                                            Email
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="email"
+                                            placeholder="john@example.com"
+                                            {...register("email", {
+                                                required: true,
+                                                pattern: /[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}/
+                                            })}
+                                        />
+                                        <span className={styles.validationError}>
+                                            {errors.email?.type === 'required' && "Email is required"}
+                                            {errors.email?.type === 'pattern' && "Email is not valid"}
+                                        </span>
+                                    </div>
+                                    <div className={styles.formField}>
+                                        <label htmlFor="adr">
+                                            Address
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="adr"
+                                            placeholder="542 W. 15th Street"
+                                            {...register("address", { required: true })}
+                                        />
+                                        <span className={styles.validationError}>
+                                            {errors.address?.type === 'required' && "Address is required"}
+                                        </span>
+                                    </div>
+                                    <div className={styles.formField}>
+                                        <label htmlFor="city">
+                                            City
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="city"
+                                            placeholder="Sofia"
+                                            {...register("city", { required: true })}
+                                        />
+                                        <span className={styles.validationError}>
+                                            {errors.city?.type === 'required' && "City is required"}
+                                        </span>
+                                    </div>
                                 </div>
                                 <div className={styles.col50}>
                                     <h3>Payment</h3>
-                                    <label htmlFor="fname">Accepted Cards</label>
+                                    <label htmlFor="cname">Accepted Cards</label>
                                     <div className={styles.iconContainer}>
-                                        <FontAwesomeIcon icon={faCcVisa} />
-                                        <FontAwesomeIcon icon={faCcMastercard} />
+                                        <FontAwesomeIcon className={styles.cardIcon} icon={faCcVisa} />
+                                        <FontAwesomeIcon className={styles.cardIcon} icon={faCcMastercard} />
                                     </div>
-                                    <label htmlFor="cname">Name on Card</label>
-                                    <input
-                                        type="text"
-                                        id="cname"
-                                        name="cardname"
-                                        placeholder="John More Doe"
-                                    />
-                                    <label htmlFor="ccnum">Credit card number</label>
-                                    <input
-                                        type="text"
-                                        id="ccnum"
-                                        name="cardnumber"
-                                        placeholder="1111-2222-3333-4444"
-                                    />
+                                    <div className={styles.formField}>
+                                        <label htmlFor="cname">Name on Card</label>
+                                        <input
+                                            type="text"
+                                            id="cname"
+                                            placeholder="John More Doe"
+                                            {...register("cardName", { required: true })}
+                                        />
+                                        <span className={styles.validationError}>
+                                            {errors.cardName?.type === 'required' && "Name is required"}
+                                        </span>
+                                    </div>
+                                    <div className={styles.formField}>
+                                        <label htmlFor="ccnum">Credit card number</label>
+                                        <Controller
+                                            control={control}
+                                            id="ccnum"
+                                            name="cardNumber"
+                                            rules={{
+                                                required: true,
+                                                pattern: /((\d+) *(\d+) *(\d+) *(\d+))/
+                                            }}
+                                            render={({ field: { onChange, name, value } }) => (
+                                                <NumberFormat
+                                                    format="#### #### #### ####"
+                                                    placeholder="1111 2222 3333 4444"
+                                                    name={name}
+                                                    value={value}
+                                                    onChange={onChange}
+                                                />
+                                            )}
+                                        />
+                                        <span className={styles.validationError}>
+                                            {errors.cardNumber?.type === 'required' && "Credit card number is required"}
+                                            {errors.cardNumber?.type === 'pattern' && "Please enter a valid credit card number"}
+                                        </span>
+                                    </div>
                                     <div className={styles.row}>
                                         <div className={styles.col50}>
-                                            <label htmlFor="expyear">Exp Year</label>
-                                            <input
-                                                type="text"
-                                                id="expyear"
-                                                name="expyear"
-                                                placeholder={2018}
-                                            />
+                                            <div className={styles.formField}>
+                                                <label htmlFor="expyear">Card expiration date</label>
+                                                <Controller
+                                                    control={control}
+                                                    id="expyear"
+                                                    name="expYear"
+                                                    rules={{
+                                                        required: true,
+                                                        pattern: /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/
+                                                    }}
+                                                    render={({ field: { onChange, name, value } }) => (
+                                                        <NumberFormat
+                                                            format="##/##"
+                                                            placeholder={"MM/YY"}
+                                                            name={name}
+                                                            value={value}
+                                                            onChange={onChange}
+                                                        />
+                                                    )}
+                                                />
+                                                <span className={styles.validationError}>
+                                                    {errors.expYear?.type === 'required' && "This field is required"}
+                                                    {errors.expYear?.type === 'pattern' && "Please enter a valid expiration year"}
+                                                </span>
+                                            </div>
                                         </div>
                                         <div className={styles.col50}>
-                                            <label htmlFor="cvv">CVV</label>
-                                            <input type="text" id="cvv" name="cvv" placeholder={352} />
+                                            <div className={styles.formField}>
+                                                <label htmlFor="cvv">CVV</label>
+                                                <input
+                                                    type="number"
+                                                    placeholder={352}
+                                                    {...register("cvv", {
+                                                        required: true,
+                                                        pattern: /^[0-9]{3}$/
+                                                    })}
+                                                />
+                                                <span className={styles.validationError}>
+                                                    {errors.cvv?.type === 'required' && "This field is required"}
+                                                    {errors.cvv?.type === 'pattern' && "Please enter a valid cvv"}
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className={styles.row}>
-                                <div className={styles.col75}>
+                                <div className={styles.orderBox}>
                                     <h3>Order Summary</h3>
+                                    {cart.products.map((game) => {
+                                        return <CartItem key={game.gameId} game={game} isStatic={true} />
+                                    })}
                                 </div>
                             </div>
                             <input
                                 type="submit"
-                                defaultValue="Continue to checkout"
+                                value="Place order"
                                 className={styles.btn}
                             />
                         </form>

@@ -7,7 +7,7 @@ import { faXmark, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import styles from './CartItem.module.css';
 
-const CartItem = ({ game }) => {
+const CartItem = ({ game, isStatic }) => {
 
     const { updateCart, removeFromCart } = useContext(CartContext);
 
@@ -35,17 +35,23 @@ const CartItem = ({ game }) => {
             <div className={styles.cartItemName}>
                 {game.title}
             </div>
-            <button className={styles.decrBtn} onClick={decrGameQuantity}><FontAwesomeIcon icon={faMinus} /></button>
+            {!isStatic &&
+                <button className={styles.decrBtn} onClick={decrGameQuantity}><FontAwesomeIcon icon={faMinus} /></button>
+            }
             <div className={styles.cartItemQuantity}>
                 {game.quantity}
             </div>
-            <button className={styles.incrBtn} onClick={incrGameQuantity}><FontAwesomeIcon icon={faPlus} /></button>
+            {!isStatic &&
+                <button className={styles.incrBtn} onClick={incrGameQuantity}><FontAwesomeIcon icon={faPlus} /></button>
+            }
             <div className={styles.cartItemPrice}>
                 {totalPrice}€
             </div>
-            <button onClick={deleteGameFromCart}>
-                <FontAwesomeIcon className={styles.cartItemRemoveIcon} icon={faXmark} />
-            </button>
+            {!isStatic &&
+                <button onClick={deleteGameFromCart}>
+                    <FontAwesomeIcon className={styles.cartItemRemoveIcon} icon={faXmark} />
+                </button>
+            }
         </div>
     );
 }

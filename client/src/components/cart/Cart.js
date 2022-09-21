@@ -22,7 +22,7 @@ const Cart = () => {
                     ? <>
                         <div className={styles.cartItems}>
                             {cart.products.map((game) => {
-                                return <CartItem key={game.gameId} game={game} />
+                                return <CartItem key={game.gameId} game={game} isStatic={false}/>
                             })}
                         </div>
                         <div className={`${styles.cartTotal} pt-3 pb-2 px-4`}>

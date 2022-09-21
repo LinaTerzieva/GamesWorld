@@ -1,11 +1,10 @@
 .containerCheckout {
-    background-color: #f2f2f2;
+    background-color: #fff;
     padding: 10px 20px 15px 20px;
     border: 1px solid lightgrey;
     border-radius: 3px;
     margin: 50px 0px;
 }
-
 
 .row {
     display: flex;
@@ -31,9 +30,13 @@
     padding: 0 16px;
 }
 
-input[type=text] {
-    width: 100%;
+.formField {
     margin-bottom: 20px;
+}
+
+input[type=text], input[type=number] {
+    width: 100%;
+    margin-bottom: 5px;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -50,6 +53,10 @@ input[type=text] {
     font-size: 24px;
 }
 
+.cardIcon {
+    margin-right: 5px;
+}
+
 .btn {
     background-color: #04AA6D;
     color: white;
@@ -61,3 +68,20 @@ input[type=text] {
     cursor: pointer;
     font-size: 17px;
 }
+
+.validationError {
+    color: red;
+    font-weight: bold;
+}
+
+.orderBox {
+    width: 500px;
+    padding: 0 16px;
+}
+
+.productItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
