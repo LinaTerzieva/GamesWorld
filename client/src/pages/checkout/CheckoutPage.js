@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm, Controller } from "react-hook-form";
 import NumberFormat from "react-number-format";
 import useUserApi from './../../lib/useUserApi';
@@ -11,28 +11,45 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCcMastercard, faCcVisa } from "@fortawesome/free-brands-svg-icons";
 
 import styles from './CheckoutPage.module.css';
+import useOrderApi from '../../lib/useOrderApi';
 
 
 const CheckoutPage = () => {
 
     const { getUserInfo } = useUserApi();
+    const { createOrder } = useOrderApi();
     const { auth } = useContext(AuthenticationContext);
     const { register, formState: { errors }, handleSubmit, reset, control } = useForm();
     const { cart } = useContext(CartContext);
-    const totalPrice = cart.products.reduce((a, game) => a += game.price * game.quantity, 0);
+    const totalPrice = cart.products.reduce((total, game) => total += game.price * game.quantity, 0);
+
+    const [authOrder, setAuthOrder] = useState(false);
 
     useEffect(() => {
         getUserInfo()
             .then((data) => {
-                let defaultValues = {};
-                defaultValues.fullName = data.firstName + " " + data.lastName;
-                reset({ ...defaultValues });
+                if (data.code === 401) {
+                    setAuthOrder(false);
+                } else {
+                    setAuthOrder(true);
+                    let defaultValues = {};
+                    defaultValues.fullName = data.firstName + " " + data.lastName;
+                    reset({ ...defaultValues });
+                }
             });
     }, [auth.accessToken, auth.id]);
 
 
-    const submitHandler = (data) => {
-        console.log(data);
+    const submitHandler = (userInfo) => {
+        const orderProducts = cart.products.map((product) => {
+            return {
+                gameId: product.gameId,
+                quantity: product.quantity,
+                price: product.price
+            }
+        })
+        createOrder(userInfo, orderProducts)
+            .then((response) => console.log(response));
     }
 
     return (
@@ -48,13 +65,27 @@ const CheckoutPage = () => {
                                         <label htmlFor="fname">
                                             Full Name
                                         </label>
-                                        <input
-                                            type="text"
-                                            id="fname"
-                                            placeholder="First and last name"
-                                            {...register("fullName")}
-                                            readOnly
-                                        />
+                                        {authOrder
+                                            ? <input
+                                                type="text"
+                                                id="fname"
+                                                placeholder="First and last name"
+                                                {...register("fullName")}
+                                                readOnly
+                                            />
+                                            : <>
+                                                <input
+                                                    type="text"
+                                                    id="fname"
+                                                    placeholder="First and last name"
+                                                    {...register("fullName", { required: true })}
+
+                                                />
+                                                <span className={styles.validationError}>
+                                                    {errors.fullName?.type === 'required' && "Full name is required"}
+                                                </span>
+                                            </>
+                                        }
                                     </div>
                                     <div className={styles.formField}>
                                         <label htmlFor="email">
