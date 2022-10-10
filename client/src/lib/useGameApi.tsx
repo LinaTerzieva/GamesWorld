@@ -1,15 +1,16 @@
+import { Product } from "./types";
 
 
 const useGameApi = () => {
 
     const baseUrl = "http://localhost:3030/data/games";
 
-    const getGame = (gameId) => {
+    const getGame = (gameId: string): Promise<Product> => {
         return fetch(`${baseUrl}/${gameId}`)
             .then(response => response.json())
     }
 
-    const searchGames = (title, showDiscount, sortBy, offset, pageSize) => {
+    const searchGames = (title:string | null, showDiscount:boolean, sortBy:string | null, offset:string | null | number, pageSize:number): Promise<Product[]> => {
 
         let where = `where=title%20LIKE%20${JSON.stringify(title)}`;
 
@@ -21,7 +22,7 @@ const useGameApi = () => {
                 .then(response => response.json())
     }
 
-    const countGames = (title, showDiscount) => {
+    const countGames = (title: string | null, showDiscount: boolean): Promise<number> => {
 
         let where = `where=title%20LIKE%20${JSON.stringify(title)}`;
 

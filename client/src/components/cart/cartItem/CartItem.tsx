@@ -1,4 +1,4 @@
-import { ADD_TO_CART_INCREASE, ADD_TO_CART_DECREASE } from "./../../../lib/Constants";
+import { ADD_TO_CART_INCREASE, ADD_TO_CART_DECREASE } from "../../../lib/Constants";
 import { useContext } from "react";
 import CartContext from "../../../lib/CartContext";
 
@@ -6,14 +6,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import styles from './CartItem.module.css';
+import { CartContextType, CartProduct } from "../../../lib/types";
 
-const CartItem = ({ game, isStatic }) => {
+type CartItemProps = {
+    game: CartProduct,
+    isStatic: boolean
+}
 
-    const { updateCart, removeFromCart } = useContext(CartContext);
+const CartItem = ({game, isStatic}: CartItemProps): JSX.Element => {
 
-    const quantity = game.quantity;
-    const price = parseFloat(game.price).toFixed(2);
-    const totalPrice = (price * quantity).toFixed(2);
+    const { updateCart, removeFromCart } = useContext(CartContext) as CartContextType;
+
+    const quantity: number = game.quantity;
+    const totalPrice: string = (game.price * quantity).toFixed(2);
 
     const incrGameQuantity = () => {
         updateCart(game.gameId, ADD_TO_CART_INCREASE);

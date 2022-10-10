@@ -9,13 +9,13 @@ import styles from './Banner.module.css';
 const Banner = () => {
     let navigate = useNavigate();
 
-    const [searchValue, setSearchvalue] = useState("");
+    const [searchValue, setSearchvalue] = useState<string>("");
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setSearchvalue(e.target.value);
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
         navigate(`/catalog?query=${searchValue}`, { replace: false });
     }

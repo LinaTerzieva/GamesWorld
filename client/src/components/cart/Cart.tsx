@@ -7,14 +7,16 @@ import Card from 'react-bootstrap/Card';
 import CartItem from './cartItem/CartItem';
 
 import styles from './Cart.module.css';
+import { CartContextType, CartProduct } from '../../lib/types';
 
-const Cart = () => {
+const Cart = (): JSX.Element => {
 
-    const { cart } = useContext(CartContext);
+    const { cart } = useContext(CartContext) as CartContextType;
 
-    const totalPrice = cart.products.reduce((a, game) => a += game.price * game.quantity, 0);
+    const totalPrice = cart.products.reduce((a: number, game: CartProduct) => a += game.price * game.quantity, 0);
 
     return (
+
         <Card className={styles.cart}>
             <Card.Header className={`${styles.cartHeader} px-4 py-3`} as="h5">Your shopping cart</Card.Header>
             <Card.Body className={styles.cardBody}>
@@ -22,7 +24,7 @@ const Cart = () => {
                     ? <>
                         <div className={styles.cartItems}>
                             {cart.products.map((game) => {
-                                return <CartItem key={game.gameId} game={game} isStatic={false}/>
+                                return <CartItem key={game.gameId} game={game} isStatic={false} />
                             })}
                         </div>
                         <div className={`${styles.cartTotal} pt-3 pb-2 px-4`}>

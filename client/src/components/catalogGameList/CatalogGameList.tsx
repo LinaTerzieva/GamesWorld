@@ -1,8 +1,9 @@
 import styles from './CatalogGameList.module.css';
 
 import CatalogGameItem from "./catalogGameItem/CatalogGameItem";
+import { Product } from '../../lib/types';
 
-const CatalogGameList = ({ games }) => {
+const CatalogGameList = ({ games }: {games: Product[]}): JSX.Element => {
     
     return (
         <>

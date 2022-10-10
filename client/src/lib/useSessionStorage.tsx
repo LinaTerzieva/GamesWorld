@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-const useSessionStorage = (key, defaultValue) => {
+function useSessionStorage<T>(key: string, defaultValue: T): [T, (newValue: T) => void] {
 
-    const [value, setValue] = useState(() => {
+    const [value, setValue] = useState<T>(() => {
 
         const storedData = sessionStorage.getItem(key);
 
@@ -21,7 +21,7 @@ const useSessionStorage = (key, defaultValue) => {
         return storedData ? JSON.parse(storedData) : defaultValue;
     });
 
-    const setSessionStorageValue = (newValue) => {
+    const setSessionStorageValue = (newValue: T) => {
         sessionStorage.setItem(key, JSON.stringify(newValue));
 
         setValue(newValue);

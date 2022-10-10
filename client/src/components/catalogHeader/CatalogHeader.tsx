@@ -3,10 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import styles from './CatalogHeader.module.css';
+import { Query } from "../../lib/types";
 
-const CatalogHeader = ({ query, handleQuery }) => {
+type CatalogHeaderProps = {
+    query: string | null,
+    handleQuery: React.Dispatch<React.SetStateAction<Query>>
+}
 
-    const handleChange = (e) => {
+const CatalogHeader = ({ query, handleQuery }: CatalogHeaderProps) => {
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         handleQuery((state) => {
             return {
                 ...state,
@@ -29,7 +35,7 @@ const CatalogHeader = ({ query, handleQuery }) => {
                         type="search"
                         name="search"
                         placeholder="Search shop"
-                        value={query}
+                        value={query == null ? '' : query}
                         onChange={handleChange}
                     />
 

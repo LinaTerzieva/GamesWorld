@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
+import { Product } from '../../../lib/types';
 
 import styles from './CatalogGameItem.module.css';
 
-const CatalogGameItem = ({ game }) => {
 
-    var price = parseFloat(game.price).toFixed(2);
+const CatalogGameItem = ({ game }: {game: Product}): JSX.Element => {
+
+    let price: number = parseInt(game.price.toFixed(2));
+    let finalPrice: string = (price - game.discount).toFixed(2);
 
     return (
         <div className={styles.resultsCardWrapper}>
@@ -32,7 +35,7 @@ const CatalogGameItem = ({ game }) => {
                                 {price}
                             </div>
                             <div className={styles.resultsCardPriceFinal}>
-                                {parseFloat(price - game.discount).toFixed(2)}€
+                                {finalPrice}€
                             </div>
                         </div>
                     }

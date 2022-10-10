@@ -5,15 +5,21 @@ import useGameApi from "./useGameApi";
 
 
 import useSessionStorage from "./useSessionStorage";
+import { Cart } from "./types";
 
-export const CartProvider = ({ children }) => {
+type ContextProviderProps = {
+    children: React.ReactNode;
+}
+
+export const CartProvider = ({ children }: ContextProviderProps): JSX.Element => {
     const now = new Date();
 
-    const [cart, setCart] = useSessionStorage("cart", { products:[] });
+    const defaultCart: Cart = { expiration: now.getTime() + CART_EXPIRATION_LIMIT, products: [] }; 
+    const [cart, setCart] = useSessionStorage<Cart>("cart", defaultCart);
 
     const { getGame } = useGameApi();
 
-    const updateCart = (gameId, action) => getGame(gameId)
+    const updateCart = (gameId: string, action: string): Promise<void> => getGame(gameId)
         .then(data => {
             // passing function to setCart method
             //if the game exists
@@ -52,7 +58,7 @@ export const CartProvider = ({ children }) => {
             }
         });
 
-    const removeFromCart = (gameId) => {
+    const removeFromCart = (gameId: string): void => {
         const tempCart = cart.products.filter(obj => obj.gameId !== gameId);
         setCart({
             ...cart,

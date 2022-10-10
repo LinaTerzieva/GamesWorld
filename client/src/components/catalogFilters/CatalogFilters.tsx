@@ -1,6 +1,13 @@
+import { Query } from '../../lib/types';
 import styles from './CatalogFilters.module.css';
 
-const CatalogFilters = ({discount, pageSize , handleDiscount}) => {
+type CatalogFiltersProps = {
+    discount: boolean,
+    pageSize: number,
+    handleDiscount: React.Dispatch<React.SetStateAction<Query>>
+}
+
+const CatalogFilters = ({discount, pageSize , handleDiscount}: CatalogFiltersProps) => {
 
     return (
         <div className={styles.catalogContentFilters}>
