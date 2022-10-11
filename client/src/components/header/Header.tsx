@@ -6,8 +6,7 @@ import DropdownMenu from './dropdownMenu/DropdownMenu';
 import UserMenu from './userMenu/UserMenu';
 
 
-const Header = () => {
-
+const Header = (): JSX.Element => {
 
     const navigate = useNavigate();
 

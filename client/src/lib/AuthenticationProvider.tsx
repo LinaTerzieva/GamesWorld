@@ -2,10 +2,14 @@
 import useUserApi from './useUserApi';
 import AuthenticationContext from './AuthenticationContext'
 import useLocalStorage from './useLocalStorage';
+import { Auth } from './types';
 
+type AuthContextProviderProps = {
+    children: React.ReactNode;
+}
 
-export const AuthenticationProvider = ({ children }) => {
-    const [auth, setAuth] = useLocalStorage("auth", {
+export const AuthenticationProvider = ({ children }: AuthContextProviderProps): JSX.Element => {
+    const [auth, setAuth] = useLocalStorage<Auth>("auth", {
         id: '',
         username: '',
         accessToken: '',
@@ -13,7 +17,7 @@ export const AuthenticationProvider = ({ children }) => {
 
     const { login, logout, register } = useUserApi();
 
-    const loginUser = (username, password) => login(username, password)
+    const loginUser = (username: string, password: string) => login(username, password)
         .then((data) => {
             if (data.code === 403) {
                 return {
@@ -55,7 +59,7 @@ export const AuthenticationProvider = ({ children }) => {
         });
 
     
-    const registerUser = (username, password, firstName, lastName) => 
+    const registerUser = (username: string, password: string, firstName: string, lastName: string) => 
         register(username, password, firstName, lastName)
             .then((data) => {
                 if (data.code === 409) {

@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+import { Product } from '../../../lib/types';
 
 import styles from './GameCardItem.module.css';
 
-const GameCardItem = ({game}) => {
+const GameCardItem = ({game}: {game: Product}): JSX.Element => {
 
     return (
         <div className={styles.productsWidgetCard}>

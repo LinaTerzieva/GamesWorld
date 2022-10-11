@@ -1,13 +1,13 @@
-import React from 'react';
+import { DropDownItems } from '../../../lib/types';
 
 import styles from './DropdownMenu.module.css';
 
 import DropdownMenuItem from './dropdownMenuItem/DropdownMenuItem';
 
 
-function DropdownMenu() {
+function DropdownMenu(): JSX.Element {
 
-    const dropDownItems = [
+    const dropDownItems: DropDownItems = [
         {
             title: "Store",
             submenu: [

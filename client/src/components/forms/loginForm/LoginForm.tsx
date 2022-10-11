@@ -2,23 +2,32 @@ import { useState, useContext } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 
 import AuthenticationContext from '../../../lib/AuthenticationContext';
+import { isServerError } from '../../../lib/helpers';
+import { AuthContextType, ServerError } from '../../../lib/types';
 
 import styles from './LoginForm.module.css';
 
+type FormData = {
+    username: string,
+    password: string
+}
 
-const LoginForm = () => {
+const LoginForm = (): JSX.Element => {
 
+    const { auth, loginUser } = useContext(AuthenticationContext) as AuthContextType;
 
-    const { auth, loginUser } = useContext(AuthenticationContext);
-
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<FormData>({
         username: "",
         password: ""
     });
 
-    const [serverError, setServerError] = useState({});
-
-    const handleChange = (e) => {
+    const [serverError, setServerError] = useState<ServerError | {isError: boolean}>({
+        errorCode: 0,
+        errorMessage: "",
+        isError: false
+    });
+    
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setFormData({
             ...formData,
@@ -26,7 +35,7 @@ const LoginForm = () => {
         });
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         handleLogin();
     }
@@ -39,7 +48,6 @@ const LoginForm = () => {
                 }
             });
     }
-
 
     if (auth.accessToken) {
         return <Navigate to="/" />;
@@ -57,8 +65,8 @@ const LoginForm = () => {
                             <img src={"/images/companyLogo.png"} />
                         </span>
                         <span className={styles.loginFormTitle}>Log in</span>
-                        {serverError.isError && serverError.errorCode == '' && <div className={styles.validationError}>An error has occured. Please try again later.</div>}
-                        {serverError.isError && serverError.errorMessage != '' && <div className={styles.validationError}>{serverError.errorMessage}</div>}
+                        {serverError.isError && <div className={styles.validationError}>An error has occured. Please try again later.</div>}
+                        {serverError.isError && isServerError(serverError) && serverError.errorMessage != '' && <div className={styles.validationError}>{serverError.errorMessage}</div>}
                         <div
                             className={`${styles.wrapInput}`}
                         >

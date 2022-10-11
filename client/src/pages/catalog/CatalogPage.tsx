@@ -10,7 +10,7 @@ import CatalogSort from "../../components/catalogSort/CatalogSort";
 import CatalogGameList from "../../components/catalogGameList/CatalogGameList";
 import CatalogPagination from "../../components/catalogPagination/CatalogPagination";
 import { Product, Query} from '../../lib/types';
-import { convertToURLSearchParams } from '../../lib/Converters';
+import { convertOffset, convertToURLSearchParams } from '../../lib/Converters';
 
 
 const CatalogPage = (): JSX.Element => {
@@ -60,7 +60,7 @@ const CatalogPage = (): JSX.Element => {
                         <div className={styles.catalogContentResults}>
                             <CatalogSort handleQuery={setQuery} sortBy={query.sortBy} />
                             <CatalogGameList games={games} />
-                            <CatalogPagination numberOfResults={numberOfResults} pageSize={pageSize} handleQuery={setQuery} offset={query.offset} />
+                            <CatalogPagination numberOfResults={numberOfResults} pageSize={pageSize} handleQuery={setQuery} offset={convertOffset(query.offset)} />
                         </div>
                     </div>
                 </div>

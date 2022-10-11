@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { DropDownItem } from '../../../../lib/types';
 
 import styles from './DropdownMenuItem.module.css';
 
-function DropdownMenuItem({ item }) {
+function DropdownMenuItem({ item }: {item : DropDownItem}) {
 
     const [open, setOpen] = useState(false);
 

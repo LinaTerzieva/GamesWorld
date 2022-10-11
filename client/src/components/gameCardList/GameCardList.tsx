@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import styles from './GameCardList.module.css';
 
 import GameCardItem from "./gameCardItem/GameCardItem";
+import { UpcomingProducts } from "../../lib/types";
 
 
-const GameCardList = () => {
+const GameCardList = (): JSX.Element => {
 
-    const [upcomingGames, setUpcomingGames] = useState([]);
+    const [upcomingGames, setUpcomingGames] = useState<UpcomingProducts>([]);
 
     useEffect(() => {
         fetch('http://localhost:3030/data/games?where=status IN ("Upcoming")')

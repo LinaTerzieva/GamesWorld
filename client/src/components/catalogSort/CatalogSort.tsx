@@ -1,9 +1,15 @@
 
+import { Query } from '../../lib/types';
 import styles from './CatalogSort.module.css';
 
-const CatalogSort = ({handleQuery, sortBy}) => {
+type CatalogSortProps = {
+    handleQuery: React.Dispatch<React.SetStateAction<Query>>,
+    sortBy: string | null,
+}
 
-    const handleSelectChange = (e) =>  {
+const CatalogSort = ({handleQuery, sortBy}: CatalogSortProps) => {
+
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) =>  {
         
         handleQuery((state) => {
             return {
@@ -20,7 +26,7 @@ const CatalogSort = ({handleQuery, sortBy}) => {
             <div className={styles.sortBox}>
                 <div className={styles.sortBoxLabel}>Sort by:</div>
                 <div className={styles.sortBoxDropdown}>
-                    <select className={styles.sortBoxDropdownContent} name="sort" value={sortBy} onChange={handleSelectChange}>
+                    <select className={styles.sortBoxDropdownContent} name="sort" value={sortBy == null ? '' : sortBy} onChange={handleSelectChange}>
                         <option className={styles.sortBoxOption} value="price">
                             Price: Low to High
                         </option>

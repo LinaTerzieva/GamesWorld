@@ -1,8 +1,9 @@
 import styles from './SocialMenu.module.css';
 
 import SocialMenuItem from "../socialMenuItem/SocialMenuItem";
+import { SocialItems } from '../../../lib/types';
 
-const SocialMenu = ({socialItems}) => {
+const SocialMenu = ({socialItems}: {socialItems: SocialItems}): JSX.Element => {
     
     return (
         <div className={styles.footerSocial}>

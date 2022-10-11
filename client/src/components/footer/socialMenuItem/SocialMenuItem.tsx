@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SocialItem } from "../../../lib/types";
 
 import styles from './SocialMenuItem.module.css';
 
-const SocialMenuItem = ({socialItem}) => {
+const SocialMenuItem = ({socialItem}: {socialItem: SocialItem}) => {
     
     return (
         <a className={styles.footerSocialLink} href="">

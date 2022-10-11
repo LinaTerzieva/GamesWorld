@@ -1,11 +1,12 @@
 import { faFacebookSquare, faInstagramSquare, faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
+import { SocialItems } from "../../lib/types";
 import  styles  from "./Footer.module.css";
 
 import SocialMenu from "./socialMenu/SocialMenu";
 
 const Footer = () => {
 
-    const socialItems = [
+    const socialItems: SocialItems = [
         {
             icon: faFacebookSquare
         },

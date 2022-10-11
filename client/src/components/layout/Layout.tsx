@@ -4,7 +4,7 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 
 
-const Layout = () => {
+const Layout = (): JSX.Element => {
 
 
     return (

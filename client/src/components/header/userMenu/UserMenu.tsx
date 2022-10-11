@@ -1,4 +1,4 @@
-import AuthenticationContext from './../../../lib/AuthenticationContext'
+import AuthenticationContext from '../../../lib/AuthenticationContext'
 import { useContext, useState } from 'react';
 import { Link } from "react-router-dom";
 
@@ -8,12 +8,13 @@ import { faUser, faArrowRightFromBracket, faCartShopping } from "@fortawesome/fr
 import Cart from '../../cart/Cart';
 
 import styles from './UserMenu.module.css';
+import { AuthContextType } from '../../../lib/types';
 
 
 const UserMenu = () => {
 
-    const { auth, logoutUser } = useContext(AuthenticationContext);
-    const [showCart, setShowCart] = useState(false);
+    const { auth, logoutUser } = useContext(AuthenticationContext) as AuthContextType;
+    const [showCart, setShowCart] = useState<boolean>(false);
 
     const handleProfile = () => {
         fetch('http://localhost:3030/users/me', {

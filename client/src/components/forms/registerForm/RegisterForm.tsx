@@ -1,29 +1,42 @@
 import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import AuthenticationContext from '../../../lib/AuthenticationContext';
 
 import styles from './RegisterForm.module.css';
+import { AuthContextType, ServerError } from '../../../lib/types';
+import { isServerError } from '../../../lib/helpers';
+
+interface IFormInputs {
+    username: string
+    password: string
+    firstName: string
+    lastName: string
+}
 
 const RegisterForm = () => {
 
     let navigate = useNavigate();
-    const { auth, registerUser } = useContext(AuthenticationContext);
+    const { registerUser } = useContext(AuthenticationContext) as AuthContextType;
 
-    const [serverError, setServerError] = useState({});
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const [serverError, setServerError] = useState<ServerError | { isError: boolean }>({
+        errorCode: 0,
+        errorMessage: "",
+        isError: false
+    });
 
-    
-    const submitHandler = (formData) => {
+    const { register, formState: { errors }, handleSubmit } = useForm<IFormInputs>();
+
+    const submitHandler: SubmitHandler<IFormInputs> = (formData) => {
         handleRegister(formData);
     }
 
-    const handleRegister = (formData) => {
+    const handleRegister = (formData: IFormInputs): void => {
 
         registerUser(formData.username, formData.password, formData.firstName, formData.lastName)
             .then((result) => {
-                if(result && result.isError) {
+                if (result && result.isError) {
                     setServerError(result);
                 }
                 else {
@@ -38,12 +51,12 @@ const RegisterForm = () => {
                 className={styles.containerLogin}
             >
                 <div className={styles.wrapLogin}>
-                    <form onSubmit={handleSubmit(submitHandler)}  className={styles.loginForm}>
+                    <form onSubmit={handleSubmit(submitHandler)} className={styles.loginForm}>
                         <span className={styles.loginFormLogo}>
                             <img src={"images/companyLogo.png"} />
                         </span>
                         <span className={styles.loginFormTitle}>Register</span>
-                        {serverError.isError && <div className={styles.validationError}>{serverError.errorMessage}.</div>}
+                        {serverError.isError && isServerError(serverError) && <div className={styles.validationError}>{serverError.errorMessage}.</div>}
                         <div
                             className={`${styles.wrapInput}`}
                         >
@@ -55,7 +68,7 @@ const RegisterForm = () => {
                             />
                             <span className={styles.focusInput} />
                             <span className={styles.validationError}>
-                            {errors.username?.type === 'required' && "Username is required"}
+                                {errors.username?.type === 'required' && "Username is required"}
                             </span>
                         </div>
                         <div
@@ -69,7 +82,7 @@ const RegisterForm = () => {
                             />
                             <span className={styles.focusInput} />
                             <span className={styles.validationError}>
-                            {errors.password?.type === 'required' && "Password is required"}
+                                {errors.password?.type === 'required' && "Password is required"}
                             </span>
                         </div>
                         <div
@@ -83,7 +96,7 @@ const RegisterForm = () => {
                             />
                             <span className={styles.focusInput} />
                             <span className={styles.validationError}>
-                            {errors.firstName?.type === 'required' && "First name is required"}
+                                {errors.firstName?.type === 'required' && "First name is required"}
                             </span>
                         </div>
                         <div
@@ -97,7 +110,7 @@ const RegisterForm = () => {
                             />
                             <span className={styles.focusInput} />
                             <span className={styles.validationError}>
-                            {errors.lastName?.type === 'required' && "Last name is required"}
+                                {errors.lastName?.type === 'required' && "Last name is required"}
                             </span>
                         </div>
                         <div className={styles.containerFormBtn}>

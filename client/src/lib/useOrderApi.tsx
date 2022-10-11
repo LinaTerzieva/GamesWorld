@@ -1,10 +1,11 @@
+import { CreatedOrderProduct, OrderProducts, OrderUserInfo } from "./types";
 import useHeaders from "./useHeaders";
 
 const useOrderApi = () => {
 
     const { getHeaders } = useHeaders();
 
-    const createOrder = (order, orderProducts) => {
+    const createOrder = (order: OrderUserInfo, orderProducts: OrderProducts) => {
         return fetch('http://localhost:3030/data/orders', {
             method: 'POST',
             headers: getHeaders({
@@ -20,7 +21,7 @@ const useOrderApi = () => {
             );
     }
 
-    const createOrderProduct = (product) => {
+    const createOrderProduct = (product: CreatedOrderProduct) => {
         return fetch('http://localhost:3030/data/orderProducts', {
             method: 'POST',
             headers: getHeaders({

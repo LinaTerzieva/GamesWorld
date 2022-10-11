@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import NumberFormat from "react-number-format";
-import useUserApi from './../../lib/useUserApi';
+import useUserApi from '../../lib/useUserApi';
 import AuthenticationContext from "../../lib/AuthenticationContext";
 
 import CartContext from '../../lib/CartContext';
@@ -12,18 +12,29 @@ import { faCcMastercard, faCcVisa } from "@fortawesome/free-brands-svg-icons";
 
 import styles from './CheckoutPage.module.css';
 import useOrderApi from '../../lib/useOrderApi';
+import { AuthContextType, CartContextType, OrderProducts, OrderUserInfo } from '../../lib/types';
 
+interface IFormInputs {
+    fullName: string
+    email: string
+    address: string
+    city: string
+    cardName: string
+    cardNumber: string
+    expYear: string
+    cvv: string
+}
 
 const CheckoutPage = () => {
 
     const { getUserInfo } = useUserApi();
     const { createOrder } = useOrderApi();
-    const { auth } = useContext(AuthenticationContext);
-    const { register, formState: { errors }, handleSubmit, reset, control } = useForm();
-    const { cart } = useContext(CartContext);
-    const totalPrice = cart.products.reduce((total, game) => total += game.price * game.quantity, 0);
+    const { auth } = useContext(AuthenticationContext) as AuthContextType;
+    const { register, formState: { errors }, handleSubmit, reset, control } = useForm<IFormInputs>();
+    const { cart } = useContext(CartContext) as CartContextType;
+    const totalPrice: number = cart.products.reduce((total, game) => total += game.price * game.quantity, 0);
 
-    const [authOrder, setAuthOrder] = useState(false);
+    const [authOrder, setAuthOrder] = useState<boolean>(false);
 
     useEffect(() => {
         getUserInfo()
@@ -32,23 +43,36 @@ const CheckoutPage = () => {
                     setAuthOrder(false);
                 } else {
                     setAuthOrder(true);
-                    let defaultValues = {};
-                    defaultValues.fullName = data.firstName + " " + data.lastName;
+                    let defaultValues = {
+                        fullName: data.firstName + " " + data.lastName
+                    };
                     reset({ ...defaultValues });
                 }
             });
     }, [auth.accessToken, auth.id]);
 
 
-    const submitHandler = (userInfo) => {
-        const orderProducts = cart.products.map((product) => {
+    const submitHandler: SubmitHandler<IFormInputs> = (userInfo: IFormInputs) => {
+        const orderProducts: OrderProducts = cart.products.map((product) => {
             return {
                 gameId: product.gameId,
                 quantity: product.quantity,
                 price: product.price
             }
         })
-        createOrder(userInfo, orderProducts)
+
+        const orderUserInfo: OrderUserInfo = {
+            fullName: userInfo.fullName,
+            email: userInfo.email,
+            address: userInfo.address,
+            city: userInfo.city,
+            cardName: userInfo.cardName,
+            cardNumber: userInfo.cardNumber,
+            expYear: userInfo.expYear,
+            cvv: userInfo.cvv,
+        }
+
+        createOrder(orderUserInfo, orderProducts)
             .then((response) => console.log(response));
     }
 
@@ -157,7 +181,6 @@ const CheckoutPage = () => {
                                         <label htmlFor="ccnum">Credit card number</label>
                                         <Controller
                                             control={control}
-                                            id="ccnum"
                                             name="cardNumber"
                                             rules={{
                                                 required: true,
@@ -165,6 +188,7 @@ const CheckoutPage = () => {
                                             }}
                                             render={({ field: { onChange, name, value } }) => (
                                                 <NumberFormat
+                                                    id="ccnum"
                                                     format="#### #### #### ####"
                                                     placeholder="1111 2222 3333 4444"
                                                     name={name}
@@ -184,7 +208,6 @@ const CheckoutPage = () => {
                                                 <label htmlFor="expyear">Card expiration date</label>
                                                 <Controller
                                                     control={control}
-                                                    id="expyear"
                                                     name="expYear"
                                                     rules={{
                                                         required: true,
@@ -192,6 +215,7 @@ const CheckoutPage = () => {
                                                     }}
                                                     render={({ field: { onChange, name, value } }) => (
                                                         <NumberFormat
+                                                            id="expyear"
                                                             format="##/##"
                                                             placeholder={"MM/YY"}
                                                             name={name}
@@ -211,7 +235,7 @@ const CheckoutPage = () => {
                                                 <label htmlFor="cvv">CVV</label>
                                                 <input
                                                     type="number"
-                                                    placeholder={352}
+                                                    placeholder="352"
                                                     {...register("cvv", {
                                                         required: true,
                                                         pattern: /^[0-9]{3}$/
