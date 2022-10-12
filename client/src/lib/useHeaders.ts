@@ -1,10 +1,15 @@
+import { Auth } from "./types";
 import useLocalStorage from "./useLocalStorage"
 
 const useHeaders = () => {
 
-    const [user] = useLocalStorage("auth");    
+    const [user] = useLocalStorage<Auth>("auth", {
+        id: '',
+        username: '',
+        accessToken: '',
+    });    
 
-    const getHeaders = (headers) => {
+    const getHeaders = (headers: {}) => {
         
         if(user.accessToken) {
             return {

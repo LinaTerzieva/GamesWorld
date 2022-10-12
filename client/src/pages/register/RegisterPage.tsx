@@ -1,6 +1,6 @@
 import RegisterForm from "../../components/forms/registerForm/RegisterForm";
 
-const RegisterPage = () => {
+const RegisterPage = (): JSX.Element => {
     return (
         <>
             <div className="main-wrapper">

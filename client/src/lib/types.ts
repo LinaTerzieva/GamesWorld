@@ -153,3 +153,47 @@ export type CreatedOrderProduct = {
     quantity: number,
     price: number
 }
+
+export type UserGameComment = {
+    _ownerId: string,
+    _gameId: string,
+    description: string,
+    rating: number,
+    _id: string,
+    status?: number
+}
+
+export type UserGameComments = UserGameComment[]
+
+export type GameComment = {
+    author: CommentAuthor
+} & UserGameComment
+
+export type GameComments = GameComment[]
+
+export type CommentAuthor = {
+    username: string,
+    firstName: string,
+    lastName: string,
+    _id: string,
+}
+
+export type NewComment = {
+    _gameId: string,
+    description: string,
+    rating: number
+}
+
+export type UpdatedComment = {
+    _updatedOn: number
+    status: number
+} & UserGameComment
+
+export type ShortValidation = {
+    description?: string
+}
+
+export type EditModalState = {
+    isOpen: boolean,
+    comment: GameComment
+}

@@ -8,16 +8,23 @@ import useCommentApi from "../../lib/useCommentApi";
 import styles from './ProfilePage.module.css';
 
 import StaticRatingStars from '../../components/staticRatingStars/StaticRatingStars';
+import { AuthContextType, UserGameComments } from "../../lib/types";
+
+type UserState = {
+    username?: string,
+    firstName?: string,
+    lastName?: string
+}
 
 const ProfilePage = () => {
 
     let navigate = useNavigate();
 
-    const { auth } = useContext(AuthenticationContext);
+    const { auth } = useContext(AuthenticationContext) as AuthContextType;
     const { getUserInfo } = useUserApi();
     const { getUserComments } = useCommentApi();
-    const [user, setUser] = useState({});
-    const [recentComments, setRecentComments] = useState([]);
+    const [user, setUser] = useState<UserState>({});
+    const [recentComments, setRecentComments] = useState<UserGameComments>([]);
 
     const numberOfCommentsToShow = 3;
 
@@ -30,7 +37,7 @@ const ProfilePage = () => {
 
     }, [auth.accessToken, auth.id]);
 
-    const handleClick = (gameId) => {
+    const handleClick = (gameId: string) => {
         navigate(`/detail/${gameId}`, { replace: false });
     }
 

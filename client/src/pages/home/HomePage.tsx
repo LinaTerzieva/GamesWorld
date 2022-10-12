@@ -1,7 +1,7 @@
 import Banner from '../../components/banner/Banner';
 import GameCardList from '../../components/gameCardList/GameCardList';
 
-const HomePage = () => {
+const HomePage = (): JSX.Element => {
     return (
         <>
             <Banner />

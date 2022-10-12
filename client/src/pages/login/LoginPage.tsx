@@ -1,8 +1,7 @@
 import LoginForm from "../../components/forms/loginForm/LoginForm";
 
-const LoginPage = () => {
+const LoginPage = (): JSX.Element => {
 
-    
     return (
         <>   
             <div className="main-wrapper">

@@ -16,18 +16,18 @@ const zoom = 15;
 function Map() {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY as string
     })
 
-    const [map, setMap] = React.useState(null)
+    const [map, setMap] = React.useState<google.maps.Map | null>(null)
 
-    const onLoad = React.useCallback(function callback(map) {
+    const onLoad = React.useCallback(function callback(map: google.maps.Map) {
         const bounds = new window.google.maps.LatLngBounds(center);
         // map.fitBounds(bounds);
         setMap(map)
     }, [])
 
-    const onUnmount = React.useCallback(function callback(map) {
+    const onUnmount = React.useCallback(function callback(map: google.maps.Map) {
         setMap(null)
     }, [])
 

@@ -6,7 +6,7 @@ import { faEnvelope, faPhone, faLocationDot } from "@fortawesome/free-solid-svg-
 import styles from './ContactPage.module.css';
 
 
-const ContactPage = () => {
+const ContactPage = (): JSX.Element => {
 
 
     return (

@@ -1,6 +1,6 @@
-import { ADD_TO_CART_INCREASE } from "./../../lib/Constants";
+import { ADD_TO_CART_INCREASE } from "../../lib/Constants";
 import { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import ReactPlayer from "react-player/youtube";
 
 import Form from 'react-bootstrap/Form';
@@ -18,17 +18,30 @@ import useCommentApi from '../../lib/useCommentApi';
 import useGameApi from '../../lib/useGameApi';
 
 import StaticRatingStars from '../../components/staticRatingStars/StaticRatingStars';
+import { AuthContextType, CartContextType, EditModalState, GameComment, GameComments, Product, ShortValidation } from "../../lib/types";
 
 const DetailPage = () => {
 
-    const { auth } = useContext(AuthenticationContext);
-    const { updateCart } = useContext(CartContext);
+    const { auth } = useContext(AuthenticationContext) as AuthContextType;
+    const { updateCart } = useContext(CartContext) as CartContextType;
     const { getComments, createComment, editComment, deleteComment } = useCommentApi();
     const { getGame } = useGameApi();
 
-    const { gameId } = useParams();
-    const [game, setGame] = useState({});
-    const [allComments, setAllComments] = useState([]);
+    const { gameId } = useParams<string>();
+    if(gameId == undefined) return <Navigate to="/" />
+
+    const [game, setGame] = useState<Product>({
+        _id: "",
+        title: "",
+        description: "",
+        cover:  "",
+        trailer: "",
+        discount: 0,
+        price: 0,
+        status: "",
+        genres: [],
+    });
+    const [allComments, setAllComments] = useState<GameComments>([]);
     const [newComment, setNewComment] = useState({
         _gameId: gameId,
         description: "",
@@ -38,21 +51,45 @@ const DetailPage = () => {
     const [hover, setHover] = useState(0);
     const [editHover, setEditHover] = useState(0);
 
-    const price = parseFloat(game.price).toFixed(2);
-    const [createValidation, setCreateValidation] = useState({});
-    const [editValidation, setEditValidation] = useState({});
+    const price: string = game.price.toFixed(2);
+    const [createValidation, setCreateValidation] = useState<ShortValidation>({description: ""});
+    const [editValidation, setEditValidation] = useState<ShortValidation>({description: ""});
 
-    const [editModal, setEditModal] = useState({
+    const [editModal, setEditModal] = useState<EditModalState>({
         isOpen: false,
-        comment: {}
+        comment: {
+            author: {
+                username: "",
+                firstName: "",
+                lastName: "",
+                _id: "",
+            },
+            _ownerId: "",
+            _gameId: "",
+            description: "",
+            rating: 0,
+            _id: "",
+        }
     });
 
     const handleClose = () => setEditModal({
         isOpen: false,
-        comment: {}
+        comment: {
+            author: {
+                username: "",
+                firstName: "",
+                lastName: "",
+                _id: "",
+            },
+            _ownerId: "",
+            _gameId: "",
+            description: "",
+            rating: 0,
+            _id: "",
+        }
     });
 
-    function openFromParent(comment) {
+    function openFromParent(comment: GameComment): void {
         setEditModal({
             isOpen: true,
             comment: comment
@@ -62,7 +99,7 @@ const DetailPage = () => {
 
     }
 
-    const handleEditChange = (e) => {
+    const handleEditChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setEditModal({
             ...editModal,
@@ -84,7 +121,7 @@ const DetailPage = () => {
             .then(data => setAllComments(data));
     }, []);
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const newCommentText = e.target.value;
         setNewComment({
             ...newComment,
@@ -92,7 +129,7 @@ const DetailPage = () => {
         });
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setCreateValidation({});
 
@@ -122,7 +159,7 @@ const DetailPage = () => {
     }
 
 
-    const submitEditHandler = (e) => {
+    const submitEditHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setEditValidation({});
 
@@ -143,11 +180,23 @@ const DetailPage = () => {
 
         setEditModal({
             isOpen: false,
-            comment: {}
+            comment: {
+                author: {
+                    username: "",
+                    firstName: "",
+                    lastName: "",
+                    _id: "",
+                },
+                _ownerId: "",
+                _gameId: "",
+                description: "",
+                rating: 0,
+                _id: "",
+            }
         })
     }
 
-    const handleDelete = (commentId) => {
+    const handleDelete = (commentId: string) => {
         deleteComment(commentId)
             .then((response) => {
                 if (response.status == 200) {
@@ -237,8 +286,8 @@ const DetailPage = () => {
                             </div>
 
                             <div>
-                                <textarea type="text" id="comment" className={styles.inputComment} value={newComment.description}
-                                    onChange={handleChange} rows="5" cols="50" />
+                                <textarea id="comment" className={styles.inputComment} value={newComment.description}
+                                    onChange={handleChange} rows={5} cols={50} />
                             </div>
                             {createValidation.description &&
                                 <div className={styles.inputCommentValMsg}>{createValidation.description}</div>
