@@ -15,7 +15,7 @@ const useCommentApi = () => {
             .then(response => response.json())
     }
 
-    const createComment = (newComment: NewComment): Promise<UserGameComment> => {
+    const createComment = (newComment: NewComment): Promise<Response> => {
         
         return fetch('http://localhost:3030/data/comments', {
             method: 'POST',
@@ -24,10 +24,10 @@ const useCommentApi = () => {
                 'Content-Type': 'application/json'
             }),
             body: JSON.stringify(newComment),
-        }).then(response => response.json())
+        })
     }
 
-    const editComment = (comment: GameComment): Promise<UpdatedComment> => {
+    const editComment = (comment: GameComment): Promise<Response> => {
         return fetch(`http://localhost:3030/data/comments/${comment._id}`, {
             method: 'PUT',
             headers: getHeaders({
@@ -39,7 +39,7 @@ const useCommentApi = () => {
                 description: comment.description,
                 rating: comment.rating
             }),
-        }).then(response => response.json())
+        })
     }
 
     const deleteComment = (commentId: string): Promise<Response> => {

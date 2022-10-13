@@ -8,7 +8,6 @@ export type Product = {
     trailer: string,
     discount: number,
     price: number,
-    status: string,
     genres: string[]
 }
 
@@ -160,7 +159,6 @@ export type UserGameComment = {
     description: string,
     rating: number,
     _id: string,
-    status?: number
 }
 
 export type UserGameComments = UserGameComment[]
@@ -186,7 +184,6 @@ export type NewComment = {
 
 export type UpdatedComment = {
     _updatedOn: number
-    status: number
 } & UserGameComment
 
 export type ShortValidation = {
@@ -197,3 +194,9 @@ export type EditModalState = {
     isOpen: boolean,
     comment: GameComment
 }
+
+export type ApiError = {
+    code: number,
+    message: string,
+}
+

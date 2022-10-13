@@ -13,6 +13,7 @@ import { faCcMastercard, faCcVisa } from "@fortawesome/free-brands-svg-icons";
 import styles from './CheckoutPage.module.css';
 import useOrderApi from '../../lib/useOrderApi';
 import { AuthContextType, CartContextType, OrderProducts, OrderUserInfo } from '../../lib/types';
+import { useNavigate } from 'react-router-dom';
 
 interface IFormInputs {
     fullName: string
@@ -27,6 +28,7 @@ interface IFormInputs {
 
 const CheckoutPage = () => {
 
+    const navigate = useNavigate();
     const { getUserInfo } = useUserApi();
     const { createOrder } = useOrderApi();
     const { auth } = useContext(AuthenticationContext) as AuthContextType;
@@ -73,7 +75,10 @@ const CheckoutPage = () => {
         }
 
         createOrder(orderUserInfo, orderProducts)
-            .then((response) => console.log(response));
+            .then((response) => {
+                const orderId = response[0].orderId;
+                navigate(`/thankyou/${orderId}`);
+            });
     }
 
     return (

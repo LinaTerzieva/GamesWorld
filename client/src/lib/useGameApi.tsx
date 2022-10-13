@@ -1,5 +1,4 @@
-import { Product } from "./types";
-
+import { ApiError, Product } from "./types";
 
 const useGameApi = () => {
 
@@ -7,7 +6,13 @@ const useGameApi = () => {
 
     const getGame = (gameId: string): Promise<Product> => {
         return fetch(`${baseUrl}/${gameId}`)
-            .then(response => response.json())
+            .then((response: Response) => {
+                if (!response.ok) {
+                    throw response.json() as Promise<ApiError>;
+                }
+
+                return response.json() as Promise<Product>;
+            });
     }
 
     const searchGames = (title:string | null, showDiscount:boolean, sortBy:string | null, offset:string | null | number, pageSize:number): Promise<Product[]> => {

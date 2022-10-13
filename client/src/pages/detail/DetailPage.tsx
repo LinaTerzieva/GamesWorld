@@ -1,6 +1,6 @@
 import { ADD_TO_CART_INCREASE } from "../../lib/Constants";
 import { useEffect, useState, useContext } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import ReactPlayer from "react-player/youtube";
 
 import Form from 'react-bootstrap/Form';
@@ -18,32 +18,32 @@ import useCommentApi from '../../lib/useCommentApi';
 import useGameApi from '../../lib/useGameApi';
 
 import StaticRatingStars from '../../components/staticRatingStars/StaticRatingStars';
-import { AuthContextType, CartContextType, EditModalState, GameComment, GameComments, Product, ShortValidation } from "../../lib/types";
+import { ApiError, AuthContextType, CartContextType, EditModalState, GameComment, GameComments, NewComment, Product, ShortValidation } from "../../lib/types";
 
 const DetailPage = () => {
 
+    const navigate = useNavigate();
     const { auth } = useContext(AuthenticationContext) as AuthContextType;
     const { updateCart } = useContext(CartContext) as CartContextType;
     const { getComments, createComment, editComment, deleteComment } = useCommentApi();
     const { getGame } = useGameApi();
 
     const { gameId } = useParams<string>();
-    if(gameId == undefined) return <Navigate to="/" />
+    const id = gameId == undefined ? "" : gameId;
 
     const [game, setGame] = useState<Product>({
         _id: "",
         title: "",
         description: "",
-        cover:  "",
+        cover: "",
         trailer: "",
         discount: 0,
         price: 0,
-        status: "",
         genres: [],
     });
     const [allComments, setAllComments] = useState<GameComments>([]);
-    const [newComment, setNewComment] = useState({
-        _gameId: gameId,
+    const [newComment, setNewComment] = useState<NewComment>({
+        _gameId: id,
         description: "",
         rating: 0
     });
@@ -52,8 +52,8 @@ const DetailPage = () => {
     const [editHover, setEditHover] = useState(0);
 
     const price: string = game.price.toFixed(2);
-    const [createValidation, setCreateValidation] = useState<ShortValidation>({description: ""});
-    const [editValidation, setEditValidation] = useState<ShortValidation>({description: ""});
+    const [createValidation, setCreateValidation] = useState<ShortValidation>({ description: "" });
+    const [editValidation, setEditValidation] = useState<ShortValidation>({ description: "" });
 
     const [editModal, setEditModal] = useState<EditModalState>({
         isOpen: false,
@@ -71,6 +71,21 @@ const DetailPage = () => {
             _id: "",
         }
     });
+
+    useEffect(() => {
+
+        getGame(id)
+            .then(data => {
+                setGame(data);
+            })
+            .catch((error: Promise<ApiError>) => {
+                navigate('/');
+            });
+
+
+        getComments(id)
+            .then(data => setAllComments(data));
+    }, []);
 
     const handleClose = () => setEditModal({
         isOpen: false,
@@ -111,16 +126,6 @@ const DetailPage = () => {
         });
     }
 
-
-    useEffect(() => {
-        getGame(gameId)
-            .then(data => setGame(data));
-
-
-        getComments(gameId)
-            .then(data => setAllComments(data));
-    }, []);
-
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const newCommentText = e.target.value;
         setNewComment({
@@ -140,7 +145,7 @@ const DetailPage = () => {
         createComment(newComment)
             .then((response) => {
                 if (response.status == 200) {
-                    getComments(gameId)
+                    getComments(id)
                         .then(data => {
                             setAllComments(data);
                         });
@@ -149,7 +154,7 @@ const DetailPage = () => {
             })
 
         setNewComment({
-            _gameId: gameId,
+            _gameId: id,
             description: "",
             rating: 0
         });
@@ -170,7 +175,7 @@ const DetailPage = () => {
         editComment(editModal.comment)
             .then((response) => {
                 if (response.status == 200) {
-                    getComments(gameId)
+                    getComments(id)
                         .then(data => {
                             setAllComments(data);
                         });
@@ -200,7 +205,7 @@ const DetailPage = () => {
         deleteComment(commentId)
             .then((response) => {
                 if (response.status == 200) {
-                    getComments(gameId)
+                    getComments(id)
                         .then(data => {
                             setAllComments(data);
                         });
@@ -210,7 +215,7 @@ const DetailPage = () => {
     }
 
     const addGameToCart = () => {
-        updateCart(gameId, ADD_TO_CART_INCREASE);
+        updateCart(id, ADD_TO_CART_INCREASE);
     }
 
     return (

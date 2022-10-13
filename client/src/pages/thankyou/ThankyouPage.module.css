@@ -1,0 +1,40 @@
+
+.thankyouWrapper {
+    margin: 50px 0px;
+    color: white;
+    text-align: center;
+}
+
+.CheckIcon {
+    font-size: 80px;
+    color: 	white;
+}
+
+.thankyouHeader {
+    margin-top: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.thankyouDescr {
+    margin-top: 20px;
+}
+
+.order {
+    color: #e935a7;
+}
+
+.continueLinkWrapper {
+    margin-top: 50px;
+}
+
+.continueLink {
+    background: #15171e;
+    border: 1px solid #d53a9d;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: white;
+    font-variant-caps: all-small-caps;
+    font-size: 20px;
+}
+
