@@ -6,7 +6,8 @@ import styles from './CatalogGameItem.module.css';
 
 const CatalogGameItem = ({ game }: {game: Product}): JSX.Element => {
 
-    let price: number = parseInt(game.price.toFixed(2));
+    let price: number = game.price;
+    let convertedPrice: string = game.price.toFixed(2);
     let finalPrice: string = (price - game.discount).toFixed(2);
 
     return (
@@ -27,12 +28,12 @@ const CatalogGameItem = ({ game }: {game: Product}): JSX.Element => {
                     {game.discount == 0
                         ? <div className={styles.resultsCardPrice}>
                             <div className={styles.resultsCardPriceFinal}>
-                                {price}€
+                                {convertedPrice}€
                             </div>
                         </div>
                         : <div className={styles.resultsCardPrice}>
                             <div className={styles.resultsCardPriceBase}>
-                                {price}
+                                {convertedPrice}
                             </div>
                             <div className={styles.resultsCardPriceFinal}>
                                 {finalPrice}€

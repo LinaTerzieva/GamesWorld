@@ -16,18 +16,6 @@ const UserMenu = () => {
     const { auth, logoutUser } = useContext(AuthenticationContext) as AuthContextType;
     const [showCart, setShowCart] = useState<boolean>(false);
 
-    const handleProfile = () => {
-        fetch('http://localhost:3030/users/me', {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'X-Authorization': `${auth.accessToken}`
-            },
-        })
-            .then((response) => { console.log(response) });
-    }
-
     const logOutHandler = () => {
         logoutUser();
     }
@@ -50,7 +38,7 @@ const UserMenu = () => {
                         <FontAwesomeIcon className={styles.userMenuIcon} icon={faUser} />
                     </Link>
                     : <>
-                        <Link to='/profile' className={`${styles.userMenuLink} link`} onClick={handleProfile}>
+                        <Link to='/profile' className={`${styles.userMenuLink} link`}>
                             My profile
                             <FontAwesomeIcon className={styles.userMenuIcon} icon={faUser} />
                         </Link>
